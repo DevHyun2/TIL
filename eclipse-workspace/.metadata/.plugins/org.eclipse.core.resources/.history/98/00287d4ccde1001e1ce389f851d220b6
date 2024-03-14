@@ -1,0 +1,31 @@
+package com.shinhan.day03;
+
+public class 배열테스트 {
+
+	public static void main(String[] args) {
+		test1();
+
+	}
+
+	private static void test1() {
+		
+		/*문제1. 주어진 일차원 배열의 내용을 오름차순으로 정렬하는 로직을 작성하시오.
+		(단, 로직은 main() 메서드에 작성하고 반드시 이중 for문을 사용하여 구현해야 한다.) 
+		 */
+		
+		System.out.println("[배열의 내용]");
+		
+		int[] arr = {3, 24, 1, 55, 17, 43 ,5};
+		System.out.println(arr[0]);
+		
+		System.out.println("[클래스 실행결과]");
+		
+		for(int i=0 ; i<arr.length ; i++) {
+			for(int j=0 ; j<arr.length ; j++) {
+				System.out.println(arr[i]);
+			}
+		}
+		
+	}
+
+}

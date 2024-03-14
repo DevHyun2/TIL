@@ -2,9 +2,46 @@ package com.shinhan.day03;
 
 import java.util.Arrays;
 
-public class ArrayTest {
+//>java ArrayTest ex)100 200 값
+//JVM이 class load(byte code가 method영역으로 들어간다.)
+//검증
+//main method 시작
+//String[] args -> 명령행 매개변수
 
+public class ArrayTest {
+	
+	//명령행 매개변수(run as - run configuration - argument)
+	//명령행 매개변수 2개 받아서 사칙연산 수행하기
 	public static void main(String[] args) {
+		
+		try {
+			int su1 = Integer.parseInt(args[0]);
+			int su2 = Integer.parseInt(args[1]);
+			System.out.println(su1+su2);
+			System.out.println(su1-su2);
+			System.out.println(su1*su2);
+			System.out.println(su1/su2);
+			System.out.println(su1%su2);
+		}catch(ArrayIndexOutOfBoundsException aa) { //오류가 나면 어떻게 할 건지 정하는 catch
+			aa.printStackTrace(); //에러가 몇번째에 나오는지 확인
+		}
+		
+		/*
+		if(args.length==2) {
+			int su1 = Integer.parseInt(args[0]);
+			int su2 = Integer.parseInt(args[1]);
+			System.out.println(su1+su2);
+			System.out.println(su1-su2);
+			System.out.println(su1*su2);
+			System.out.println(su1/su2);
+			System.out.println(su1%su2);
+		}
+		/*
+		System.out.println(args.length + "개");
+		System.out.println(args[0]);
+		System.out.println(args[1]);
+		System.out.println(args[2]); //.ArrayIndexOutOfBoundsException
+		*/
 		//call();
 		//call2();
 		//call3();
@@ -14,15 +51,33 @@ public class ArrayTest {
 		//call7();
 		//call8();
 		//call9();
-		method1(); //배열 복사 System.arraycopy()
+		//method1(); //배열 복사 System.arraycopy()
+		//method2();
 	}
 	
+	private static void method2() {
+		int[] arr = new int[] {10, 20, 30};
+		String[] arr2 = {"자바", "디비", "웹"};
+		
+		System.out.println("=====일반for=====");
+		for(int i = 0 ; i<arr.length ; i++) {
+			System.out.println(i + "번째->" + arr[i]);
+		}
+		System.out.println("=====향상 for, 확장 for=====");
+		for(int data : arr) {
+			System.out.println(data);
+		}
+		for(String data : arr2) {
+			System.out.println(data);
+		}
+	}
+
 	private static void method1() {
 		int[] arr = new int[] {10, 20, 30};
 		int[] arr2 = arr; //값의 복사X 주소의 복사O
 		int[] arr3 = new int[arr.length];
 		
-		System.arraycopy(arr, 0, arr3, 0, arr.length);
+		System.arraycopy(arr, 0, arr3, 0, arr.length); //값을 복사
 		
 		arr[0] = 99;
 		
