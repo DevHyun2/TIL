@@ -1,0 +1,18 @@
+package com.shinhan.day02;
+
+public class LoopingTest {
+
+	public static void main(String[] args) {
+		method1();
+
+	}
+
+	private static void method1() {
+		//1.for문
+		for(;;) {
+			System.out.println("java배우기");
+		}
+		
+	}
+
+}

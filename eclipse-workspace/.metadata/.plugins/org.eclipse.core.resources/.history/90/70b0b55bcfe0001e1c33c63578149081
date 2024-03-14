@@ -1,0 +1,35 @@
+package com.shinhan.day02;
+
+//자바 프로그램은 class들로 이루어짐
+//하나의 .java파일에 여러개의 class가 가능
+//public class이면 반드시 독립적 파일로 저장한다. - 하나의 .java 안에는 하나의 public만 존재
+public class Review {
+	
+	//사용가능한 것
+	//1.멤버변수
+	//2.생성자
+	//3.메서드
+	//4.block
+	//5.inner class
+	public static void main(String[] args) { //main메서드
+		System.out.println("1.main시작");
+		
+		f1();
+		
+		System.out.println("4.main끝");
+	}
+	
+	//호출하려면 static 필요 -> main메서드에 static 존재하기 때문
+	private static void f1() { //함수는 return필요, void = return없애줌
+		System.out.println("2.f1함수 시작");
+		System.out.println("3.f1함수 끝");
+		
+	}
+
+	}
+
+}
+
+class Review2{ 
+	
+}

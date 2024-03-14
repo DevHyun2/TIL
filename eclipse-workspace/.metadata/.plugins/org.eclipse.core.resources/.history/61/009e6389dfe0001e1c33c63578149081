@@ -1,0 +1,38 @@
+package com.shinhan.day02;
+
+public class IFTest {
+
+	public static void main(String[] args) {
+		mathod2();
+	}
+
+	private static void mathod2() {
+		int score = 80;
+		String grade;
+		if(score >= 90) {
+			grade = "A";
+		} else if(score >= 80) {
+			grade = "B";
+		} else if(score >= 70) {
+			grade = "C";
+		} else if(score >= 60) {
+			grade = "D";
+		} else {
+			grade = "F";
+		}
+		System.out.printf("%s 학점 !!", grade);
+		System.out.println("===========");
+	}
+
+	private static void mathod1() {
+		int score = 100;
+		// 출력 문장이 하나만 있을 때에는 block({ }) 없어도 가능
+		if (score >= 90) {
+			System.out.println("합격");
+		} else {
+			System.out.println("불합격");
+		}
+		System.out.println("if끝");
+	}
+
+}

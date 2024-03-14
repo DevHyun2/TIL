@@ -1,0 +1,53 @@
+package com.shinhan.day03;
+
+public class SwitchExpressionTest {
+
+	public static void main(String[] args) {
+		call();
+		call2();
+		call3();
+
+	}
+
+	private static void call3() {
+		//3. for 문을 이용해서 1부터 100까지의 정수 중에서
+		//3의 배수의 총합을 출력하는 코드를 작성해보세요.
+		
+		int total = 0;
+		for(int su=0;su<=100 ;su+=3) {
+			total += su;
+		}
+		System.out.println(total);
+	}
+
+	//swtich Expression형식
+	private static void call2() {
+		String grade = "B";
+		int score1 = 0;
+		switch (grade) {
+		case "A"->{score1 = 100;}
+		case "B"->{int result = 100 - 20;
+			score1 = result;}
+		default ->{score1 = 60;}
+		}
+		System.out.println(score1);
+	}
+	
+	//switchStatement형식
+	private static void call() {
+		String grade = "B";
+		int score1 = 0;
+		switch (grade) {
+		case "A":
+			score1 = 100;
+			break;
+		case "B":
+			int result = 100 - 20;
+			score1 = result;
+			break;
+		default:
+			score1 = 60;
+		}
+		System.out.println(score1);
+	}
+}

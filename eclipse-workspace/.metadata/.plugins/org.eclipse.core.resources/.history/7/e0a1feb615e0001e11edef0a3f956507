@@ -1,0 +1,62 @@
+package com.shinhan.day01;
+
+public class 기본형변수타입 {
+
+	public static void main(String[] args) {
+		//선언 + 할당
+		int var1 = Integer.MAX_VALUE;
+		int var2 = 2147483647;
+		//사용
+		var2++;
+		System.out.println("var1=" + var1);
+		System.out.println("var2=" + var2);
+	}
+	
+	
+	
+	
+	
+	public static void f3(String[] args) {
+		//선언 + 할당
+		char a = 'A';  // 0 ~ 32767*2
+		char b = 65;
+		char c = 0x0041;
+		System.out.println("a=" + a);
+		System.out.println("b=" + b);
+		System.out.println("c=" + c);
+	}
+	
+	
+	public static void f2(String[] args) {
+		//1.변수선언
+		short a;  //-32768 ~ 32767
+		
+		//2.초기화
+		a = 32767;
+		a++;
+		
+		//3.사용
+		System.out.println("short타입값:" + a);
+	}
+	
+	
+	
+	
+	
+	public static void f1(String[] args) {
+		//변수 : 하나의 값을 저장하기 위한 기억장소 이름
+		//선언 후 사용한다.
+		
+		//1.선언
+		byte a; //a변수는 byte 값을 담을 수 있다.
+		
+		//2.할당(초기화)
+		a = 127;
+		a++; a++; a++; //범위를 벗어난 결과 -126
+		
+		//지역변수(메서드 내의 변수)는 반드시 초기화 하고 사용한다.
+		System.out.println(a);
+
+	}
+
+}

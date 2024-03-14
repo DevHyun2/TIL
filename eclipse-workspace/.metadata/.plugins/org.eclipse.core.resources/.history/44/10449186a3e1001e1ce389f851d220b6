@@ -1,0 +1,18 @@
+package com.shinhan.day03;
+
+public class ReferenceTest {
+	
+	public static void main(String[] args) {
+		call();
+	}
+
+	private static void call() {
+		
+		int a = 10; //지역 변수 초기화 -> int a; (X)
+		String s = null; //null은 정의된 값이 없다를 의미한다.
+		
+		System.out.println("기본형연습: " + a); //지역변수 초기화 후 사용가능
+		System.out.println("참조형연습: " + s); 
+		System.out.println("참조형연습: " + s.length()); 
+	}
+}
