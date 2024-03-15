@@ -1,0 +1,28 @@
+package com.shinhan.day02;
+
+public class OperaterTest {
+
+	public static void main(String[] args) {
+		method2();
+
+	}
+
+	private static void method2() {
+		int a = 10;
+		int b = 3;
+		System.out.println("더하기 = " + (a + b)); //+,- 경우 연산자 우선순위 주의
+		System.out.println("빼기 = " + (a - b));
+		System.out.println("곱하기 = " + a * b);
+		System.out.println("몫 = " + a / b); //몫
+		System.out.println("나머지 = " + a % b); //나머지
+		
+	}
+
+	private static void method1() {
+		int var1 = 100;
+		System.out.println(++var1); //연산 후 출력
+		System.out.println(var1++); //출력 후 연산, 다음 출력에 102
+		System.out.println(var1); //출력
+	}
+
+}

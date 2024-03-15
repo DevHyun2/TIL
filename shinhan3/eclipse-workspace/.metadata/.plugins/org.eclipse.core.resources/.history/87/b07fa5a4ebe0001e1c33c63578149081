@@ -1,0 +1,28 @@
+package com.shinhan.day02;
+
+public class LoopingTest {
+
+	public static void main(String[] args) {
+		method2();
+
+	}
+
+	private static void method2() {
+		int i=1;
+		while(i<=10) {
+			System.out.println("while문 연습");
+			i++;
+		}
+		
+	}
+
+	private static void method1() {
+		//1.for문...조건에 맞는 동안 반복 (초기화;조건;방식)
+		int i;
+		for(i=1;i<=10;i++) {
+			System.out.println(i + ":java배우기");
+		}
+		System.out.println("for후...i = " + i);
+	}
+
+}

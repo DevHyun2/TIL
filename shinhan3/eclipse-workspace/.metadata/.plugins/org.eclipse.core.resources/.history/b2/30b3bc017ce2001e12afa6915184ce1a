@@ -1,0 +1,46 @@
+package com.shinhan.day04;
+
+public class Car {
+	
+	//1.field(특징, 변수, data저장, 멤버변수)
+	private String copany = "현대자동차";
+	private String model;
+	private String color;
+	private int maxSpeed;
+	
+	//2.constructor(생성자)...생성자는 여러가지 방법을 정의(Overloading)
+	Car() {
+		System.out.println("default생성자...arg없음");
+	}
+	Car(String model, String color, int maxSpeed) {
+		//super(); 부모 생성된다. 부모는 하나만
+		this.model = model;
+		this.color = color;
+		this.maxSpeed = maxSpeed;
+	}
+	Car(String model, int maxSpeed, String color) {
+		this(model, color, maxSpeed);//생성자 호출 (첫번째 줄에서만 가능), super() 부분이 수행안함
+		System.out.println("-----------")
+	}
+	Car(int maxSpeed, String color) {
+		this(null, color, maxSpeed);
+	}
+	Car(String model) {
+		this(model, null, 0);
+	}
+	
+	String first; // 필드, 멤버변수...new시에 자동으로 초기화
+	
+	//메서드(기능, 동작) 문장들의 묶음, return type 반드시 필요, return값 X -> void
+	void carInfoPrint() {
+		String second = null; // 지역변수...반드시 초기화 하고 사용
+		
+		System.out.println("=======Car의 정보========");
+		System.out.println("회사:" + company);
+		System.out.println("모델:" + model);
+		System.out.println("색상:" + color);
+		System.out.println("최대속도:" + maxSpeed);
+		System.out.println("first:" + first);
+		System.out.println("second:" + second);
+	}
+}

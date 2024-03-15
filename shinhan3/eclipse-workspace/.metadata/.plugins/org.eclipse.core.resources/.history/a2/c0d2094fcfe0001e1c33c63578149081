@@ -1,0 +1,16 @@
+package com.shinhan.day02;
+
+//자바 프로그램은 class들로 이루어짐
+//하나의 .java파일에 여러개의 class가 가능
+public class Review {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Review2{ 
+	
+}

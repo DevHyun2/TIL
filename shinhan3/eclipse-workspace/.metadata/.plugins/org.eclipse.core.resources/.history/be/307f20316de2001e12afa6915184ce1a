@@ -1,0 +1,15 @@
+package com.shinhan.day04;
+
+//class : object를 만들기 위한 틀(template), 설계도
+
+public class Book {
+
+	//클래스 안에 들어갈 수 있는 것
+	
+	//1.field (변수, data저장목적, 특징)
+	//2.constructor 
+	//3.method (함수, 기능)
+	//4.block
+	//5.inner class
+	
+}

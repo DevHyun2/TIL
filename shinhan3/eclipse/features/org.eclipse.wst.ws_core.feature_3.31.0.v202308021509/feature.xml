@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.wst.ws_core.feature"
+      label="%featureName"
+      version="3.31.0.v202308021509"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="javax.mail"/>
+      <import plugin="javax.xml.rpc"/>
+      <import plugin="javax.xml.soap" version="1.2.0" match="equivalent"/>
+      <import plugin="javax.wsdl" version="1.6.2" match="greaterOrEqual"/>
+      <import plugin="org.apache.axis"/>
+      <import plugin="org.apache.axis.ant"/>
+      <import plugin="org.apache.commons.codec"/>
+      <import plugin="org.apache.commons.discovery"/>
+      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
+      <import plugin="org.apache.wsil4j"/>
+      <import plugin="org.uddi4j"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.wst.command.env"
+         download-size="85"
+         install-size="152"
+         version="1.1.0.v202308010354"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.command.env.core"
+         download-size="63"
+         install-size="109"
+         version="1.1.0.v202308010229"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.ws"
+         download-size="248"
+         install-size="505"
+         version="1.2.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.ws.parser"
+         download-size="56"
+         install-size="97"
+         version="1.1.0.v202308012257"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.wsdl"
+         download-size="442"
+         install-size="1659"
+         version="1.3.1.v202308012257"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.wsdl.validation"
+         download-size="198"
+         install-size="391"
+         version="1.3.101.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.wsi"
+         download-size="878"
+         install-size="1874"
+         version="1.1.501.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.wst.ws.service.policy"
+         download-size="62"
+         install-size="131"
+         version="1.1.0.v202308010229"
+         unpack="false"/>
+
+</feature>

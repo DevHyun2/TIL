@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+    Copyright (c) 2009, 2023 Tasktop Technologies and others.
+ 
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0 which is available at
+    https://www.eclipse.org/legal/epl-2.0
+ 
+    SPDX-License-Identifier: EPL-2.0
+
+    Contributors:
+         Tasktop Technologies - initial API and implementation
+         ArSysOp - ongoing support
+ -->
+
+<feature
+      id="org.eclipse.mylyn.pde.feature"
+      label="%featureName"
+      version="4.1.0.v20231124-1250"
+      provider-name="%providerName"
+      plugin="org.eclipse.mylyn.context.core">
+
+   <description url="http://eclipse.org/mylyn">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.mylyn.jdt.feature" version="4.1.0" match="equivalent"/>
+      <import feature="org.eclipse.pde" version="3.6.0" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.mylyn.pde.ui"
+         download-size="69"
+         install-size="148"
+         version="4.1.0.v20231124-1250"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,28 @@
+package com.shinhan.day04.LAB4;
+
+public class Employee {
+	
+	private String name;
+	private String title;
+	private int baseSalary;
+	private int totalSalry;
+	
+	public Employee(String name, String title, int baseSalary) {
+		super();
+		this.name = name;
+		this.title = title;
+		this.baseSalary = baseSalary;
+	}
+
+	public int getTotalSalry() {
+		return totalSalry;
+		for(Employee s : title) {
+			
+		}
+	}
+	
+	public void print() {
+		System.out.println(title + " 직급의 " + name + "씨의 본봉은 " +
+	                       baseSalary + "원이고 총급여는 " + totalSalary + " 원입니다");
+	}
+}

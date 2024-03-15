@@ -1,0 +1,26 @@
+package com.shinhan.day04;
+
+public class ParameterTest {
+
+	public static void main(String[] args) {
+		ParameterTest aa = new ParameterTest();
+		aa.sum(10,20);
+		sum(10,20,30);
+
+	}
+	
+	private static void sum(int i, int j, int k) {
+		System.out.println("정수합3:" + (i+j+k));
+		
+	}
+
+	//멤버메서드(non-static) : 객체생성 후 호출 가능하다.
+	//객체생성 없을 때 static은 static에서만 호출 가능
+	 void sum(int i, int j) {
+		System.out.println("정수합2:" + (i+j));
+		
+	}
+	 void print() {
+		 sum(1,2);
+	 }
+}

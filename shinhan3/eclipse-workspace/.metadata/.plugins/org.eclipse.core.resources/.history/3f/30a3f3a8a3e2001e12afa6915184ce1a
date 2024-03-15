@@ -1,0 +1,15 @@
+package com.shinhan.day04.LAB4;
+
+public class Person {
+	int numberOfPersons;
+	int age;
+	String name;
+	
+	public Person(int numberOfPersons, int age, String name) {
+		super();
+		this.numberOfPersons = numberOfPersons;
+		this.age = age;
+		this.name = name;
+	}
+	
+}

@@ -1,0 +1,24 @@
+package com.shinhan.day04;
+
+public class BookTest {
+
+	public static void main(String[] args) {
+		method1();
+	}
+
+	private static void method1() {
+		//1.객체 참조 변수선언
+		Book b1, b2; //b1 = object
+		//2.객체 생성
+		b1 = new Book();
+		b2 = new Book();
+		//3.객체 사용
+		b1.title = "이것이자바다";
+		b1.price = 36000;
+		b2.title = "Oracle";
+		b2.price = 25000;
+		System.out.println(b1.title + ": " + b1.price);
+		System.out.println(b2.title + ": " + b2.price);
+	}
+
+}

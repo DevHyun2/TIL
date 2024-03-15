@@ -1,0 +1,15 @@
+package com.shinhan.day04;
+
+public class ParameterTest {
+
+	public static void main(String[] args) {
+		sum(10,20);
+
+	}
+
+	private static void sum(int i, int j) {
+		System.out.println("정수합:" + (i+j));
+		
+	}
+
+}

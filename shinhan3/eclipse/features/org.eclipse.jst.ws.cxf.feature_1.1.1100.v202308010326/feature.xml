@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.jst.ws.cxf.feature"
+      label="%featureName"
+      version="1.1.1100.v202308010326"
+      provider-name="%featureProvider"
+      plugin="org.eclipse.jst.ws.cxf.core"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.jst.ws.jaxws_userdoc.feature"/>
+   </requires>
+
+   <plugin
+         id="org.jdom"
+         download-size="178"
+         install-size="371"
+         version="1.1.1.v201101151400"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.consumption.core"
+         download-size="29"
+         install-size="57"
+         version="1.1.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.consumption.ui"
+         download-size="41"
+         install-size="92"
+         version="1.1.0.v202308010229"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.core"
+         download-size="138"
+         install-size="313"
+         version="1.2.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.creation.core"
+         download-size="54"
+         install-size="117"
+         version="1.1.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.creation.ui"
+         download-size="97"
+         install-size="219"
+         version="1.1.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.jst.ws.cxf.ui"
+         download-size="164"
+         install-size="329"
+         version="1.1.0.v202308010145"
+         unpack="false"/>
+
+   <plugin
+         id="javax.wsdl"
+         download-size="172"
+         install-size="333"
+         version="1.6.2.v201012040545"
+         unpack="false"/>
+
+   <plugin
+         id="javax.jws"
+         download-size="23"
+         install-size="44"
+         version="2.0.0.v201005080400"
+         unpack="false"/>
+
+   <plugin
+         id="jakarta.xml.bind"
+         download-size="133"
+         install-size="256"
+         version="2.3.3.v20201118-1818"
+         unpack="false"/>
+
+   <plugin
+         id="javax.xml.stream"
+         download-size="42"
+         install-size="75"
+         version="1.0.1.v201004272200"
+         unpack="false"/>
+
+   <plugin
+         id="javax.xml.ws"
+         download-size="59"
+         install-size="102"
+         version="2.1.0.v200902101523"
+         unpack="false"/>
+
+</feature>

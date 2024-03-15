@@ -1,0 +1,52 @@
+package com.shinhan.day02;
+
+import java.util.Scanner;
+
+/*문제1. 1보다 크고 10보다 작은 정수를 입력 받아서 
+ * 아래와 같은 실행 결과가 나타나도록 Prob1 클래스의 main 메소드를 완성하십시오. 
+ * 입력 받은 숫자에 해당하는 구구단을 완성시키는 프로그램입니다. 
+2보다 작거나 9보다 큰 정수가 입력될 경우에는 
+“잘못된 숫자가 입력되었습니다.”라는 경고 메시지를 출력하고 프로그램을 종료합니다.
+*/
+public class LABSix {
+
+	public static void main(String[] args) {
+		method6_2();
+
+	}
+
+	private static void method6_2() {
+		/// 구구단.....2단부터 9단까지 모두 출력
+
+		for (int gop = 1; gop <= 9; gop++) {
+			//if(gop==4)break;//gop값이 4이면 중지
+			for (int dan = 2; dan <= 9; dan++) {
+				if(dan==5)break;//dan값이 5이면 중지
+				System.out.printf("%2d * %2d = %2d ", dan, gop, dan * gop);
+			}
+			System.out.println();
+		}
+	}
+
+	private static void method6() {
+		Scanner sc;
+		sc = new Scanner(System.in);
+
+		System.out.print("1보다 크고 10보다 작은 정수를 입력하세요. :");
+		int su = sc.nextInt();
+		int i;
+
+		if (su < 2 || su > 9) {
+			System.out.println("잘못된 숫자가 입력되었습니다.");
+			sc.close();
+			return; // 함수 끝내고 호출한 곳으로 돌아간다.
+
+		} else {
+			for (i = 1; i < 10; i++) {
+				System.out.printf("%d * %d = %d\n", su, i, su * i);
+			}
+		}
+		sc.close();
+	}
+
+}

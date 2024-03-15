@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2005, 2023 Tasktop Technologies and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v2.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v20.html
+
+    Contributors:
+         Tasktop Technologies - initial API and implementation
+         ArSysOp - ongoing support
+ -->
+<feature
+      id="org.eclipse.mylyn.tasks.feature"
+      label="%featureName"
+      version="4.1.0.v20231125-1125"
+      provider-name="%providerName"
+      plugin="org.eclipse.mylyn.tasks.core">
+
+   <description url="http://eclipse.org/mylyn">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="Mylyn 3.26 for Eclipse 4.12" url="http://download.eclipse.org/mylyn/releases/3.26"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.mylyn.commons.feature" version="4.1.0" match="compatible"/>
+      <import feature="org.eclipse.mylyn.commons.identity.feature" version="4.1.0" match="compatible"/>
+      <import feature="org.eclipse.mylyn.commons.notifications.feature" version="4.1.0" match="compatible"/>
+      <import feature="org.eclipse.mylyn.commons.repositories.feature" version="4.1.0" match="compatible"/>
+      <import feature="org.eclipse.mylyn.monitor.feature" version="4.1.0" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.mylyn.help.ui"
+         download-size="1245"
+         install-size="1477"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.activity.core"
+         download-size="22"
+         install-size="33"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.activity.ui"
+         download-size="15"
+         install-size="23"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.bugs"
+         download-size="96"
+         install-size="199"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.core"
+         download-size="496"
+         install-size="1075"
+         version="4.1.0.v20231102-0301"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.index.core"
+         download-size="34"
+         install-size="65"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.index.ui"
+         download-size="32"
+         install-size="53"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.search"
+         download-size="71"
+         install-size="142"
+         version="4.1.0.v20231009-0014"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.mylyn.tasks.ui"
+         download-size="2032"
+         install-size="4152"
+         version="4.1.0.v20231125-1125"
+         unpack="false"/>
+
+</feature>

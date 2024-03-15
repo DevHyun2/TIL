@@ -1,0 +1,19 @@
+package com.shinhan.day04;
+
+public class ParameterTest {
+
+	public static void main(String[] args) {
+		ParameterTest aa = new ParameterTest();
+		aa.sum(10,20);
+
+	}
+	
+	//멤버메서드 : 객체생성 후 호출 가능하다.
+	 void sum(int i, int j) {
+		System.out.println("정수합:" + (i+j));
+		
+	}
+	 void print() {
+		 sum(1,2);
+	 }
+}

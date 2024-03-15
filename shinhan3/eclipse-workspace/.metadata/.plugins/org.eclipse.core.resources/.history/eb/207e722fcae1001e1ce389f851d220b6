@@ -1,0 +1,30 @@
+package com.shinhan.day03;
+
+import java.util.Scanner;
+
+public class EnumTest2 {
+
+	public static void main(String[] args) {
+		loginCheck();
+
+	}
+
+	private static void loginCheck() {
+		Scanner sc = new Scanner(System.in);
+		
+		String result;
+		
+		System.out.print("ID PASS>>");
+		String id = sc.next(); //.next() 단어기준
+		String pass = sc.next();
+		
+		if(id.equals("firstzone") && pass.equals("1234")) {
+			result = "성공";
+		}else {
+			result = "실패";
+		}
+		System.out.println(result);
+		sc.close();
+	}
+
+}

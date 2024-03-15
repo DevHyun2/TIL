@@ -1,0 +1,12 @@
+package com.shinhan.day04;
+
+public class LAB2 {
+	String accNo;
+	int balance;
+	
+	
+	
+	void save(int balance) {
+		this.balance = balance;
+	}
+}
