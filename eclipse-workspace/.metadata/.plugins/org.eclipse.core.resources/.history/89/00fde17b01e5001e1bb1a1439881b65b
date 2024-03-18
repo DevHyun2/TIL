@@ -1,0 +1,18 @@
+package train;
+
+import java.util.Arrays;
+
+public class 연습장 {
+
+	public static void main(String[] args) {
+		solution("ASDQ");
+	}
+	
+	public static String solution(String my_string) {
+        String answer = "";
+        
+        answer = Arrays.sort(my_string);
+        return answer;
+    }
+}
+
