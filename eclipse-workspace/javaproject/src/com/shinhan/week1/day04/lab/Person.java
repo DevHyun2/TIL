@@ -1,0 +1,24 @@
+package com.shinhan.week1.day04.lab;
+
+public class Person {
+	static int numberOfPersons;
+	int age;
+	String name;
+	
+	public Person(int age, String name) {
+		super();
+		this.age = age;
+		this.name = name;
+		numberOfPersons++;
+	}
+	public Person() { 
+		this(12,"Anonymous");
+	}
+	public void selfIntroduce() {
+		System.out.println("내 이름은 " + name + "이며, 나이는 " + age + "살 입니다.");
+	}
+	public int getPopulation() {
+		return numberOfPersons;
+	}
+	
+}

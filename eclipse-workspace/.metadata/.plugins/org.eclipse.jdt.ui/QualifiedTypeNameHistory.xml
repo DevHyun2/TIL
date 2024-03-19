@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.nio.file.spi.FileSystemProvider"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="com.shinhan.day05.Computer"/>
+    <fullyQualifiedTypeName name="com.shinhan.day05.Printer"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.CheckingAccount"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.Account"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.CreditLineAccount"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.BonusPointAccount"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.Driver"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.HankookTire"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.KumhoTire"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.Vehicle"/>
+    <fullyQualifiedTypeName name="com.shinhan.day06.Animal"/>
 </qualifiedTypeNameHistroy>

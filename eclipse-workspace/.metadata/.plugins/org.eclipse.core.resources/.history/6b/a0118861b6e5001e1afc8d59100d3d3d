@@ -1,0 +1,19 @@
+package com.week1.day02;
+/*문제5. 아래의 규칙으로 증가하는 수열에서 15번째까지의 합을 계산하십시오.
+ * • 수열 규칙  :  1부터 시작해서 두 항의 차이가 1씩 증가
+• 예  시  :  1 + 2 + 4 + 7 + 11 + 16 + 22 + …………
+위의 수열에서 15번째 항까지의 합을 구하는 프로그램을 작성하십시오
+ */
+public class LABTen {
+
+	public static void main(String[] args) {
+		method10();
+
+	}
+
+	private static void method10() {
+		
+		
+	}
+
+}

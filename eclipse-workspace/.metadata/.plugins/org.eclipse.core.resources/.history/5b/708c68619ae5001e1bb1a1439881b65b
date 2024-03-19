@@ -1,0 +1,29 @@
+package com.shinhan.day06;
+
+public class InheritanceTest3 {
+
+	public static void main(String[] args) {
+		method2();
+
+	}
+
+	private static void method2() {
+		CreditLineAccount acc2 = new CreditLineAccount("112", "현상", 2000, 1000);
+		acc2.deposit(2000);
+		int amount = acc2.withdraw(5000);
+		System.out.println("출금액: " + amount);
+	}
+
+	private static void method1() {
+		CheckingAccount acc1 = new CheckingAccount("112-234", "홍길동", 1000, "77-88");
+		acc1.deposit(2000);
+		int amount = acc1.withdraw(1200);
+		System.out.println("출금액: " + amount);
+		System.out.println("잔고: " + acc1.getBalance());
+		amount = acc1.pay("77-88", 800);
+		System.out.println("카드로인출 : " + amount);
+		amount = acc1.pay("77-98", 800);
+		System.out.println("카드로인출 : " + amount);
+	}
+
+}

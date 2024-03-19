@@ -1,0 +1,82 @@
+package com.shinhan.week2.day06.lab;
+
+//abstract class : abstract메서드가 1개이상 있다를 의미한다.
+//abstract 메서드 : 정의는 있고 구현은 없는 메서드를 의미한다.
+
+public abstract class Shape {
+
+	private String color;
+	private String type;
+
+	public Shape() {
+	}
+
+	public Shape(String color, String type) {
+		this.color = color;
+		this.type = type;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public abstract double calculateArea();
+
+	public abstract double calculatePerimeter();
+
+	@Override
+	public String toString() {
+		return color + " " + type;
+	}
+
+}
+
+public class Circle extends Shape {
+	double radius;
+	double circumference;
+
+	public Circle(String color, double radius) {
+		super(color, "Circle");
+		this.radius = radius;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+	
+	public double calculateArea() {
+		return radius*radius*Math.PI;
+	}
+	
+	public double calculatePerimeter() {
+		return 2*radius*Math.PI;
+	}
+}
+
+public class Rectangle extends Shape {
+	double length;
+	double width;
+	public Rectangle(String color, double length, double width) {
+		super(color, "Rectangle");
+		this.length = length;
+		this.width = width;
+	}
+	@Override
+	public double calculateArea() {
+		// TODO Auto-generated method stub
+		return length*width;
+	}
+	@Override
+	public double calculatePerimeter() {
+		// TODO Auto-generated method stub
+		return 2*(length+width);
+	}
+	
+	
+}
+	
+	

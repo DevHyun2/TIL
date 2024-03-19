@@ -1,0 +1,63 @@
+package com.shinhan.week2.day06.lab;
+
+public class Prob1 {
+	
+	public static void main(String[] args) {
+		Entry e1=new Directory("tetD");
+		e1.print();
+		Entry e2=new File("testF",1000);
+		e2.print();
+		
+	}
+
+}
+
+abstract class Entry{
+	private String name;
+	private int size;
+	public Entry() {
+		super();
+		
+	}
+	public Entry(String name) {
+		super();
+		this.name = name;
+	}
+	public Entry(int size) {
+		super();
+		this.size = size;
+	}
+	public Entry(String name, int size) {
+		super();
+		this.name = name;
+		this.size = size;
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	//추상메서드 : 정의는 있고, 구현은 없는 메서드
+	public abstract void print();
+	
+
+}
+class Directory {
+	
+}
+
+class File {
+
+}
+
+
