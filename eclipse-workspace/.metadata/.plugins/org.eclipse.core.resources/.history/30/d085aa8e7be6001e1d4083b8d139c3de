@@ -1,0 +1,14 @@
+package com.shinhan.week2.day07;
+
+public class InnerInterfaceTest {
+
+	public static void main(String[] args) {
+		OkButtonListener ok1 = new OkButtonListener();
+		OkButtonListener2 ok2 = new OkButtonListener2();
+
+		Button button = new Button();
+		button.setListener(ok1);
+		button.click();
+	}
+
+}

@@ -18,9 +18,9 @@
 1710828392098	Rename package 'com.shinhan.day09'
 1710836873348	Rename type 'Tire'
 1710836987811	Delete element
-1710845165202	Delete element
-1710845171603	Delete element
-1710845174296	Delete element
-1710845177280	Delete element
-1710845180429	Delete element
-1710845183216	Delete element
+1710903735177	Move compilation unit
+1710903763509	Move compilation units
+1710912715746	Copy compilation unit
+1710914807897	Rename type 'CoffeCup'
+1710914863591	Copy compilation unit
+1710917202733	Rename compilation unit 'Anonymous.java'

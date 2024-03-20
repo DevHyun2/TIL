@@ -1,0 +1,11 @@
+package com.shinhan.week2.day07;
+
+public class Radio extends Volume {
+
+	@Override
+	public void volumeUp(int volLevel) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

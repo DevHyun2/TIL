@@ -1,0 +1,58 @@
+package com.shinhan.week2.day07;
+
+//매개변수가 있고 return이 없는 경우
+@FunctionalInterface //람다표현식 가능한지 컴파일타임에 체크하기(추상메서드가 반드시 1개만 가능)
+interface Calculable {
+	void calculate(int x, int y);
+}
+
+//매개변수가 있고  return이 있는경우
+@FunctionalInterface
+interface Calculable2{
+	void calculate2(int x, int y);
+}
+
+public class LambdaTest2 {
+	
+	public static void main(String[] args) {
+		call2(new Calculable2() {
+			
+			@Override
+			public int calculate2(int x, int y) {
+				return x+y;
+				
+			}
+		});
+		call2((x, y)->{
+			System.out.println("문장이 여러개 이면 {}로 묶는다, return이 있으면 반드시 return");
+			return x-y;
+			});
+		call2((left, right) -> left > right? left : right);
+	}
+	private static void call2(Calculable2 cal) {
+		int result = cal.calculate2(10, 6);
+		System.out.println(result);
+	}
+	
+	
+	public static void f1(String[] args) {
+		call(new Calculable() {
+			
+			@Override
+			public void calculate(int x, int y) {
+				System.out.println("익명구현class x+y= " + (x+y));
+				
+			}
+		});
+		call((x, y)-> System.out.println("람다식 x-y= " + (x-y)));
+		call((a, b)-> {
+			System.out.println("람다식 a*b= " + (a*b));
+			});
+		
+	}
+	
+	private static void call(Calculable cal) {
+		cal.calculate(1, 2);
+	}
+	
+}

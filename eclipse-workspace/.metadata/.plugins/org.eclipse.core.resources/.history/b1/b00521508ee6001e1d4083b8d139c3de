@@ -1,0 +1,26 @@
+package com.shinhan.week2.day07;
+
+@FunctionalInterface //람다표현식 가능한지 컴파일타임에 체크하기(추상메서드가 반드시 1개만 가능)
+interface Calculable {
+	void calculate(int x, int y);
+}
+
+public class LambdaTest2 {
+	
+	public static void main(String[] args) {
+		call(new Calculable() {
+			
+			@Override
+			public void calculate(int x, int y) {
+				System.out.println("익명구현class x+y= " + (x+y));
+				
+			}
+		});
+		call((x, y)-> System.out.println("람다식 x-y= " + (x-y)));
+	}
+	
+	private static void call(Calculable call) {
+		cal.calculate(1, 2);
+	}
+	
+}

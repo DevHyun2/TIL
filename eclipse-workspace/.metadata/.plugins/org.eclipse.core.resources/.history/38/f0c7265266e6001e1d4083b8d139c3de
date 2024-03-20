@@ -1,0 +1,12 @@
+package com.shinhan.week2.day07;
+
+import com.shinhan.week2.day07.lab.Shape;
+
+public class RectTriangle extends Shape {
+	double width;
+	double height;
+	
+	RectTriangle(double w, double h){
+		
+	}
+}

@@ -1,0 +1,10 @@
+package com.shinhan.week2.day07;
+
+public class Rectangle extends Shape implements Resizable {
+	double width;
+	double height;
+	
+	public Rectangle(double w, double h) {
+		
+	}
+}

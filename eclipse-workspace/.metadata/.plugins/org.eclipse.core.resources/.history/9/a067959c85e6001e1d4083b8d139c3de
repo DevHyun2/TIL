@@ -1,0 +1,21 @@
+package com.shinhan.week2.day07.lab2;
+
+interface Vehicle {
+	public void run();
+}
+
+class Anon
+
+
+public class AnonymousExample{
+
+	public static void main(String[] args) {
+		Anonymous anony = new Anonymous();
+		anony.field.run();
+		anony.method1();
+		anony.method2();
+		
+
+	}
+
+}
