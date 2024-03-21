@@ -1,0 +1,32 @@
+package com.shinhan.week2.day08.javabase;
+
+public class ObjectTest {
+
+	public static void main(String[] args) {
+		f2();
+
+	}
+
+	private static void f2() {
+		//Object를 상속받아서 만든 Stirng
+		String obj1 = new String("자바");
+		String obj2 = new String("자바");
+		System.out.println(obj1 == obj2); //주소비교
+		System.out.println(obj1.equals(obj2)); //주소비교를 내용비교로 Override함
+		System.out.println(System.identityHashCode(obj1));
+		System.out.println(System.identityHashCode(obj2));
+		
+	}
+
+	private static void f1() {
+		//Object는 모든 Object의 부모 class
+		Object obj1 = new Object();
+		Object obj2 = new Object();
+		System.out.println(obj1 == obj2); //주소비교
+		System.out.println(obj1.equals(obj2)); //주소비교
+		System.out.println(System.identityHashCode(obj1));
+		System.out.println(System.identityHashCode(obj2));
+		
+	}
+
+}

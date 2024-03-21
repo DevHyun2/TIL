@@ -1,0 +1,14 @@
+package com.shinhan.week2.day08;
+
+import com.firstzone.pack1.Book;
+
+public class ExternalLIBTest {
+
+	public static void main(String[] args) {
+		
+		Book b = new Book("자바", 50000, "신용권");
+		System.out.println(b);
+
+	}
+
+}

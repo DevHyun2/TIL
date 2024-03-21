@@ -1,0 +1,5 @@
+package com.shinhan.week2.day08.예외처리;
+
+public class ScoreException {
+
+}
