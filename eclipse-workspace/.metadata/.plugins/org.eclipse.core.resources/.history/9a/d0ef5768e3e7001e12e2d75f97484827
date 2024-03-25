@@ -1,0 +1,9 @@
+package com.shinhan.week2.day09;
+//class : 틀(templete), object를 만들기 위해 사용
+//object : 실체(instance)
+
+//Vo(Value Object) : 여러개의 field data를 저장, C언어의 스트럭처와 비슷
+//DTO(Data Transfer Object) : 데이터 전송목적
+public class Computer {
+	//1.field : 데이터 저장이 목적
+}

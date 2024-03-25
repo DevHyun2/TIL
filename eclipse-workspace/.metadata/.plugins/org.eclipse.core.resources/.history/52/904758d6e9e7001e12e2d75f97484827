@@ -1,0 +1,6 @@
+package com.shinhan.week2.day09;
+
+//record : 생성자, getter, toString, equals 자동추가
+public record ComputerVO2(String model, int pirce, String company) {
+
+}

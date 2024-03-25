@@ -1,0 +1,22 @@
+package com.shinhan.week3.day10.멀티스레드.practice;
+
+public class PrintThread implements Runnable{
+
+	ShareArea sharaArea;
+	PrintThread(ShareArea shareArea){
+		this.sharaArea = shareArea;
+	}
+	
+	public void run() {
+		for(int i=i; i<=3 ; i++) {
+			int lee = sharaArea.lee.balance;
+			int sung = sharaArea.sung.balance;
+			
+			System.out.println("잔고합: " + (lee+sung));
+			
+		}
+		
+	}
+	
+	
+}

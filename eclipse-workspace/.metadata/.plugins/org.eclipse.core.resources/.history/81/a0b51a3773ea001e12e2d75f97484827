@@ -1,0 +1,14 @@
+package com.shinhan.week3.day10.멀티스레드;
+
+//Multihread : 1)Thread상속 2)run()메서드 재정의 3)new객체생성후 start()..run()수행됨
+public class UpperCaseThread  extends  Thread {
+
+	@Override
+	public void run() {
+		
+		for(char i='A' ; i<='Z' ; i++) {
+			System.out.println(Thread.currentThread().getName() + "i= " + i);
+		}
+
+	}
+}

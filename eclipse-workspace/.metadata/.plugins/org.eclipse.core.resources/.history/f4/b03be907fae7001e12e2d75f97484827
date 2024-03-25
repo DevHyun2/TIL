@@ -1,0 +1,21 @@
+package com.shinhan.week2.day09.정규표현식;
+
+import java.util.regex.Pattern;
+
+public class Test {
+
+	public static void main(String[] args) {
+		f1();
+
+	}
+
+	private static void f1() {
+		
+		//제어문자 : \t \n \" ... 정해져 있음 .....\\는 \한개를 의미
+		String regExp = "[01]{3}-[0-9]{3,4]-\\d{4}"; //전화번호
+		String data = "010-1234-5678"
+		
+		Boolean result = Pattern.matches(regExp, data);
+	}
+
+}

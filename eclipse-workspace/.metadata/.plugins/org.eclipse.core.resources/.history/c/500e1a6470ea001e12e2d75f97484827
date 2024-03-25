@@ -1,0 +1,16 @@
+package com.shinhan.week3.day10.멀티스레드;
+
+//process : 실행중인 하나의 프로그램
+//thread : 하나의 process내의 프로그램의 흐름
+//Thread class이용 -> MultiThread프로그램 이용 가능
+public class MultiThreadTest {
+
+	public static void main(String[] args) {
+		System.out.println(Thread.currentThread().getName() + "thread시작------");
+		
+		
+		
+		System.out.println(Thread.currentThread().getName() + "thread끝------");
+	}
+
+}

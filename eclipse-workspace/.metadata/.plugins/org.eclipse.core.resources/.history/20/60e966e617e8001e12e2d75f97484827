@@ -1,0 +1,20 @@
+package com.shinhan.week2.day09.lab;
+
+public class StringBuilderExample {
+
+	public static void main(String[] args) {
+		 StringBuilder str = new StringBuilder();
+		 for(int i=1; i<= 100; i++) {
+			 str.append(String.valueOf(i));
+		 }
+		 System.out.print(str);
+		}
+
+	public static void f(String[] args) {
+		String str = "";
+		for (int i = 1; i <= 100; i++) {
+			str += i;
+		}
+		System.out.println(str);
+	}
+}

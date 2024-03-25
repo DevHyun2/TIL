@@ -1,0 +1,5 @@
+package com.shinhan.week3.day10.멀티스레드.practice;
+
+public class ShareArea {
+
+}

@@ -1,0 +1,24 @@
+package com.shinhan.week2.day09;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/*@EqualsAndHashCode
+@ToString
+@Getter@Setter
+@AllArgsConstructor
+@NoArgsConstructor*/
+@Data
+@AllArgsConstructor
+public class ComputerVO3 {
+	String model;
+	int price;
+	String company;
+	
+
+}

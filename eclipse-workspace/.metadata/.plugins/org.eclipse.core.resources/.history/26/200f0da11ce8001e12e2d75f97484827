@@ -1,0 +1,7 @@
+package com.shinhan.week2.day09.lab;
+
+
+//올해 12월 31일까지 며칠 남았는지 구하기
+public class DateCal {
+	
+}

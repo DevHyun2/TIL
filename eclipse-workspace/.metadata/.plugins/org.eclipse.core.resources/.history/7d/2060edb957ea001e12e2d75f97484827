@@ -1,0 +1,10 @@
+package com.shinhan.week3.day10.제네릭;
+
+public class Car {
+
+	public void run() {
+		System.out.println("자동차가 달립니다.");
+	}
+	
+	
+}

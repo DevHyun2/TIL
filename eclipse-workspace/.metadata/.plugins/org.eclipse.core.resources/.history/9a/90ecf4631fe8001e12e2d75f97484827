@@ -1,0 +1,8 @@
+package com.shinhan.week2.day09.math;
+
+public class Date {
+	
+	Date(){
+		System.out.println("내가만든 date");
+	}
+}

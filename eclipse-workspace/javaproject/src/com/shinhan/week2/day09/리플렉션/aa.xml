@@ -1,0 +1,11 @@
+<customers>
+	<customer>
+		<name>신현상</name>
+		<age>20</age>
+	</customer>
+	<customer>
+		<name>신현상2</name>
+		<age>30</age>
+	</customer>
+</customers>
+	

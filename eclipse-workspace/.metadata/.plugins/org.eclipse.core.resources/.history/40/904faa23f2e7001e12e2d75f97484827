@@ -1,0 +1,14 @@
+package com.shinhan.week2.day09.Math;
+
+public class Math {
+	public static void main(String[] args) {
+		f1();
+	}
+
+	private static void f1() {
+		double a = 5.1;
+		
+		System.out.println(Math.ceil(a));
+		System.out.println(Mth.floor(a));
+	}
+}

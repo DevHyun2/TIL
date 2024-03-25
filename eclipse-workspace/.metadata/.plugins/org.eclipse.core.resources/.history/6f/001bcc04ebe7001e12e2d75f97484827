@@ -1,0 +1,50 @@
+package com.shinhan.week2.day09;
+
+import java.util.Properties;
+
+public class ObjectTest2 {
+
+	public static void main(String[] args) {
+		System.out.println("1.main시작");
+		f3();
+		System.out.println("4.main끝");
+	}
+
+	private static void f3() {
+		
+		//Properties는 Map을 구현 = (key, value)를 가짐  //.keyset() 키 들을 얻어라
+		Properties ps = System.getProperties();
+		for(Object key : ps.keySet()) {
+			System.getProperty((String)key);
+		}
+		
+	}
+
+	private static void f2() {
+		
+		long startTime = System.nanoTime();
+		int total = 0;
+		for(int i=1;i<10000;i++) {
+			total += i;
+		}
+		long endTime = System.nanoTime();
+		System.out.println(endTime - startTime + "ns");
+		
+	}
+
+	private static void f1(int j) {
+		System.out.println("2.f1시작");
+		
+		//if(j == 0 ) return; //함수 빠지기
+		//if(j==0) System.exit(0); //일반적으로 0은 정상종료, -1은 오류를 의미, 아무곳에 exit는 바람직하지 않다.
+		
+		try {
+		int i = 10/j;
+		} catch(Exception e) {
+			System.out.println("에러" + e.getMessage());
+		}
+		System.out.println("3.f1끝");
+		
+	}
+
+}

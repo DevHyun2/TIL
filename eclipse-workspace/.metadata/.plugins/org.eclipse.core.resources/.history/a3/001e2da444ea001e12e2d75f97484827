@@ -1,0 +1,47 @@
+package com.shinhan.week3.day10.제네릭;
+
+import com.shinhan.week2.day07.CoffeeCup;
+
+public class GenericTest {
+
+	public static void main(String[] args) {
+		f3();
+
+	}
+
+	private static void f3() {
+		Product<String, Integer> p1 = new Product<>();
+		p1.setKind("ABC");
+		p1.setModel(200);
+		
+		Product<String, Integer> p2 = new Product<>("컴퓨터", 100);
+		
+		System.out.println(p1);
+		System.out.println(p2);
+		
+		Product<CoffeeMachine, String> p3 = new Product<>(new CoffeeMachine(), "DDD");
+		System.out.println(p3);
+	}
+
+	private static void f2() {
+		//제네릭 사용목적컴파일시에 타입을 제한하기(잘못된 타입 입력불가, 얻을 때 형변환 필요X)
+		Box<Integer> box1 = new Box<>();
+		box1.setContent(100);
+		
+		int a = box1.getContent();
+		System.out.println(a);
+		
+	}
+
+	private static void f1() {
+		Box box1 = new Box();
+		box1.setContent(100);
+		box1.setContent("80");
+		box1.setContent(new CoffeeMachine());
+		
+		CoffeeMachine obj = (CoffeeMachine)box1.getContent();
+		System.out.println(obj);
+		
+	}
+
+}

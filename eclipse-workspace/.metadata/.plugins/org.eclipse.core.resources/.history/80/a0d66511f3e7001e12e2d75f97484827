@@ -1,0 +1,32 @@
+package com.shinhan.week2.day09.Math;
+
+
+
+
+public class Math {
+	public static void main(String[] args) {
+		f2();
+	}
+
+	private static void f2() {
+		Date d1 = new Date();
+		java.util.Date d2 = new java.util.Date(); //원래있는 유틸과 class이름이 같을 때 유틸사용법
+		System.out.println(d2);
+		System.out.println(1900 + d2.getYear()); //잘 쓰지 않음
+		System.out.println(d2.getTime());
+		
+		java.sql.Date d3 = new java.sql.Date(d2.getTime());
+		java.sql.Date d4 = new java.sql.Date(2024,3,22);
+		
+		System.out.println(d3);
+		System.out.println(d4);
+	}
+
+	private static void f1() {
+		
+		double a = 5.9;
+		
+		System.out.println(Math.ceil(a));
+		System.out.println(Math.floor(a));
+	}
+}
