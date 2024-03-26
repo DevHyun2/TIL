@@ -1,0 +1,43 @@
+package com.shinhan.week3.day11.컬렉션;
+
+import java.util.Hashtable;
+import java.util.Map;
+
+public class CollectionTest2 {
+
+	public static void main(String[] args) {
+		// Map(Key와 Value의 쌍) *키중복 불가, hashcode(), equals() 재정의: HashMap, TreeMap(순서있음,
+		// *Comparable구현), HashTable
+		// HashTable(동기화(싱크로)가능)
+		f1();
+	}
+
+	private static void f1() {
+		Map<String, Integer> map = new Hashtable<>();
+		Thread t1 = new Thread() {
+			public void run(){
+				for(int i=1 ; i<=1000 ; i++) {
+					map.put(String.valueOf(i), i); //{"1":1,"2":2 ...}
+				}
+				
+			}
+		};
+		Thread t2 = new Thread() {
+			public void run(){
+				for(int i=1 ; i<=1000 ; i++) {
+					map.put(String.valueOf(i), i); //{"1":1,"2":2 ...}
+				}
+				
+			}
+
+		};
+		t1.start(); t2.start();
+		try {
+		t1.join(); //t1이 종료될 때 까지
+		t2.join(); //t2이 종료될 때 까지
+		}catch(InterruptedException e){
+			
+		}
+		System.out.println("entry개수: " + map.size());
+	}
+}
