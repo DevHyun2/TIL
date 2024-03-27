@@ -1,0 +1,157 @@
+package com.shinhan.week3.da12.스트림;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import com.shinhan.week3.da12.Product;
+import com.shinhan.week3.da12.Student;
+
+public class StreamTest2 {
+
+	static List<Student> data2 = new ArrayList<>();
+	
+	static {data2.add(new Student("신용권", 100));
+			data2.add(new Student("정민교", 60));
+			data2.add(new Student("신용권", 100));
+			data2.add(new Student("심은정", 80));
+			data2.add(new Student("심은지", 90));}
+	
+	public static void main(String[] args) {
+		f9();
+
+	}
+
+	private static void f9() {
+		List<String> list2 = Arrays.asList("10, 20, 30", "40, 50", "60, 70");
+		list2.stream()
+		.flatMap(one -> {
+			String[] arr = one.split(", ");
+			Integer[] arr2 = new Integer[arr.length];
+			
+			for(int i=0; i<arr.length ; i++) {
+				arr2[i] = Integer.parseInt(arr[i].trim()); //trim?
+			}
+			return Arrays.stream(arr2);
+		})
+		.forEach(data -> System.out.println(data));
+	}
+
+	private static void f8() {
+		List<String> list1 = new ArrayList<>();
+		
+		list1.add("This is a java");
+		list1.add("I am a best developer");
+		
+		String[] arr = list1.get(0).split(" ");
+		Arrays.stream(arr).forEach(a -> System.out.println(a));
+		//flatMap(Function<T, R> : T가 들어가고 R이 나온다
+		//T : String
+		//R : stream
+		list1.stream()
+		.flatMap(data -> Arrays.stream(data.split(" ")))//flat : 원래 데이터를 펼쳐서 출력 , split(" ") : 공백을 기준으로 자르기
+		.forEach(data -> System.out.println(data));
+	}
+
+	private static void f7() {
+		int[] arr = {1, 2, 3, 4, 5};
+		
+		Arrays.stream(arr)
+		.asDoubleStream()
+		.forEach(d -> System.out.println(d));
+		
+		Arrays.stream(arr)
+		.boxed() //new Integer() 가능하면 boxing된 것
+		.forEach(d -> System.out.println(d.intValue())); //boxing
+	}
+
+	private static void f6() {
+		data2.stream()
+		.map(st -> st.getName() + "$") //map은 들어간것과 나오는 것이 다르다.(변형)
+		.forEach(name -> System.out.println(name));
+		
+	}
+
+	private static void f5() {
+		List<Student> data = new ArrayList<>();
+		
+		data.add(new Student("신용권", 100));
+		data.add(new Student("정민교", 60));
+		data.add(new Student("신용권", 100));
+		data.add(new Student("심은정", 80));
+		data.add(new Student("심은지", 90));
+		
+		data.stream()
+		.mapToInt(st -> st.getScore()) //객체가 들어가고 int(score)가 나온다 => IntStream
+		//.distinct()
+		.forEach(st -> System.out.println(st));
+		
+		IntStream scoreStream = data.stream()
+									.mapToInt(st -> st.getScore());
+		
+		double avg = scoreStream.average().getAsDouble();
+		System.out.println("평균: "+ avg);
+	}
+
+	private static void f4() {
+		List<Product> list = new ArrayList<>();
+		//		  	1<= x <6
+		IntStream.range(1, 6).forEach(i->{
+			Product p = new Product(i, "상품"+i, "멋진회사",(int)(Math.random()*10000));
+			list.add(p);
+		});;
+		
+		list.stream()
+		//.filter(p -> p.getPno()>=3)
+		//.filter(p -> p.getName().startsWith("상품"))
+		.filter(p -> p.getPrice()>=5000)
+		.forEach(p -> System.out.println(p));
+		
+	}
+
+	private static void f3() {
+		List<Student> data = new ArrayList<>();
+		
+		data.add(new Student("신용권", 100));
+		data.add(new Student("정민교", 60));
+		data.add(new Student("신용권", 100));
+		data.add(new Student("심은정", 80));
+		data.add(new Student("심은지", 90));
+		
+		System.out.println("=========이름이 심으로 시작==========");
+		data.stream()
+		.distinct()
+		.filter(st -> st.getName().startsWith("심"))
+		.forEach(st -> System.out.println(st));
+		
+		System.out.println("=========score90이상==========");
+		data.stream()
+		.distinct()
+		.filter(st -> st.getScore() >= 90)
+		.forEach(st -> System.out.println(st));
+		
+	}
+
+	private static void f2() {
+		List<String> list = new ArrayList<>();
+		
+		list.add("A1");list.add("A1");list.add("A1");
+		list.add("B");list.add("B");
+		list.add("C3");list.add("C3");
+		list.add("D");
+		
+		list.stream()
+		.distinct()//중복삭제
+		.filter(name -> name.length() >= 2) //조건걸기(길이가 2이상 true인 것만)/filter(Predicate) ()의 return이 true
+		.forEach(name -> System.out.println(name));
+	}
+
+	private static void f1() {
+		//하나의 문자를 몇 바이트 처리 하는가 알아보기 / UTF-8(3byte처리)
+		System.out.println(Charset.defaultCharset());
+		
+	}
+
+}

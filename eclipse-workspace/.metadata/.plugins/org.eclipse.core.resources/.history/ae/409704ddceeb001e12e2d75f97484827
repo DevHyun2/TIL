@@ -1,0 +1,41 @@
+package com.shinhan.week3.da12;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+//Collection
+//List : add한 순서 있음, index가능, 중복가능 
+	//=> ArrayList(중간 삽입 및 삭제시 비효율적, 맨앞, 뒤 추가는 효율), 
+	//=> LinkedList(전, 후 데이터 주소가짐, 공간차지, 중간 삽입 및 삭제 효율적)
+	//=> Vector(동기화 지원, 멀테스레드 환경에 안정적)
+//Set : 순서없음, 중복불가 =>HashSet(hashcode(), equals()), 
+					 //=>TreeSet(add시 sort => compareTo or implements comparable  필요)
+//Map : 키와 값의 쌍(entry), 키는 set이다.
+public class Review {
+
+	public static void main(String[] args) {
+		f1();
+
+	}
+
+	private static void f1() {
+//		List<String> data = new ArrayList<>();
+		List<String> data = new LinkedList<>();
+		
+		data.add("월");
+		data.add("월");
+		data.add("수");
+		data.add("수");
+		
+		print(data);
+	}
+
+	private static void print(List<String> data) {
+		for(String s : data) {
+			System.out.println(s);
+		}
+		
+	}
+
+}

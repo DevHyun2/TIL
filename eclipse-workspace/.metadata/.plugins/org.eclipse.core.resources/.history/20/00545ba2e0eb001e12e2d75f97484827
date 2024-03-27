@@ -1,0 +1,63 @@
+package com.shinhan.week3.da12.스트림;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class StreamTest {
+
+	public static void main(String[] args) {
+		f3();
+
+	}
+
+	private static void f3() {
+		List<String> data = new ArrayList<>();
+		
+		data.add("홍길동");
+		data.add("신용권");
+		data.add("김자바");
+		
+		//내부 반복자(Stream)
+		System.out.println("***내부***");
+		data.stream().forEach(a->System.out.println(a+ "====== Thread이름: " + Thread.currentThread().getName())); //.forEach(consumer)(들어가는거 O 나오는거 X)
+		
+		//**병렬처리
+		//List에서 Multi Thread 수행...
+		System.out.println("**병렬***");
+		data.parallelStream().forEach(b->{System.out.println(b + "====== Thread이름: " + Thread.currentThread().getName());});
+	}
+	
+	private static void f2() {
+		Set<String> data = new HashSet<>();
+		
+		data.add("홍길동");
+		data.add("신용권");
+		data.add("김자바");
+		
+		//내부 반복자(Stream)
+		System.out.println("***내부***");
+		data.stream().forEach(a->System.out.println(a)); //.forEach(consumer)(들어가는거 O 나오는거 X)
+		
+		//**병렬처리
+		//Set에서는 main에서 한번에 처리함...
+		System.out.println("**병렬***");
+		data.parallelStream().forEach(b->{System.out.println(b + "====== Thread이름: " + Thread.currentThread().getName());});
+	}
+	
+	private static void f1() {
+		Set<String> data = new HashSet<>();
+		
+		data.add("홍길동");
+		data.add("신용권");
+		data.add("김자바");
+		
+		//외부 반복자(Iterator)
+		for(String s : data) {
+			System.out.println(s);
+		}
+		
+	}
+
+}
