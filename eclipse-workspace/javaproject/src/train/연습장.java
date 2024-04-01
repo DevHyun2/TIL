@@ -1,22 +1,14 @@
 package train;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class 연습장 {
 
 	public static void main(String[] args) {
-		solution("ASDQ");
+		
+		IntStream a = IntStream.range(1,11);
+		
+		a.forEach(System.out::println);
+		
 	}
-	
-	public static void solution(String my_string) {
-		my_string = my_string.toLowerCase();
-		
-		char arr = my_string.toCharArray();
-		Array.sort(arr);
-		
-		System.out.println(String(arr));
-		
-        
-    }
 }
-

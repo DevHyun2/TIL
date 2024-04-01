@@ -1,0 +1,27 @@
+package com.shinhan.week3.day13.챕터18;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class IOTest {
+
+	public static void main(String[] args) throws IOException {
+		f1();
+
+	}
+
+	private static void f1() throws IOException {
+		
+		//키보드 입력
+		InputStream is = System.in;
+		InputStreamReader isr = new InputStreamReader(is);
+		int i ;
+		//read = 1byte = 한글깨짐
+		while ((i = isr.read()) != 13) {//아스키코드 값 : 13 = enter == 엔터하면 끝
+			System.out.print((char)i);
+		}
+		
+	}
+
+}

@@ -1,0 +1,102 @@
+package com.shinhan.week3.day13.챕터18;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+
+public class IOTest {
+
+	public static void main(String[] args) throws IOException {
+		f6();
+		String fileName = "AA2.txt";
+		FileOutputStream fos = new FileOutputStream(fileName);
+		fos.write(10);
+		fos.write(20);
+		fos.flush();
+		fos.close();
+		
+		//파일 읽기
+		FileInputStream fis = new FileInputStream(fileName);
+		int a = fis.read();
+		int b = fis.read();
+		System.out.println(a+b);
+		fis.close();
+		
+	}
+
+	private static void f6() {
+		
+		
+	}
+
+	private static void f5() throws IOException {
+		//파일에 출력
+		String fileName = "AA2.txt";
+		FileWriter fw = new FileWriter(fileName);
+		fw.write("java\n");
+		fw.write("자바끝");
+		//자원을 반납(close)하지 않으면 다른곳에서 이 파일을 사용할 수 없다.
+		fw.close();
+		
+	}
+
+	private static void f4() {
+		//모니터에 출력
+		PrintStream moniter = System.out;
+		moniter.println("모니터 출력");
+	}
+
+	private static void f3() throws IOException{
+		//글
+		//파일입력(읽기)
+		String fileName = "./src/com/shinhan/week3/day13/review/Lab2.java";
+		
+		FileReader fis;
+		
+		fis = new FileReader(fileName);//파일열기
+		
+		int i;
+		while((i = fis.read()) != -1) {
+			System.out.print((char)i);
+		}
+		
+		fis.close();
+	}
+
+	private static void f2() throws IOException {
+		//이미지
+		//파일입력(읽기)
+		String fileName = "./src/com/shinhan/week3/day13/review/Lab2.java";
+		
+		FileInputStream fis;
+		
+		fis = new FileInputStream(fileName);//파일열기
+		
+		int i;
+		while((i = fis.read()) != -1) {
+			System.out.print((char)i);
+		}
+		
+		fis.close();
+		
+	}
+
+	private static void f1() throws IOException {
+		
+		//키보드 입력
+		InputStream is = System.in;
+		InputStreamReader isr = new InputStreamReader(is);//보조스트림 : 한글 깨짐을 방지 하기 위함
+		int i ;
+		//read = 1byte = 한글깨짐
+		while ((i = isr.read()) != 13) {//아스키코드 값 : 13 = enter == 엔터하면 끝
+			System.out.print((char)i);
+		}
+		
+	}
+
+}

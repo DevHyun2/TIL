@@ -1,6 +1,8 @@
 package com.shinhan.week3.day12;
 
-public class Product implements Comparable<Product>{
+import java.io.Serializable;
+
+public class Product implements Comparable<Product>, Serializable{
 	private int pno;
 	private String name;
 	private String company;

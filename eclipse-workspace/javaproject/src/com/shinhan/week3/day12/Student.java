@@ -1,8 +1,9 @@
 package com.shinhan.week3.day12;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Student implements Comparable<Student>{
+public class Student implements Comparable<Student>, Serializable{
 	private String name;
 	private int score;
 	private String gender;
