@@ -1,5 +1,0 @@
-package com.shinhan.week3.day11.스레드.데몬;
-
-public class AutoSaveThread {
-
-}

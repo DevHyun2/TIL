@@ -14,7 +14,21 @@ public class Prob2 {
 
 	 
 
-	public static String leftPad(String str, int size, char fillChar){
+	private static String leftPad(String str, int size, char fillChar) {
+		int fillCharNum = size - str.length();
+		try {
+			if(fillCharNum < 0) {
+				throw new IllegalSizeException("문자열의 길이보다 size가 큽니다.");			
+		}
+		}catch(IllegalSizeException e){
+			result = aa.getMessage();
+		}
+		return null;
+	}
+
+
+
+	public static String leftPad2(String str, int size, char fillChar){
 		//구현하시오.....return값 수정할것 
 		String newStr = "";
 		while(str.length() != size) {
@@ -34,5 +48,10 @@ public class Prob2 {
 
 //구현하시오.
 class IllegalSizeException  {
-	
+	public IllegalSizeException() {
+		
+	}
+	public IllegalSizeException() {
+		super(message);
+	}
 }
