@@ -19,7 +19,7 @@ public class DateUtil {
 		return result;
 	}
 
-	public static Date getSQLDate(String d) {
+	public static java.sql.Date getSQLDate(String d) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date result = null;
 

@@ -1,6 +1,7 @@
 package com.shinhan.day15;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class EmpDAO {
 	Statement st;
 	ResultSet rs;
 	PreparedStatement pst; // Statement를 상속받음, 바인딩변수 지원
+	
 
 	// 직원 모두 조회
 	public List<EmpDTO> selectAll() {
@@ -116,9 +118,120 @@ public class EmpDAO {
 		return emplist;
 	}
 
-	// 입력
+	//5.다양한 조건으로 조회하기
+	//부서별, 직책별, 입사일별(>=), 급여(>=)
+	public List<EmpDTO> selectByCondition(int deptid, String jobid, Date hdate, int salary) {
+		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+		String sql =  "select * from employees "
+				+ " where department_id = ?"
+				+ " and job_id = ?"
+				+ " and hire_date >= ?"
+				+ " and salary >= ?";
+		conn = DBUtil.dbConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, deptid);
+			pst.setString(2, jobid);
+			pst.setDate(3, hdate);
+			pst.setInt(4, salary);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				EmpDTO emp = makeEmp(rs);
+				emplist.add(emp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, st, rs);
+		}
+		return emplist;
+	}
+	// 입력(Insert)
+	public int empInsert(EmpDTO emp) {
+		int result = 0;
+		String sql = "insert into employees values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		conn = DBUtil.dbConnection(); //setAutoCommit(true)되어있음
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, emp.getEmployee_id());
+			pst.setString(2, emp.getFirst_name());
+			pst.setString(3, emp.getLast_name());
+			pst.setString(4, emp.getEmail());
+			pst.setString(5, emp.getPhone_number());
+			pst.setDate(6, emp.getHire_date());
+			pst.setString(7, emp.getJob_id());
+			pst.setInt(8, emp.getSalary());
+			pst.setDouble(9, emp.getCommission_pct());
+			pst.setInt(10, emp.getManager_id());
+			pst.setInt(11, emp.getDepartment_id());
+			result = pst.executeUpdate();	// DML 문장은 executeUpdate, Select문장은 executeQuery
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return result;
+	}
+	
 
-	// 수정
+	// 수정(Update)
+	public int empUpdate(EmpDTO emp) {
+		int result = 0;
+		String sql = "update employees "
+					+ "set  "
+					+ "FIRST_NAME = ?, "
+					+ "LAST_NAME = ?, "
+					+ "EMAIL = ?, "
+					+ "PHONE_NUMBER = ?, "
+					+ "HIRE_DATE = ?, "
+					+ "JOB_ID= ?, "
+					+ "SALARY = ?, "
+					+ "COMMISSION_PCT = ?, "
+					+ "MANAGER_ID = ?, "
+					+ "DEPARTMENT_ID = ?, "
+					+ "where employee_ID = ? ";
+		conn = DBUtil.dbConnection(); //setAutoCommit(true)되어있음
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(11, emp.getEmployee_id());
+			pst.setString(1, emp.getFirst_name());
+			pst.setString(2, emp.getLast_name());
+			pst.setString(3, emp.getEmail());
+			pst.setString(4, emp.getPhone_number());
+			pst.setDate(5, emp.getHire_date());
+			pst.setString(6, emp.getJob_id());
+			pst.setInt(7, emp.getSalary());
+			pst.setDouble(8, emp.getCommission_pct());
+			pst.setInt(9, emp.getManager_id());
+			pst.setInt(10, emp.getDepartment_id());
+			result = pst.executeUpdate();	// DML 문장은 executeUpdate, Select문장은 executeQuery
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return result;
+	}
+	
 
-	// 삭제
+	// 삭제(Delete)
+	public int empDelete(int empid) {
+		int result = 0;
+		String sql = "delete from employees "
+					+ "where employee_ID = ? ";
+		conn = DBUtil.dbConnection(); //setAutoCommit(true)되어있음
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, empid);
+			result = pst.executeUpdate();	// DML 문장은 executeUpdate, Select문장은 executeQuery
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return result;
+	}
 }

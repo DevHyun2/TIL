@@ -29,6 +29,8 @@ public class EmpView {
 			System.out.println("매니저 : " + emp.getManager_id());
 			System.out.println("연락처 : " + emp.getPhone_number());
 			System.out.println("부서 : " + emp.getDepartment_id());
+			System.out.println("업무 : " + emp.getJob_id());
+			
 		}
 		System.out.println(emp);
 	}
