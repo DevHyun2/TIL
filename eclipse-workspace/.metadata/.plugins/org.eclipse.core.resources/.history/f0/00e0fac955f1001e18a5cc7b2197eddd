@@ -1,0 +1,49 @@
+package com.shinhan.day15;
+
+import java.util.List;
+import java.util.Scanner;
+
+// 사용자가 요청 -> Controller -> Service
+// 사용자display <- View <- Controller <- Service
+// 이후 Servlet으로 작성 예정 -> 서버에서 실행되는 자바 프로그램
+public class EmpController {
+
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		boolean isStop = false;
+		EmpService empService = new EmpService();
+		
+		while(!isStop) {
+			int selectJob = menuDisplay();
+			
+			switch(selectJob) {
+			case 0 -> {isStop = true;}
+			case 1 -> {
+				List<EmpDTO> emplist = empService.selectAll();
+				EmpView.print(emplist, "모든직원조회");
+			}
+			case 2 -> {
+				System.out.print("조회할 직원번호 >> ");
+				int empid = sc.nextInt();
+				EmpView.print(empService.selectById(empid), "특정지원조회");
+
+			}
+			default -> {}
+			}
+		}
+		System.out.println("======END=======");
+	}
+
+	private static int menuDisplay() {
+		System.out.println("==============");
+		System.out.println("1.모든직원조회");
+		System.out.println("2.특정직원조회");
+		System.out.println("0.종료");
+		System.out.print("작업선택 > ");
+		int job = sc.nextInt();
+		System.out.println("==============");
+		return job;
+	}
+}

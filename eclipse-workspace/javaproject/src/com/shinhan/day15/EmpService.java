@@ -2,6 +2,7 @@ package com.shinhan.day15;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 // DB와 관련없는 로직을 다룸
 
@@ -56,4 +57,15 @@ public class EmpService {
 		
 		return empDAO.selectAll();
 	}
+	
+	//직원 번호를 이용해서 직원의 이름, 직책, 급여를 조회
+	public Map<String, Object> empInfo(int empid) {
+		// TODO Auto-generated method stub
+		return empDAO.empInfo(empid);
+	}
+	
+	//직원 번호가 들어오면 직원보너스를 return하는 함수를 호출한다.
+		public double callFunction(int empid) {
+			return empDAO.callFunction(empid);
+		}
 }

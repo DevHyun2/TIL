@@ -1,0 +1,15 @@
+package com.shinhan.day01;
+
+public class 형변환 {
+
+	public static void main(String[] args) {
+		f1();
+
+	}
+
+	private static void f1() {
+		System.out.println("형변환에 대하여");
+		
+	}
+
+}

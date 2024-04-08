@@ -1,0 +1,221 @@
+package com.shinhan.day15;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class JdbcLab {
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		boolean isStop = false;
+		
+		//연결
+		while(!isStop) {
+			int selectJob = menu();
+			
+			switch(selectJob){
+			case 1 -> {
+				String sql =  " SELECT SALARY, HIRE_DATE "
+							+ " FROM EMPLOYEES"
+							+ " WHERE FIRST_NAME = INITCAP('adam')";
+				method1(sql);
+			}
+			case 2 -> {
+				String sql =  " select region_id "
+							+ " from countries "
+							+ " where lower(country_name) = 'united states of america'";
+				method2(sql);
+			}
+			case 3 -> {
+				String sql = " select first_name||'의 입사일은 '||hire_date||' 이고, 급여는 '||salary||' 입니다.' 직원정보 "
+							+ " from employees";
+				method3(sql);
+			}
+			case 4 -> {
+				String sql =  " select first_name, salary, hire_date "
+							+ " from employees "
+							+ " where length(first_name) <= ";
+				method4(sql);
+			}
+			case 5 -> {
+				String sql =  " select first_name, hire_date "
+							+ " from employees "
+							+ " where to_char(hire_date,'yyyy') = ";
+				method5(sql);
+			}
+			case 6 -> {
+				String sql =  "select first_name, hire_date, salary, round(MONTHS_BETWEEN(SYSDATE,hire_date)/12)\"근무 년수\""
+							+ " from employees "
+							+ " where round(MONTHS_BETWEEN(SYSDATE,hire_date)/12)>= 7 "
+							+ " order by \"근무 년수\" desc";
+				method6(sql);
+			}
+			case 7 -> {isStop = true;}
+			default -> {System.out.println("입력한 작업은 지원되지 않습니다.");}
+			}
+		}
+		//해제
+		System.out.println("====시스템 종료====");
+	}
+
+	private static void method6(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String str = rs.getString(1);
+				Date hdate = rs.getDate(2);
+				int sal = rs.getInt(3);
+				double sal2 = rs.getDouble(4);
+				System.out.println(str + "\t" + hdate + "\t" + sal + "\t" + sal2);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void method5(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			
+			System.out.print("조회 년도>>");
+			int su = sc.nextInt();
+			
+			ResultSet rs = st.executeQuery(sql + su);
+			while(rs.next()) {
+				String sal = rs.getString(1);
+				Date hdate = rs.getDate(2);
+				System.out.println(sal + "\t" + hdate);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void method4(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			
+			System.out.print("이름이 몇글자 이하>>");
+			int su = sc.nextInt();
+			
+			ResultSet rs = st.executeQuery(sql + su);
+			int i = 0;
+			while(rs.next()) {
+				i++;
+				String str = rs.getString(1);
+				int sal = rs.getInt(2);
+				Date hdate = rs.getDate(3);
+				System.out.println(i + "====> " + str + "\t" + sal + "\t" + hdate);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void method3(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String sal = rs.getString(1);
+				
+				System.out.println(sal);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void method2(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int sal = rs.getInt(1);
+				System.out.println(sal);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void method1(String sql) {
+		Connection conn = dbConnection();
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int sal = rs.getInt(1);
+				Date hdate = rs.getDate(2);
+				System.out.println(sal + "\t" + hdate);
+			}
+			dbDisconnect(conn, st, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	private static int menu() {
+		System.out.println("=====================================================================");
+		System.out.println("1.INICAP 2.LOWER 3. CONCAT 4. LENGTH 5.TOCHAR 6.MONTHS_BETWEEN 7.END");
+		System.out.print("작업을 선택해 주세요 > ");
+		int job = sc.nextInt();
+		System.out.println("=====================================================================");
+		return job;
+	}
+
+	
+	private static void dbDisconnect(Connection conn, Statement st, ResultSet rs) throws SQLException{
+		rs.close();
+		st.close();
+		conn.close();
+		System.out.println("3.실행 후 DB해제");
+	}
+		
+	private static Connection dbConnection() {
+		//1.JDBC Driver load
+				//2.Connection 생성
+				//ip -> 192.168.0.47, localhosr 127.0.0.1
+				String url = "jdbc:oracle:thin:@192.168.0.47:1521:xe"; //2번
+				String userid = "hr";
+				String password = "hr";
+				Connection conn = null;
+				
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver"); //1번
+					System.out.println("1.JDBC Driver load 성공");
+					conn = DriverManager.getConnection(url, userid, password);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return conn;	
+			}
+			
+}

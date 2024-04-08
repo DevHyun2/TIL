@@ -1,0 +1,13 @@
+package com.shinhan.day14;
+
+public class DBConnectTest {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		//1.JDBC dirver를 class path 추가
+		//2.jdbc드라이버를 로드
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		System.out.println("1.oracle driver load성공");
+
+	}
+
+}

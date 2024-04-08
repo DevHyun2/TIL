@@ -1,0 +1,38 @@
+package com.shinhan.day15;
+
+import java.util.Scanner;
+
+public class JdbcLab {
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		boolean isStop = false;
+		
+		
+		while(!isStop) {
+			int selectJob = menu();
+			
+			switch(selectJob){
+			case 1 -> {}
+			case 2 -> {}
+			case 3 -> {}
+			case 4 -> {}
+			case 5 -> {}
+			case 6 -> {}
+			case 7 -> {isStop = true;}
+			default -> {System.out.println("입력한 작업은 지원되지 않습니다.");}
+			}
+		}
+		System.out.println("====시스템 종료====");
+	}
+
+	private static int menu() {
+		System.out.println("=====================================================================");
+		System.out.println("1.INICAP 2.LOWER 3. CONCAT 4. LENGTH 5.TOCHAR 6.MONTHS_BETWEEN 7.END");
+		System.out.println("작업을 선택해 주세요 > ");
+		int job = sc.nextInt();
+		System.out.println("======================================================================");
+		return job;
+	}
+
+}

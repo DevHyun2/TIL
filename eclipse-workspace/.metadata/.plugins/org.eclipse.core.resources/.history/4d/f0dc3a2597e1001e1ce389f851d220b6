@@ -1,0 +1,19 @@
+package com.shinhan.day03;
+
+public class Review {
+
+	public static void main(String[] args) {
+		call(100);
+		call(55);
+	}
+	//반복사용 하기 위해 만듦
+	private static void call(int a) {
+		//조건문 if
+		if(a%2==0) {
+			System.out.println(a + "짝수");
+		}else {
+			System.out.println(a + "홀수");
+		}
+	}
+
+}

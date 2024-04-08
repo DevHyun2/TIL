@@ -1,0 +1,75 @@
+package com.shinhan.day15;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class JdbcLab {
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		boolean isStop = false;
+		
+		//연결
+		while(!isStop) {
+			int selectJob = menu();
+			
+			switch(selectJob){
+			case 1 -> {
+				Connection conn = dbConnection();
+				Statement st = conn.createStatement();
+				dbDisconnect();
+			}
+			case 2 -> {}
+			case 3 -> {}
+			case 4 -> {}
+			case 5 -> {}
+			case 6 -> {}
+			case 7 -> {isStop = true;}
+			default -> {System.out.println("입력한 작업은 지원되지 않습니다.");}
+			}
+		}
+		//해제
+		System.out.println("====시스템 종료====");
+	}
+
+	private static int menu() {
+		System.out.println("=====================================================================");
+		System.out.println("1.INICAP 2.LOWER 3. CONCAT 4. LENGTH 5.TOCHAR 6.MONTHS_BETWEEN 7.END");
+		System.out.print("작업을 선택해 주세요 > ");
+		int job = sc.nextInt();
+		System.out.println("=====================================================================");
+		return job;
+	}
+
+	
+	private static Connection dbDisconnect() {
+		//1.JDBC Driver load
+		//2.Connection 생성
+		//ip -> 192.168.0.47, localhosr 127.0.0.1
+		String url = "jdbc:oracle:thin:@192.168.0.47:1521:xe"; //2번
+		String userid = "hr";
+		String password = "hr";
+		Connection conn = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); //1번
+			System.out.println("1.JDBC Driver load 성공");
+			conn = DriverManager.getConnection(url, userid, password);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conn;	
+	}
+	
+	private static void dbConnection() {
+		// TODO Auto-generated method stub
+		
+	}
+}

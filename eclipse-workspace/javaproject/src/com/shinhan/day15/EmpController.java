@@ -2,6 +2,7 @@ package com.shinhan.day15;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.shinhan.util.Dateutil;
@@ -75,6 +76,22 @@ public class EmpController {
 				EmpView.print(result>0?"삭제성공":"삭제실패");
 			}
 			
+			case 9 -> {
+				System.out.print("조회할 직원번호 >> ");
+				int empid = sc.nextInt();
+				//모든칼럼이면 DTO, (이름, Job, salary)만 가져오기 -> Map
+				Map<String, Object> emp = empService.empInfo(empid);
+				
+				EmpView.print(emp);
+			}
+			
+			case 10 -> {
+				System.out.print("조회할 직원번호 >> ");
+				int empid = sc.nextInt();
+				double result = empService.callFunction(empid);
+				EmpView.print("직원의 보너스 : " + result);
+			}
+			
 			default -> {}
 			}
 		}
@@ -131,6 +148,8 @@ public class EmpController {
 		System.out.println("6.직원입력");
 		System.out.println("7.직원수정");
 		System.out.println("8.직원삭제");
+		System.out.println("9.프로시저 호출(직원번호IN/정보OUT");
+		System.out.println("10.Function 호출(f_bonus");
 		System.out.println("0.종료");
 		System.out.print("작업선택 > ");
 		int job = sc.nextInt();
