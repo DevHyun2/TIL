@@ -1,0 +1,23 @@
+package perfornance_evaluation;
+
+import java.util.List;
+
+public class EmpService {
+	
+	EmpDAO empDAO = new EmpDAO();
+	
+	//관리자 로그인
+	public int selectAdminLog(int adminid, int emppw) {
+		return empDAO.selectAdminLog(adminid, emppw);
+	}
+
+	//사원 로그인
+		public int selectEmpLog(int empid, int emppw) {
+			return empDAO.selectEmpLog(empid, emppw);
+		}
+		
+	//부서별 사원 조회
+	public List<EmpDTO> deptCheck(String dept) {
+		return empDAO.deptCheck(dept);
+	}
+}

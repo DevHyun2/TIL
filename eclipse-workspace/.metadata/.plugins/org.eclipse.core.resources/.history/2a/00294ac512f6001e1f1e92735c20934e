@@ -1,0 +1,92 @@
+package perfornance_evaluation;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class EmpDAO {
+	
+	Connection conn;
+	Statement st;
+	ResultSet rs;
+	PreparedStatement pst;
+	
+	//사원 로그인
+		public List<EmpDTO> selectEmpLog(int adminid, String emppw) {
+			List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+			String sql = "select employee_id, employee_pw "
+						+ "from employees "
+						+ "where employee_id = ? "
+						+ "and employee_pw = ? ";
+			CallableStatement cstmt = null;
+			conn = DBUtil.dbConnection();
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, adminid);
+				pst.setString(2, emppw);
+				rs = pst.executeQuery();
+				while(rs.next()) {
+					EmpDTO emp = makeEmp(rs);
+					emplist.add(emp);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbDisconnect(conn, st, rs);
+			}
+			return emplist;
+		}
+	
+	//관리자 로그인
+	public List<EmpDTO> selectAdminLog(int adminid, String emppw) {
+		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+		String sql = "select admin_id, employee_pw "
+					+ "from employees "
+					+ "where admin_id = ? "
+					+ "and employee_pw = ?";
+		CallableStatement cstmt = null;
+		conn = DBUtil.dbConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, adminid);
+			pst.setString(2, emppw);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				EmpDTO emp = makeEmp(rs);
+				emplist.add(emp);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, st, rs);
+		}
+		return emplist;
+	}
+
+	private perfornance_evaluation.EmpDTO makeEmp(ResultSet rs) throws SQLException {
+		EmpDTO emp = new EmpDTO();
+		
+		emp.setEmployee_id(rs.getInt("employee_id"));
+		emp.setName(rs.getString("name"));
+		emp.setBirthdate(rs.getString("birthdate"));
+		emp.setEmployee_pw(rs.getString("employee_pw"));
+		emp.setDepartment(rs.getString("department"));
+		emp.setRank(rs.getString("rank"));
+		emp.setJoin_date(rs.getDate("employee_id"));
+		emp.setAdmin_id(rs.getInt("employee_id"));
+		
+		
+		return emp;
+	}
+
+}

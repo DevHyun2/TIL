@@ -1,0 +1,14 @@
+package perfornance_evaluation;
+
+import java.util.List;
+
+public class EmpService {
+	
+	EmpDAO empDAO = new EmpDAO();
+	
+	//관리자 로그인
+	public List<EmpDTO> selectAdminLog(int adminid, String emppw) {
+		return empDAO.selectAdminLog(adminid, emppw);
+	}
+
+}
