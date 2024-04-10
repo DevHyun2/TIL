@@ -1,4 +1,4 @@
--- ì‚¬ì› í…Œì´ë¸” ìƒì„±
+-- »ç¿ø Å×ÀÌºí »ı¼º
 CREATE TABLE employees (
     employee_id NUMBER PRIMARY KEY,
     name VARCHAR2(100),
@@ -11,7 +11,7 @@ CREATE TABLE employees (
     CONSTRAINT admin_fk FOREIGN KEY (admin_id) REFERENCES employees(employee_id)
 );
 
--- í‰ê°€ ê¸°ì¤€ í…Œì´ë¸” ìƒì„±
+-- Æò°¡ ±âÁØ Å×ÀÌºí »ı¼º
 CREATE TABLE checkLists (
     check_id NUMBER PRIMARY KEY,
     department VARCHAR2(300),
@@ -20,7 +20,7 @@ CREATE TABLE checkLists (
     description VARCHAR2(500)
 );
 
--- ì¸ì‚¬ í‰ê°€ ì ìˆ˜ í…Œì´ë¸” ìƒì„±
+-- ÀÎ»ç Æò°¡ Á¡¼ö Å×ÀÌºí »ı¼º
 CREATE TABLE performances (
     review_id NUMBER PRIMARY KEY,
     employee_id NUMBER NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE performances (
     CONSTRAINT check_kf FOREIGN KEY (check_id) REFERENCES checkLists(check_id)
 );
 
--- ìê¸° í‰ê°€ ì ìˆ˜ í…Œì´ë¸” ìƒì„±
+-- ÀÚ±â Æò°¡ Á¡¼ö Å×ÀÌºí »ı¼º
 CREATE TABLE selfcheckLists (
     self_id NUMBER PRIMARY KEY,
     employee_id NUMBER NOT NULL,
@@ -52,69 +52,220 @@ drop table selfchecklists;
 
 DELETE from checklists;
 ---------------------------------------------------------------------------------------------
---ë°ì´í„° ì‚½ì…
+--µ¥ÀÌÅÍ »ğÀÔ
 --employees
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (1, 'ê³µì‚¬ì¥', '1983/04/24', 19830424, NULL, 'ì‚¬ì¥', '2020/02/08', 1);
+VALUES (1, '°ø»çÀå', '1983/04/24', 19830424, NULL, '»çÀå', '2020/02/08', 1);
 
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (101, 'ë°•ë¶€ì¥', '1979/10/19', 19791019, 'ì¸ì‚¬íŒ€', 'ë¶€ì¥', '2020/04/20', NULL);
+VALUES (101, '¹ÚºÎÀå', '1979/10/19', 19791019, 'ÀÎ»çÆÀ', 'ºÎÀå', '2020/04/20', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (102, 'ì •íŒ€ì¥', '1985/06/21', 19850621, 'ì¸ì‚¬íŒ€', 'íŒ€ì¥', '2020/07/10', NULL);
+VALUES (102, 'Á¤ÆÀÀå', '1985/06/21', 19850621, 'ÀÎ»çÆÀ', 'ÆÀÀå', '2020/07/10', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (103, 'í•œëŒ€ë¦¬', '1990/11/08', 19901108, 'ì¸ì‚¬íŒ€', 'ëŒ€ë¦¬', '2021/01/08', NULL);
+VALUES (103, 'ÇÑ´ë¸®', '1990/11/08', 19901108, 'ÀÎ»çÆÀ', '´ë¸®', '2021/01/08', NULL);
 
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (201, 'ê¹€íŒ€ì¥', '1986/03/19', 19860319, 'ITê°œë°œíŒ€', 'íŒ€ì¥', '2020/06/05', NULL);
+VALUES (201, '±èÆÀÀå', '1986/03/19', 19860319, 'IT°³¹ßÆÀ', 'ÆÀÀå', '2020/06/05', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (202, 'ë°•ëŒ€ë¦¬', '1989/06/18', 19860618, 'ITê°œë°œíŒ€', 'ëŒ€ë¦¬', '2020/12/10', NULL);
+VALUES (202, '¹Ú´ë¸®', '1989/06/18', 19860618, 'IT°³¹ßÆÀ', '´ë¸®', '2020/12/10', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (203, 'ìµœì‚¬ì›', '1994/08/17', 19940817, 'ITê°œë°œíŒ€', 'ì‚¬ì›', '2021/06/12', NULL);
+VALUES (203, 'ÃÖ»ç¿ø', '1994/08/17', 19940817, 'IT°³¹ßÆÀ', '»ç¿ø', '2021/06/12', NULL);
 
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (301, 'ì„œë¶€ì¥', '1983/02/08', 19830208, 'ë§ˆì¼€íŒ…íŒ€', 'ë¶€ì¥', '2020/03/25', NULL);
+VALUES (301, '¼­ºÎÀå', '1983/02/08', 19830208, '¸¶ÄÉÆÃÆÀ', 'ºÎÀå', '2020/03/25', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (302, 'ì´ëŒ€ë¦¬', '1990/05/05', 19900505, 'ë§ˆì¼€íŒ…íŒ€', 'ëŒ€ë¦¬', '2020/09/18', NULL);
+VALUES (302, 'ÀÌ´ë¸®', '1990/05/05', 19900505, '¸¶ÄÉÆÃÆÀ', '´ë¸®', '2020/09/18', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
-VALUES (303, 'ìœ ì‚¬ì›', '1995/04/19', 19950419, 'ë§ˆì¼€íŒ…íŒ€', 'ì‚¬ì›', '2021/04/05', NULL);
+VALUES (303, 'À¯»ç¿ø', '1995/04/19', 19950419, '¸¶ÄÉÆÃÆÀ', '»ç¿ø', '2021/04/05', NULL);
 
 COMMIT;
---checkList
+--checkList(ºÎ¼­º°)
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'ì „ëµì  ê³„íš ë° ê°œë°œ', 'ì¸ì‚¬íŒ€ì´ ì¡°ì§ì˜ ë¹„ì „ê³¼ ëª©í‘œë¥¼ ê³ ë ¤í•˜ì—¬ ì¸ì¬ ê´€ë¦¬ ì „ëµì„ ê°œë°œí•˜ê³  ì‹¤í–‰í•˜ëŠ” ê³¼ì •ì—ì„œ íš¨ê³¼ì ìœ¼ë¡œ ì‹¤í–‰ë˜ê³  ìˆëŠ”ê°€');
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'Àü·«Àû °èÈ¹ ¹× °³¹ß', 'ÀÎ»çÆÀÀÌ Á¶Á÷ÀÇ ºñÀü°ú ¸ñÇ¥¸¦ °í·ÁÇÏ¿© ÀÎÀç °ü¸® Àü·«À» °³¹ßÇÏ°í ½ÇÇàÇÏ´Â °úÁ¤¿¡¼­ È¿°úÀûÀ¸·Î ½ÇÇàµÇ°í ÀÖ´Â°¡');
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'ì „ëµì  ê³„íš ë° ê°œë°œ', 'ì¸ì‚¬íŒ€ì´ ì¸ì‚¬ì •ì±… ë° í”„ë¡œê·¸ë¨ì„ ê°œë°œí•  ë•Œ ì¡°ì§ì˜ ì „ëµê³¼ ëª©í‘œë¥¼ ì ê·¹ì ìœ¼ë¡œ ë°˜ì˜í•˜ê³  ìˆëŠ”ê°€');              
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'Àü·«Àû °èÈ¹ ¹× °³¹ß', 'ÀÎ»çÆÀÀÌ ÀÎ»çÁ¤Ã¥ ¹× ÇÁ·Î±×·¥À» °³¹ßÇÒ ¶§ Á¶Á÷ÀÇ Àü·«°ú ¸ñÇ¥¸¦ Àû±ØÀûÀ¸·Î ¹İ¿µÇÏ°í ÀÖ´Â°¡');              
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'ì¸ì‚¬ ìš´ì˜ ë° ê´€ë¦¬', 'ì¸ì‚¬íŒ€ì´ ì±„ìš© ë° ì„ ë°œ í”„ë¡œì„¸ìŠ¤ë¥¼ ìš´ì˜í•˜ê³  ìˆì„ ë•Œ íš¨ìœ¨ì„±ê³¼ ê³µì •ì„±ì€ ì–´ë–¤ê°€');
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'ÀÎ»ç ¿î¿µ ¹× °ü¸®', 'ÀÎ»çÆÀÀÌ Ã¤¿ë ¹× ¼±¹ß ÇÁ·Î¼¼½º¸¦ ¿î¿µÇÏ°í ÀÖÀ» ¶§ È¿À²¼º°ú °øÁ¤¼ºÀº ¾î¶²°¡');
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'ì´í•´ê´€ê³„ì ê´€ë¦¬', 'ì¸ì‚¬íŒ€ì´ ë‚´ë¶€ ì´í•´ê´€ê³„ìì™€ì˜ í˜‘ë ¥ì„ í–¥ìƒì‹œí‚¤ê¸° ìœ„í•œ ë…¸ë ¥ì€ ì–´ë– í•œê°€');
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'ÀÌÇØ°ü°èÀÚ °ü¸®', 'ÀÎ»çÆÀÀÌ ³»ºÎ ÀÌÇØ°ü°èÀÚ¿ÍÀÇ Çù·ÂÀ» Çâ»ó½ÃÅ°±â À§ÇÑ ³ë·ÂÀº ¾î¶°ÇÑ°¡');
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'ì´í•´ê´€ê³„ì ê´€ë¦¬', 'ì™¸ë¶€ ì´í•´ê´€ê³„ìì™€ì˜ ê´€ê³„ë¥¼ ìœ ì§€í•˜ê³  ë°œì „ì‹œí‚¤ê¸° ìœ„í•´ ì¸ì‚¬íŒ€ì´ í•˜ê³ ìˆëŠ” í™œë™ì€ ì–´ë–¤ê°€');
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'ÀÌÇØ°ü°èÀÚ °ü¸®', '¿ÜºÎ ÀÌÇØ°ü°èÀÚ¿ÍÀÇ °ü°è¸¦ À¯ÁöÇÏ°í ¹ßÀü½ÃÅ°±â À§ÇØ ÀÎ»çÆÀÀÌ ÇÏ°íÀÖ´Â È°µ¿Àº ¾î¶²°¡');
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'í‰ê°€ ë° ê°œì„ ', 'ì¸ì‚¬íŒ€ì´ ì¡°ì§ì˜ ì„±ê³¼ë¥¼ í‰ê°€í•˜ê³  í”¼ë“œë°±ì„ ì œê³µí•˜ëŠ” í”„ë¡œì„¸ìŠ¤ëŠ” ì–´ë–¤ê°€');
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'Æò°¡ ¹× °³¼±', 'ÀÎ»çÆÀÀÌ Á¶Á÷ÀÇ ¼º°ú¸¦ Æò°¡ÇÏ°í ÇÇµå¹éÀ» Á¦°øÇÏ´Â ÇÁ·Î¼¼½º´Â ¾î¶²°¡');
 INSERT INTO checkLists (check_id, department, rank, check_name, description)
 VALUES(
-                (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
-                'ì¸ì‚¬íŒ€', null,
-                'í‰ê°€ ë° ê°œì„ ', 'ì¸ì‚¬ í”„ë¡œì„¸ìŠ¤ë¥¼ ë¶„ì„í•˜ê³  ê°œì„ í•˜ê¸° ìœ„í•œ ë…¸ë ¥ì€ ì–´ë–¤ê°€');                
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'ÀÎ»çÆÀ', null,
+        'Æò°¡ ¹× °³¼±', 'ÀÎ»ç ÇÁ·Î¼¼½º¸¦ ºĞ¼®ÇÏ°í °³¼±ÇÏ±â À§ÇÑ ³ë·ÂÀº ¾î¶²°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'IT°³¹ßÆÀ', null,
+        'ÇÁ·ÎÁ§Æ® °ü¸® ¹× ½ÇÇà', 'ÆÀÀÇ ±â¼ú ¿ª·®°ú Àü¹®¼ºÀÌ ÇÁ·ÎÁ§Æ®ÀÇ ÁøÇà¿¡ ¾î´À Á¤µµ ±â¿©ÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'IT°³¹ßÆÀ', null,
+        'Çù¾÷°ú ÀÇ»ç¼ÒÅë', 'ÆÀ¿øµé °£ÀÇ Çù¾÷°ú ÀÇ»ç¼ÒÅëÀÌ ÇÁ·ÎÁ§Æ®ÀÇ È¿À²¼º¿¡ ¾î¶² ¿µÇâÀ» ¹ÌÄ¡°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'IT°³¹ßÆÀ', null,
+        '±â¼ú ¿ª·® ¹× Ç°Áú °ü¸®', 'ÆÀÀÇ ±â¼ú ¿ª·®ÀÌ ÇÁ·ÎÁ§Æ®ÀÇ °á°ú¹° Ç°Áú¿¡ ¾î¶² ¿µÇâÀ» ¹ÌÄ¡°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'IT°³¹ßÆÀ', null,
+        '¹®Á¦ ÇØ°á ¹× Çõ½Å', 'ÆÀÀÌ ±â¼úÀûÀÎ ¹®Á¦¸¦ ÇØ°áÇÏ´Âµ¥ ¾ó¸¶³ª ´É¼÷ÇÏ°Ô ´ëÀÀÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        'IT°³¹ßÆÀ', null,
+        '°³ÀÎ ¹× ÆÀ ¼ºÀå', 'ÆÀ¿øµéÀÇ ±â¼úÀû ¼ºÀå°ú Àü¹®¼º Çâ»óÀ» Áö¿øÇÏ´Â µ¥ ÆÀÀÌ Á¦°øÇÏ´Â ÇÁ·Î±×·¥ ¹× È°µ¿¿¡ ´ëÇØ ¾î¶»°Ô Æò°¡ÇÏ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        '¸¶ÄÉÆÃÆÀ', null,
+        'Àü·« ¹× °èÈ¹ ¼ö¸³', '¸¶ÄÉÆÃÆÀÀÌ Àü·«°ú °èÈ¹À» ¼ö¸³ÇÏ´Â °úÁ¤¿¡¼­ Àü¹®¼º°ú Ã¢ÀÇ¼ºÀ» ¾ó¸¶³ª ¹ßÈÖÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        '¸¶ÄÉÆÃÆÀ', null,
+        'Ä·ÆäÀÎ ¹× ÇÁ·Î¸ğ¼Ç ½ÇÇà', '¸¶ÄÉÆÃÆÀÀÌ ½ÇÇàÇÑ Ä·ÆäÀÎ ¹× ÇÁ·Î¸ğ¼ÇÀÇ È¿°ú¸¦ ¾ó¸¶³ª È¿°úÀûÀ¸·Î ÃøÁ¤ÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        '¸¶ÄÉÆÃÆÀ', null,
+        '°í°´ °ü°è ¹× Ä¿¹Â´ÏÄÉÀÌ¼Ç', '¸¶ÄÉÆÃÆÀÀÌ °í°´°úÀÇ °ü°è¸¦ À¯ÁöÇÏ°í °³¼±ÇÏ±â À§ÇØ Àû±ØÀûÀ¸·Î ³ë·ÂÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        '¸¶ÄÉÆÃÆÀ', null,
+        'ºê·£µù ¹× ½ÃÀå ºĞ¼®', '¸¶ÄÉÆÃÆÀÀÌ ºê·£µù ¹× ½ÃÀå ºĞ¼®À» ÅëÇØ °æÀï·ÂÀ» È®º¸ÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        '¸¶ÄÉÆÃÆÀ', null,
+        '¼º°ú ¹× ROI ºĞ¼®', '¸¶ÄÉÆÃÆÀÀÌ ¼öÇàÇÑ È°µ¿ÀÇ ¼º°ú¸¦ ÀûÀıÇÏ°Ô ºĞ¼®ÇÏ°í ROI¸¦ Æò°¡ÇÏ´Â ´É·ÂÀº ¾î¶²°¡');        
+--checkLists(Á÷±Şº°)
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ºÎÀå',
+        'Àü·« ¹× ¸®´õ½Ê', 'ºÎÀå±Ş Á÷¿øÀÌ Àü·«À» °³¹ßÇÏ°í Á¶Á÷ÀÇ ¸ñÇ¥¸¦ ÀÌ·ç±â À§ÇÑ °èÈ¹À» ¼¼¿ì´Â µ¥ ¾ó¸¶³ª È¿°úÀûÀ¸·Î ±â¿©ÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ºÎÀå',
+        'ÆÀ °ü¸® ¹× °³¹ß', 'ºÎÀå±Ş Á÷¿øÀÌ ÆÀ¿øµéÀ» °ü¸®ÇÏ°í °³¹ßÇÏ´Â µ¥ ¾î´À Á¤µµ ¼º°ú¸¦ º¸ÀÌ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ºÎÀå',
+        'ÀÇ»ç¼ÒÅë ¹× Çù·Â', 'ºÎÀå±Ş Á÷¿øÀÌ ºÎ¼­ °£ Çù·Â°ú ÀÇ»ç¼ÒÅëÀ» ¿øÈ°ÇÏ°Ô ÀÌ²ø¾î³»´Â µ¥ ¾î´À Á¤µµ ´É·ÂÀ» º¸¿©ÁÖ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ºÎÀå',
+        '°á°ú ¹× ¼º°ú', 'ºÎÀå±Ş Á÷¿øÀÇ ¾÷¹« ¼öÇà °á°ú¿Í ¼º°ú°¡ Á¶Á÷ÀÇ ¸ñÇ¥ ´Ş¼º¿¡ ¾ó¸¶³ª ±â¿©ÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ºÎÀå',
+        'Àü¹®¼º ¹× °³ÀÎ ¼ºÀå', 'ºÎÀå±Ş Á÷¿øÀÌ ÀÚ½ÅÀÇ Àü¹® ºĞ¾ß¿¡ ´ëÇÑ Áö½Ä°ú ¿ª·®À» ¾ó¸¶³ª °³¹ßÇÏ°í ¼ºÀå½ÃÅ°°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ÆÀÀå',
+        '¸ñÇ¥ ¼³Á¤ ¹× Àü·« ±¸»ó', 'ÆÀÀå±Ş Á÷¿øÀÌ ¸ñÇ¥¸¦ ¼³Á¤ÇÏ°í Àü·«À» ±¸»óÇÏ´Â °úÁ¤¿¡¼­ ¾ó¸¶³ª È¿°úÀûÀ¸·Î ±â¿©ÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ÆÀÀå',
+        'ÆÀ Á¶Á÷ ¹× ¸®´õ½Ê', 'ÆÀÀå±Ş Á÷¿øÀÌ ÆÀÀ» Á¶Á÷ÇÏ°í ¸®µåÇÏ´Â µ¥ ¾î´À Á¤µµ ¼º°ú¸¦ º¸ÀÌ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ÆÀÀå',
+        'ÀÇ»ç¼ÒÅë ¹× Çù·Â', 'ÆÀÀå±Ş Á÷¿øÀÌ ÆÀ¿øµé °£ÀÇ ÀÇ»ç¼ÒÅë°ú Çù·ÂÀ» ¿øÈ°ÇÏ°Ô ÀÌ²ø¾î³»´Â µ¥ ¾î´À Á¤µµ ´É·ÂÀ» º¸¿©ÁÖ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ÆÀÀå',
+        '¼º°ú ¹× °á°ú µµÃâ', 'ÆÀÀå±Ş Á÷¿øÀÇ ¾÷¹« ¼öÇà °á°ú¿Í ¼º°ú°¡ ÆÀÀÇ ¸ñÇ¥ ´Ş¼º¿¡ ¾ó¸¶³ª ±â¿©ÇÏ°í ÀÖ´Â°¡');        
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, 'ÆÀÀå',
+        '°³ÀÎ ¹× ÆÀ¿ø ¼ºÀå Áö¿ø', 'ÆÀÀå±Ş Á÷¿øÀÌ °³ÀÎ°ú ÆÀ¿øµéÀÇ ¼ºÀåÀ» Àû±ØÀûÀ¸·Î Áö¿øÇÏ°í ¹ßÀü½ÃÅ°´Â µ¥ ¾î´À Á¤µµ ³ë·ÂÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '´ë¸®',
+        '¾÷¹« ¼öÇà ¹× ½ÇÇà´É·Â', '´ë¸®±Ş Á÷¿øÀÌ ¸ÃÀº ¾÷¹«¸¦ È¿°úÀûÀ¸·Î ¼öÇàÇÏ°í ½ÇÇàÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '´ë¸®',
+        'ÆÀ Çù¾÷ ¹× Áö¿ø', '´ë¸®±Ş Á÷¿øÀÌ ÆÀ¿øµé°úÀÇ Çù¾÷À» ¿øÈ°ÇÏ°Ô ÀÌ²ø¾î³»°í Áö¿øÇÏ´Â µ¥ ³ë·ÂÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '´ë¸®',
+        '¹®Á¦ ÇØ°á ¹× ÀÌ½´ ´ëÀÀ', '´ë¸®±Ş Á÷¿øÀÌ ¹ß»ıÇÑ ¹®Á¦³ª ÀÌ½´¿¡ ´ëÀÀÇÏ°í ÇØ°áÇÏ´Â ´É·ÂÀº ¾î¶²°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '´ë¸®',
+        'ÀÚ±â°è¹ß ¹× ¿ª·® °­È­', '´ë¸®±Ş Á÷¿øÀÌ ÀÚ±â°è¹ßÀ» À§ÇØ ³ë·ÂÇÏ°í ¿ª·®À» °­È­ÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '´ë¸®',
+        'ÀÇ»ç¼ÒÅë ¹× ¸®´õ½Ê', '´ë¸®±Ş Á÷¿øÀÌ ÆÀ ³» ÀÇ»ç¼ÒÅëÀ» ¿øÈ°È÷ ÀÌ²ø¾î³»°í ¸®´õ½ÊÀ» ¹ßÈÖÇÏ´Â ´É·ÂÀº ¾î¶²°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '»ç¿ø',
+        '¾÷¹« ¼öÇà ¹× ¼º°ú', '»ç¿ø±Ş Á÷¿øÀÌ ¸ÃÀº ¾÷¹«¸¦ È¿°úÀûÀ¸·Î ¼öÇàÇÏ°í ¼º°ú¸¦ ¾ò°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '»ç¿ø',
+        'Çù¾÷ ¹× ÀÇ»ç¼ÒÅë', '»ç¿ø±Ş Á÷¿øÀÌ ÆÀ ³» Çù¾÷°ú ÀÇ»ç¼ÒÅë¿¡ Àû±ØÀûÀ¸·Î Âü¿©ÇÏ°í ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '»ç¿ø',
+        '¹®Á¦ ÇØ°á ¹× ÀûÀÀ·Â', '»ç¿ø±Ş Á÷¿øÀÌ ¹®Á¦¸¦ ÇØ°áÇÏ°í »õ·Î¿î »óÈ²¿¡ ºü¸£°Ô ÀûÀÀÇÏ´Â ´É·ÂÀº ¾î¶²°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '»ç¿ø',
+        'ÀÚ±â°³¹ß ¹× ¾÷¹« È®Àå', '»ç¿ø±Ş Á÷¿øÀÌ ÀÚ±â°³¹ßÀ» À§ÇØ ³ë·ÂÇÏ°í ¾÷¹«¸¦ È®ÀåÇÏ´Â µ¥ °ü½ÉÀÌ ÀÖ´Â°¡');
+INSERT INTO checkLists (check_id, department, rank, check_name, description)
+VALUES(
+        (SELECT NVL(MAX(check_id), 0) + 1 FROM checkLists),
+        null, '»ç¿ø',
+        'Å¸ÀÎ Á¸Áß ¹× ÆÀ¿öÅ©', '»ç¿ø±Ş Á÷¿øÀÌ µ¿·á¸¦ Á¸ÁßÇÏ°í ÆÀ¿öÅ©¿¡ ±â¿©ÇÏ°í ÀÖ´Â°¡');
 ----------------------------------------------------------------------
 select admin_id, employee_pw from employees where admin_id = 1 and employee_pw = 19830424;
 select * from employees where employee_id = 101;
