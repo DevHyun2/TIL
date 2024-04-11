@@ -7,7 +7,7 @@ CREATE TABLE employees (
     department VARCHAR2(300),
     rank VARCHAR2(50),
     join_date DATE,
-    admin_id NUMBER, -- 이는 관리자도 사원 테이블에 포함됨을 가정합니다.
+    admin_id NUMBER,
     CONSTRAINT admin_fk FOREIGN KEY (admin_id) REFERENCES employees(employee_id)
 );
 
@@ -31,7 +31,6 @@ CREATE TABLE performances (
     CONSTRAINT check_kf FOREIGN KEY (check_id) REFERENCES checkLists(check_id)
 );
 
--- 자기 평가 점수 테이블 생성
 CREATE TABLE selfcheckLists (
     self_id NUMBER PRIMARY KEY,
     employee_id NUMBER NOT NULL,
@@ -39,7 +38,8 @@ CREATE TABLE selfcheckLists (
     score NUMBER,
     self_year NUMBER,
     CONSTRAINT employee_self_fk FOREIGN KEY (employee_id) REFERENCES employees(employee_id),
-    CONSTRAINT check_self_fk FOREIGN KEY (check_id) REFERENCES checkLists(check_id)
+    CONSTRAINT check_self_fk FOREIGN KEY (check_id) REFERENCES checkLists(check_id),
+    CONSTRAINT unique_self_year UNIQUE (self_year)
 );
 drop table employees;
 drop table checklists;
@@ -71,6 +71,7 @@ INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, ra
 VALUES (302, '이대리', '1990/05/05', '19900505', '마케팅팀', '대리', '2020/09/18', NULL);
 INSERT INTO employees (employee_id, name, birthdate, employee_pw, department, rank, join_date, admin_id)
 VALUES (303, '유사원', '1995/04/19', '19950419', '마케팅팀', '사원', '2021/04/05', NULL);
+COMMIT;
 ----------------------------------------------------------------------
 INSERT INTO checkLists (check_id, check_name, department, rank, description)
 VALUES (1, 'Productivity', 101, 'Manager', 'Productivity of the employee within the department.');
