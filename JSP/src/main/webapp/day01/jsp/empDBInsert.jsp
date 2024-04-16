@@ -5,6 +5,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("utf-8"); //post 방식일때 필수
+
 	int empid = Integer.parseInt(request.getParameter("employee_id"));
 	String first_name = request.getParameter("first_name");
 	String last_name = request.getParameter("last_name");

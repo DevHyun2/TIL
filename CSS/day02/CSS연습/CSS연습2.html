@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style>
+/* 
+1. !important
+2. inline
+3. internal 이거나 external
+ */
+h1{
+	color: rgb(255,0,0,0.3) !important;
+	display: inline;
+}
+#my2{
+	border: 3px dotted hotpink;
+}
+.my3{
+	border: 3px dotted orange;
+}
+h2{
+	border: 3px dotted green;
+}
+div{
+	color: #ff1199;
+	border : 3px solid blue;
+}
+*{
+	font-family: "Nanum Pen Script", cursive;
+}
+</style>
+
+</head>
+<body>
+<h1 style="color:blue ;">CSS 적용순서 1</h1><br>
+<h1>CSS 적용순서 2</h1>
+<h2 id="my2" class="my3">h2입니다</h2>
+<div>
+	<h3>h3...</h3>
+	<h4>h4...</h4>
+	<p>p1...</p>
+	<p>p2...</p>
+	<p>p3...</p>
+</div>
+
+</body>
+</html>
