@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<title>박스모델</title>
-	<style>
-    div {
-      border:2px solid #000;
-      margin-bottom: 20px;
-    }
-		.box1 {
-			width:400px;
-			height:100px;
-		}
-    .box2 {
-      width:50%;
-      height:100px;
-    }
-	</style>
+<meta charset="UTF-8">
+<title>박스모델</title>
+<style>
+div, a, p {
+	border: 2px solid #000;
+	margin-bottom: 20px;
+}
+/* width속성은 block요소에만 사용가능 */
+.box1, .box3 {
+	width: 400px;
+	height: 100px;
+}
+
+.box2, .box4 {
+	width: 50%; /* 부모요소의 50% 가변너비*/
+	height: 100px; /* px은 고정크기 고정너비*/
+}
+a{
+	display: block;
+	width: 500px;
+}
+p{
+	width: 50%;
+}
+</style>
 </head>
 <body>
-  <div class="box1"></div>
-  <div class="box2"></div>
+	<div class="box1">box1</div>
+	<div class="box2">box2</div>
+	<a href="block.html">block요소 연습</a>
+	<div class="box3">
+		<p>pppppp</p>
+	</div>
+	<div class="box4">
+		<p>pppppp</p>
+	</div>
 </body>
 </html>

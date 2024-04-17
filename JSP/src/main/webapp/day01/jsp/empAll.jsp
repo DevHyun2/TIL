@@ -49,6 +49,16 @@ tbody tr:nth-child(2n+1){
 #title{
 	font-size: 30px;
 }
+
+td[data-fname]{
+	font-size: 20px;
+}
+td[data-fname^='B']{
+	color: red;
+}
+td{data-hdata|='2007'}{
+	color: yellow;
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -87,16 +97,16 @@ tbody tr:nth-child(2n+1){
 				<%=emp.getEmployee_id()%>
 				</a>
 				</td>
-				<td><%=emp.getFirst_name() %></td>
+				<td data-fname="<%=emp.getFirst_name() %>"><%=emp.getFirst_name() %></td>
 				<td><%=emp.getLast_name() %></td>
 				<td><%=emp.getEmail() %></td>
 				<td><%=emp.getCommission_pct() %></td>
 				<td><%=emp.getDepartment_id()%></td>
 				<td><%=emp.getPhone_number()%></td>
 				<td><%=emp.getSalary()%></td>
-				<td><%=emp.getHire_date()%></td>
+				<td data-hdate="<%=emp.getHire_date()%>"><%=emp.getHire_date()%></td>
 				<td><%=emp.getManager_id()%></td>
-				<td><%=emp.getJob_id()%></</td>
+				<td><%=emp.getJob_id()%></td>
 			</tr>
 			<%} %>
 				

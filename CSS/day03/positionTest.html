@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<title></title>
+<head>
+    <style>
+        div.relative {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        border: 3px solid #73AD21;
+        top: 20px;
+        left: 30px;
+        } 
+
+        div.absolute {
+        /* 
+        relative이면 본래의 위치에서 이동
+        absolute이면 부모의 위치를 기준으로 이동
+        */
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+        }
+        .fixed{
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            width: 200px;
+            height: 100px;
+            border: 3px solid #73AD21;
+        }
+        .static{
+            /* 
+            position : static = 값이 default = position안주면 static
+            위치를 이동할 수 없다. top, bottom, left, right 불가
+            */
+            position: static;
+            bottom: 20px;
+            right: 30px;
+            width: 200px;
+            height: 100px;
+            border: 3px solid #73AD21;
+        }
+    </style>
+</head>
+<body>
+
+<h2>position: absolute;</h2>
+
+<p>An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed):</p>
+
+<div class="relative">relative
+  <div class="absolute">absolute</div>
+</div>
+<div class="fixed">
+    fixed
+</div>
+<div class="static">
+    static
+</div>
+</body>
+</html>
