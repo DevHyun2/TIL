@@ -95,6 +95,12 @@
       font-weight:bold;  /* 글자 굵게 */
     }
 
+    #signup input:checked + label:hover {
+      border-style: dotted;
+      border-width: 3px;
+      border-color: #f00;
+    }
+
     #signup button {	
       border: 1px solid #222;
       border-radius: 20px;
@@ -129,11 +135,11 @@
         <ul>
           <li>
             <label for="fullname">이름</label>
-            <input id="fullname" name="fullname" type="text" required>
+            <input id="fullname" name="fullname" type="text" required >
           </li>
           <li>
             <label for="tel">연락처</label>
-            <input id="tel" name="tel" type="tel">
+            <input id="tel" name="tel" type="tel" value="010-2131-1231" disabled>
           </li>          
         </ul>
       </fieldset>
@@ -141,7 +147,7 @@
         <legend>객실 형태</legend>
         <ul>
           <li>
-            <input type="radio" name="room" id="basic">
+            <input type="radio" name="room" id="basic" checked>
             <label for="basic">기본형(최대 2인)</label>
           <li>      
           <li>
@@ -149,6 +155,22 @@
             <label for="family">가족형(최대 8인)</label>
           </li>          
         </ul>
+      </fieldset>
+      <fieldset>
+        <!-- name이 같아야 radio는 서로 배타적(중복선택 불가능) -->
+        <input type="radio" name="gender">
+        <label>남자</label>
+        <input type="radio" name="gender">
+        <label>여자</label>
+      </fieldset>
+      <fieldset>
+        <!-- checkbox는 중복선택 가능 -->
+        <input type="checkbox" name="major">
+        <label>컴공</label>
+        <input type="checkbox" name="major">
+        <label>경영</label>
+        <input type="checkbox" name="major">
+        <label>건축</label>
       </fieldset>
       <button type="submit"> 제출 </button> 
     </form>

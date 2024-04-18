@@ -59,6 +59,21 @@ td[data-fname^='B']{
 td{data-hdata|='2007'}{
 	color: yellow;
 }
+/* tbody중 첫번째 tr의 border의 색 바꾸기 */
+/* data중에 첫번째 tr의 background 색 바꾸기 */
+tbody tr:nth-child(1) {
+	background-color: maroon;
+}
+tbody tr:nth-of-type(1) {
+	border: 3px dotted blue;
+	color: white;
+}
+tbody tr:last-child {
+	background-color: maroon;
+}
+#title::after, .title::before{
+	content: "@@@@@";
+}
 </style>
 <head>
 <meta charset="UTF-8">

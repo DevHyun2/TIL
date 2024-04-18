@@ -52,12 +52,31 @@
   }
   .contents p:nth-of-type(3) {
     background-color:#00b900;
-  }  
+  }
+   /* container의 자식으로 처음나온 속성  */
+  .container :nth-child(1){
+    background-color: burlywood;
+  } 
+  /* container의 자식으로 처음나온 p */
+  .container p:nth-child(1){
+    background-color: burlywood;
+  } 
+  /* container의 type으로 처음나온 p */
+  .container p:nth-of-type(1){
+    background-color: red;
+  } 
 </style>
 </head>
 
 <body>
 <div class="container">
+
+  <p>p1</p>
+  <p>p2</p>
+  <p>p3</p>
+  <p>p4</p>
+  <p>p5</p>
+
     <nav class="navi">
       <ul>
         <li><a href="#">이용 안내</a></li>
@@ -71,7 +90,7 @@
       <p>Excepteur do est eiusmod nulla et veniam. Labore officia officia ex aliqua exercitation aliqua laborum Lorem deserunt ut ullamco labore anim. Officia eu duis aliquip incididunt. Do laborum et consequat aliqua sint consectetur.</p> 
       <p>Qui magna culpa minim reprehenderit magna in nisi ipsum. Ad cillum tempor minim fugiat est dolor. Cillum sit qui minim sint officia nostrud cillum cupidatat pariatur ipsum eiusmod velit labore. Sit in non fugiat minim sit.</p>
       <h2>객실 소개</h2>
-      <p>Irure incididunt duis ut cupidatat laborum adipisicing veniam irure.</p>
+      <p>(P들중 3번째)Irure incididunt duis ut cupidatat laborum adipisicing veniam irure.</p>
       <h2>예약 방법 및 요금</h2>
       <p>Fugiat aliquip mollit proident velit magna esse ea officia eu. Esse do aliqua proident culpa eiusmod duis minim deserunt eu reprehenderit ut tempor. </p>
     </div>

@@ -41,14 +41,34 @@ fieldset {
 	border-width: 10px;
 	padding: 20px;
 }
-input{
+/* input{
 	background-color: #B9FFFF;
-}
+} */
 .date{
 	width: 162.667px;
 }
 .all{
 	margin: 0 auto;
+}
+/* input요소의 value라는 속성이 존재하는가? */
+input[value]{
+	background-color: #B9FFFF
+}
+/* input요소의 type에 해당하는 속성만 */
+input[type="submit"],input[type="reset"]{
+	background-color: black;
+	color: white;
+}
+/* class안에 바로 다음에 오는 label */
+.first_field > label {
+		background-color: skyblue;
+}
+/* 마우스 클릭시 반응 */
+input:focus {
+	background-color: beige;
+}
+label:hover {
+	background-color: hotpink;
 }
 </style>
 </head>
