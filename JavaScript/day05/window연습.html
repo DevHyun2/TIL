@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<script>
+  window.onload = init;
+  function init() {
+    var btn1 = document.querySelector("button:nth-of-type(1)");
+    var btn2 = document.querySelector("button:nth-of-type(2)");
+    var btn3 = document.querySelector("button:nth-of-type(3)");
+    var btn4 = document.querySelector("button:nth-of-type(4)");
+    var btn5 = document.querySelector("button:nth-of-type(5)");
+    var btn6 = document.querySelector("button:nth-of-type(6)");
+    btn1.onclick = f_btn1;
+    btn2.onclick = f_btn2;
+    btn3.onclick = f_btn3;
+    btn4.onclick = f_btn4;
+    btn5.onclick = f_btn5;
+    btn6.onclick = f_btn6;
+    var here = document.querySelector("#here");
+  }
+  function f_btn1(){
+    //window
+    for(prop in window){
+      here.innerHTML +="<br>" + prop + "==>" + window[prop];
+    }
+  }
+  function f_btn2(){ 
+    //DOM(Document Object Model)
+    for(prop in document){
+      here.innerHTML +="<br>" + prop + "==>" + document[prop];
+    }
+  }
+  function f_btn3(){
+    //navigator
+    for(prop in navigator){
+      here.innerHTML +="<br>" + prop + "==>" + navigator[prop];
+    }
+  }
+  function f_btn4(){
+    //location : 주소창
+    for(prop in location){
+      here.innerHTML += "<br>" + prop + "==>" + location[prop];
+    }
+  }
+  function f_btn5(){
+     //screen
+     for(prop in screen){
+      here.innerHTML += "<br>" + prop + "==>" + screen[prop];
+    }
+  }
+  function f_btn6(){
+    //history: 방문한 history, go(), back()
+    for(prop in history){
+      here.innerHTML += "<br>" + prop + "==>" + history[prop];
+    }
+  }
+</script>
+window.onload
+<body>
+  <h1>BOM에 대하여...</h1>
+  <button class="btn btn-primary" >window</button>
+  <button class="btn btn-primary" >document</button>
+  <button class="btn btn-primary" >navigator</button>
+  <button class="btn btn-primary" >location</button>
+  <button class="btn btn-primary" >screen</button>
+  <button class="btn btn-primary" >history</button>
+  <button class="btn btn-primary" onclick="history.back()">뒤로가기</button>
+  <button class="btn btn-primary" onclick="location.href='www.naver.com'">locatio변경</button>
+  <input>
+  <button class="btn btn-primary" onclick="location.reload">locatio.reload</button>
+  <button class="btn btn-primary" onclick="call()">주소접근</button>
+  <button class="btn btn-primary" onclick="call()">어떤기기</button>
+  <button class="btn btn-primary" onclick="cal2()">바탕색변경</button>
+  <hr>
+  <div id="here">여기출력</div>
+  <script>
+    function call(){
+      here.innerHTML = document.URL;
+      here.innerHTML = "<br>" + document.location;
+      here.innerHTML = "<br>" + location.href;
+      var userAgent = navigator.userAgent;
+      if(userAgent.includes("iPhone") || userAgent.includes("Android")){
+        alert("모바일로 접근");
+      }else{
+        alert("pc로 접근");
+      }
+      var arr =["iPhone", "Android"];
+      for(indenx in arr) {
+        if(userAgent.includes(arr[index])){
+          alrert("모바일로 접근");
+          return;
+        }
+      }
+    }
+    function call2() {
+      document.body.style.backgroundColor = "lightgreen";
+    }
+  </script>
+ 
+</body>
+</html>

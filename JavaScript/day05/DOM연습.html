@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DOM</title>
+   
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  
+    .orange { border: 5px dotted orange;}
+    .pink { border: 5px dotted hotpink;}
+  
+  </style>
+  
+  <script>
+   window.onload = init;
+   function init(){
+    var btn1 = document.querySelector("button:nth-of-type(1)"); 
+    var btn2 = document.querySelector("button:nth-of-type(2)");
+    btn3 = document.querySelector("button:nth-of-type(3)");
+    btn4 = document.querySelector("button:nth-of-type(4)");
+    var btn5 = document.querySelector("button:nth-of-type(5)");
+    var btn6 = document.querySelector("button:nth-of-type(6)");
+    var btn7 = document.querySelector("button:nth-of-type(7)");
+    var img1 = document.querySelector("#redcup");
+    var frm = document.querySelector("#myfrm");
+    var div = document.querySelector("#mydiv");
+    var h1 = document.querySelector("#myh1");
+    var div2 = document.querySelector("#mydiv2");
+    var h2 = document.querySelector("#myh2");
+    
+    btn6.addEventListener("click", f_button6);
+    btn7.addEventListener("click", f_button7);
+    
+    function f_button6(){
+      //img1.style.border = "5px dotted green";
+      img1.className = "orange";
+    }
+    function f_button7(){
+      //img1.style.border = "5px dotted black";
+      img1.className = "pink";
+    }
+    
+    
+    div2.addEventListener("click", function(){alert("div이다");}, false); //버블링default이다(false)
+    h2.addEventListener("click", 
+        function(event){
+                alert("div안에 있는 h1이다.");
+              event = event||window.event;
+              event.stopPropagation(); //전달막기 
+        }, false); //버블링default이다(false)
+    
+    frm.onsubmit = f_frmcheck;
+  
+    btn1.onclick = f_button1;
+    btn2.onclick = f_button2;
+    btn3.onclick = f_button3;
+    img1.onclick = f_button3;
+    btn4.onclick = f_button4;
+    btn5.onclick = f_button5;
+    div.onclick = function(){ ㅍalert("div이다");  };
+    h1.onclick = function(event2){ 
+      alert("div안에 있는 h1이다.");
+      //이벤트 전달막기(버블링막기)
+      event2.stopPropagation();
+    };
+   }
+   function f_frmcheck(){
+     var userid = document.querySelector("#userid").value;
+     if(userid!='admin') return false; //default event취소(서버전송취소)
+   }
+   
+   
+   function f_button5(){
+     btn3.onclick(); //이벤트호출 
+     //f_button3(); //함수호출 
+   }
+   
+   function f_button4(){
+     alert( this.innerText );
+     btn4.onclick = null;
+   }
+   
+   
+   function f_button3(event){
+     var output;
+     //output = document.getElementById("redcup").getAttribute("src");
+     //output = document.getElementsByClassName("redcup")[0].getAttribute("src");
+     //selector : *, #, . 태그 
+     output = document.querySelector("#aa + img").getAttribute("src");
+     var su;
+     if(output == "../17/images/cup-1.png"){
+        su="2";
+     }else{
+        su="1";
+     }
+     document.querySelector("#aa + img").setAttribute("src", `../17/images/cup-${su}.png`);	 
+     
+     here.innerHTML = output;
+     here.innerHTML += "<hr>" + event.type + ": x=" + event.pageX + " y=" + event.pageY;
+     here.innerHTML += "<hr> click한 객체 :" + this ;
+     console.log(event);
+   }
+   function f_button1(){
+     here.innerHTML = "<h1>innerHTML연습</h1>";
+   }
+   function f_button2(){
+     here.innerText = "<h1>innerText연습</h1>";
+   }
+  </script>
+  <style>
+  div, div h1, span{
+    border : 1px solid gray;
+    padding: 20px;
+  }
+  </style>
+  </head>
+
+<body class="vsc-initialized">
+  <div id="mydiv2">
+    <h1 id="myh2">DOM에 대하여(표준이벤트모델)....</h1>
+  </div>
+
+  <div id="mydiv">
+    <h1 id="myh1">DOM에 대하여....</h1>
+  </div>
+
+  <button class="btn btn-primary">innerHTML</button>
+  <button class="btn btn-primary">innerText</button>
+  <button id="aa" class="btn btn-primary">속성접근</button>
+  <img id="redcup" class="redcup" src="../17/images/cup-1.png" alt="빨간색컵">
+  <button class="btn btn-primary">이벤트지우기</button>
+  <button class="btn btn-primary">이벤트호출</button>
+  <button class="btn btn-primary">스타일변경1</button>
+  <button class="btn btn-primary">스타일변경2</button>
+  <hr>
+  <h1>default이벤트에 대하여</h1>
+  <form id="myfrm" action="jstest.jsp">
+    아이디 : <input id="userid">
+    <input type="submit" value="서버에 전송(submit)">
+    <button>서버에전송2(submit와같음)</button>
+    <input type="button" value="form내의button" onclick="alert('button')">
+  </form>
+  <hr>
+  <div onclick="alert('바깥div')">
+    <div onclick="alert('안쪽div');event.stopPropagation();">
+      <h1 onclick="alert('h1');event.stopPropagation();">
+        이벤트의 <span onclick="alert('span');event.stopPropagation();">버블링</span>과 캡처링 연습하기
+      </h1>
+    </div>
+  </div>
+
+  <hr>
+  <div id="here">여기</div>
+</body>
+
+</html>
