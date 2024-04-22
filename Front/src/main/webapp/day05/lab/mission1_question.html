@@ -52,6 +52,56 @@
 		var q6 = document.querySelector("#m_6");
     q6.parentNode.removeChild(q6);
 		}
+
+		window.onload=function(){
+			var m1 = document.querySelector("#m_1");
+			var m2 = document.querySelector("#m_2");
+			var m3 = document.querySelectorAll("#m_3 img:nth-child(even)");
+			var m4 = document.querySelector("#m_4");
+			var m5 = document.querySelector("#m_5 p");
+			var m6 = document.querySelector("#m_6");
+
+			f1(m1);f2(m2);f3(m3);f4(m4);f5(m5);f6(m6);
+		}
+		function f1(m1){
+			m1.style.color = "red";
+		}
+		function f2(m2){
+			//HTML의 속성은 class이지만 JavaScript에 class라는 예약어가 있다
+			//class가 아니라 className이라고 사용
+			m2.className = "active";
+		}
+		function f3(m3){
+			for(let i=0 ; i<m3.length ; i++){
+				m3[i].src = "ch3.png";
+				//m3[i].setAttribute("src", "ch3.png");
+			}
+			
+		}
+		function f4(m4){
+			var textNode = document.createTextNode("항목4");
+			var eltNode = document.createElement("p");
+			eltNode.appendChild(textNode); //<p>항목4</p>
+			m4.appendChild(eltNode);
+
+			m4.innerHTML += "<p>항목4</p>";
+		}
+		function f5(m5){
+			for(let i=0 ; i<m5.length ; i++){
+				// if(m5[i].innerText === "항목4"){
+				// 	m5[i].parentNode.removeChild(m5[i])
+				// }
+				// if(m5[i].innerHTML.trim() === "항목4"){
+				// 	m5[i].parentNode.removeChild(m5[i])
+				// }
+				if(m5[i].innerHTML.indexof("항목4") >= 0){
+					m5[i].parentNode.removeChild(m5[i])
+				}
+			}
+		}
+		function f6(m6){
+			m6.parentNode.parentNode.removeChild(m6.parentNode);
+		}
 	</script>
 </head>
 
