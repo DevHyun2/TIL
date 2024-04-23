@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>08-02</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	/*
+	id="content"의 자식 div들의 글씨색을 blue로 설정한다. 
+	id="content"의 자식 div들중에서 첫번째 자식의  글씨크기를 20pt로 설정한다.
+	id="content"의 자식 div들중에서 두번째 자식요소의 border를 black라인으로 설정한다.
+	id="content"의 자식 div들중에서 class가 test인 요소들의  글씨크기를 20pt로 설정한다.(filter)
+	id="content"의 자식들 중에서  class가 test가 아닌 요소들의  border를 black라인으로 설정한다.(not)
+	
+	 
+	*/
+    $("#content div").css("color", "blue");
+    $("#content div").first().css("font-size", "20px");
+    $("#content div").eq(1).css("border", "1px solid black");
+    $("#content div[class='test']").css("font-size", "20px");
+    $("#content div[class!='test']").css("border", "1px solid black");
+});
+</script>
+</head>
+<body>
+    <div id="content">
+        <div id="a">김수한무</div>
+        <div>거북이와 두루미</div>
+        <div class="test">삼천갑자 동방삭</div>
+        <div class="test  main">치치카포 사리사리센타</div>
+        <div>워리워리 세브리깡</div>
+        <div>무두셀라 구름이</div>
+        <div id="b">허리케인에 담벼락</div>
+        <div class="test">허리케인에 담벼락</div>
+        <div class="main">담벼락에 서생원</div>
+        <div class="test">서생원에 고양이</div>
+        <div id="a">고양이에 바둑이</div>
+        <div>바둑이는 돌돌이</div>
+    </div>
+</body>
+</html>

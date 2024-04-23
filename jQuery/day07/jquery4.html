@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+  <style>
+    h1{
+    background-color: orange;
+  }
+  .red {
+      color: red;
+      border: 3px dotted red;
+  }
+  .blue {
+    color: blue;
+    border: 3px dotted blue;
+  }
+  </style>
+  <script>
+ $(function(){
+	 $("#images").on("mouseenter", f3);
+	 $("#images").on("mouseleave", f4);
+	 
+	 $("button").first().on("click", f2);
+	 $("button").eq(1).on("click", function(){
+		 $("h1").off("mouseenter");
+		 $("h1").off("mouseleave");
+	 });
+   //이벤트강제발생 
+	 $("button").eq(2).on("click", function(){
+		 $("button").first().trigger("click");
+	 });
+	 var obj = {"mouseenter":f5, "mouseleave":f6};
+	 //$("h1").on(obj);
+	 $("h1").hover(f5, f6);
+
+   $("#userid").on("keyup", f7);
+	 $("#userid").on("change", f8);
+   $("#select").on("change", f8);
+   $("#userid").on("select", f8);
+ });
+ function f8(){
+	 alert($(this).val());
+ }
+ function f7(){
+	 $("#userid2").text( $(this).val() );
+ }
+ function f5(event){
+	 $(this).addClass("red");
+	 $(this).removeClass("blue");
+ }
+ function f6(){
+	 $(this).addClass("blue");
+	 $(this).removeClass("red");
+ }
+ function f4(){
+	 clearInterval(timer);
+ }
+ function f3(){
+	 timer = setInterval(f, 1000); //1초마다 f함수를 수행한다.
+ }
+ function f(){
+	 $("#images>img").first().appendTo("#images");
+ 
+ function f2(){	
+	 //$("h1").first().appendTo("#here");
+	 $("h1").first().clone().appendTo("#here");
+	 $("h1").first().clone().appendTo("#here");
+	 $("h1").first().clone().appendTo("#here");
+	 $("#here").append($("h1").first().clone());
+	 $("#here").append($("#images>img").first().clone());
+ }
+</script>
+</head>
+<body>
+  <h1>문서객체이동</h1>
+  <button>h1 => here로 move</button>
+  <button>이벤트제거</button>
+  <button>trigger(이벤트강제발생)</button>
+  <hr>
+  <select id="select" onselect="alert('aa')">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <input type="radio" name="gender" value="남자">남자
+  <input type="radio" name="gender" value="여자">여자
+  <input id="userid">
+  <hr>
+  <input type="checkbox" name="hobby" value="ALL" id="allCheck">
+  <label>ALL</label>
+  <input type="checkbox" name="hobby" value="등산">
+  <label>등산</label>
+  <input type="checkbox" name="hobby" value="게임">
+  <label>게임</label>
+  <input type="checkbox" name="hobby" value="코딩">
+  <label>코딩</label>
+  <hr>
+  <script>
+  $(function(){
+	 $("#allCheck").on("change", call);
+	 function call(){
+		console.log(this.checked); 
+		console.log($(this).prop("checked")); 
+		if(this.checked){
+			$("#checkItem").children().prop("checked", true);
+		} else{
+			$("#checkItem").children().prop("checked", false);
+		}
+	 }
+  });
+  </script>
+  <p id="userid2">이부분</p>
+  <hr>
+  <div id="images" style="border:1px solid gray">
+    <img alt="" src="../day06/lab/images/img1.jpg">
+    <img alt="" src="../day06/lab/images/img2.jpg">
+    <img alt="" src="../day06/lab/images/img3.jpg">
+    <img alt="" src="../day06/lab/images/img4.jpg">
+    <img alt="" src="../day06/lab/images/img5.jpg">
+  </div>
+  <div id="here" style="border:1px solid gray">
+    <h1>여기</h1>
+ </div>
+</body>
+</html>
