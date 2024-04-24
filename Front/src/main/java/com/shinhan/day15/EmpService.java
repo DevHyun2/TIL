@@ -68,4 +68,8 @@ public class EmpService {
 		public double callFunction(int empid) {
 			return empDAO.callFunction(empid);
 		}
+	//email중복체크
+	public int selectByEmail(String email) {
+		return empDAO.selectByEmail(email);
+	}
 }

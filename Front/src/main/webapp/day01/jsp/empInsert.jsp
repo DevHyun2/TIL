@@ -71,6 +71,28 @@ label:hover {
 	background-color: hotpink;
 }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btnDupCheck").on("click", f_dupCheck);
+});
+function f_dupCheck() {
+	$.ajax({
+		type:"emailCheck.jsp",
+		data:{email:$("input[name='email']").val()},
+		success:function(responseText){
+			//alert(responseText);
+			var message = "";
+			if(responseText==1){
+				message = "이미존재한다(사용불가)"
+			}else{
+				message = "사용가능";
+			}
+			$("#message").html(message);
+		}
+	})
+}
+</script>
 </head>
 <body>
 <h1>신규직원 등록</h1>
@@ -105,7 +127,8 @@ id : 문서 내에서 유일한 이름
 	<label>last_name</label>
 	<input type="text" name="last_name"><br>
 	<label>email</label>
-	<input type="email" name="email"><br>
+	<input type="email" name="email">
+	<input type="button" value="중복체크" id="btnDupCheck"><span>!!!</span>
 	<label>입사일</label>
 	<input class="date" type="date" name="hire_date"><br>
 	<label>job_id</label>

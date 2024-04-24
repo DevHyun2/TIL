@@ -81,6 +81,27 @@ public class EmpDAO {
 
 		return emp;
 	}
+	
+	public int selectByEmail(String email) {
+		EmpDTO emp = null;
+		String sql = "select coumt(*) from employees where email = ?";
+		conn = DBUtil.dbConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+
+		return 0;
+	}
 
 	// 특정 부서의 직원들 조회
 	public List<EmpDTO> selectByDepId(int depid) {
