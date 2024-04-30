@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <script>
+  window.onload = init;
+  function init(){
+    var nodeList = document.querySelectorAll("ul li");
+    var output = "";
+    for(let index=0; index<nodeList.length; index++){
+      output += nodeList[index].innerText;
+    }
+    here.innerHTML = output;
+    
+    var tnode = document.createTextNode("자바스크립트");
+    var enode = document.createElement("h1"); //<h1></h1>
+    enode.appendChild(tnode); //<h1>자바스크립트</h1>
+    here.appendChild(enode);
+    
+    here.innerHTML += "<h1>자바스크립트2</h2>";
+    here.innerHTML += "<img src='../17/images/coffee-blue.jpg'>";
+  }
+  function call(){
+    var obj = document.querySelector("div img");
+    console.log(obj);
+    obj.parentNode.removeChild(obj);
+    
+    var obj2 = document.querySelector("ul");
+    obj2.parentNode.removeChild(obj2);
+    
+    
+  }
+  </script>
+  </head>
+
+<body class="vsc-initialized">
+  <h1>DOM연습</h1>
+  <ul>
+   <li>HTML</li>
+   <li>CSS</li>
+   <li>JavaScript</li>
+   
+  </ul>
+  <hr>
+  <button onclick="call()">이미지삭제</button>
+  <div id="here">HTMLCSSJavaScript<h1>자바스크립트</h1><h1>자바스크립트2</h1><img src="../17/images/coffee-blue.jpg"></div>
+  </body>
+
+</html>

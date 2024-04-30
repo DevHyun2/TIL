@@ -1,0 +1,39 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box; /*border-box : 가로 = width + border*2 + padding*2 */
+}                         /*content-box : 가로 = width*/
+
+#container{
+  width: 1200px;
+  margin: 20px auto;
+}
+#header{
+  width: 100%;
+  height: 120px;
+  background-color: #acacac;
+}
+#sidebarL{
+  width: 250px;
+  height: 600px;
+  background-color: #c9c9c9;
+  float: left;
+}
+#sidebarR{
+  width: 150px;
+  height: 600px;
+  background-color: #c9c9c9;
+  float: right;
+}
+#contents{
+  width: 800px;
+  height: 600px;
+  background-color: #f7f7f7;
+  float: left;
+}
+#footer{
+  width: 100%;
+  height: 100px;
+  background-color: #bbbbbb;
+  clear: left;
+}

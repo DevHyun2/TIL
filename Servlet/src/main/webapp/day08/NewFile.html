@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(function(){
+	var firstElement = "<em>신선한무화과";
+	console.log(firstElement);
+	
+	$("#three").text("귤");
+	
+
+	for (var index = 0; index <arr.length; index++) {
+		console.log(arr[index]);
+	}
+	});
+	var arr = ["사과", "바나나", "수박", "복숭아"];
+	$(function(){
+		$.each(arr, function(index,item){
+			console.log(item);
+		});
+		
+		jsonObj = {BTC:{max_price: "38870000" }}
+		a = jsonObj["BTC"]
+		console.log(a["max_price"]);
+		
+	});
+</script>
+</head>
+<body>
+<div id="page">
+<h1 id="header">목록
+<h2>구입할 식료품
+<ul id="list">
+<li id="one" class="hot">
+<em>신선한무화과
+</li>
+<li id="two" class="hot">잣
+<li id="three" class="hot">꿀
+<li id="four">발사믹 식초
+</ul>
+</div>
+</body>
+</html>

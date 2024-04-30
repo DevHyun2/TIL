@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	h1{
+	text-align: center;
+	border-bottom: 3px solid;
+	font-size: 50px;
+	padding-bottom: 20px;
+	margin: 0;
+	background: url(../day02/신한마크.png) center left no-repeat;
+	background-size: 80px 80px;
+	}
+	.contain{
+	border-radius: 30px;
+    background-image: linear-gradient(to left, white, lightblue);
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    border-width: 30px;
+    padding: 30px;
+	font-size: 25px;
+	margin-top: 20px;
+	}
+	img{
+		width: 80px;
+		height: 80px;
+		top: 100;
+	}
+	.title{
+		
+	}
+</style>
+<body>
+	<div class="title">
+		<h1>직원등록</h1>
+	</div>
+	<div class="contain">
+		<form action="employees.jsp" >
+			사원번호<input autofocus="autofocus" name="employee_id" type="number"><br>
+			사원명<input name="name" type="text"><br>
+			생년월일<input name="birthdate" type="date"><br>
+			사원PW<input name="employee_pw" type="password" placeholder="생년월일과 동일"><br>
+			부서명<input name="department" type="text"><br>
+			직급<input name="rank" type="text"><br>
+			입사일:<input name="join_date" type="date"><br>
+		<input type="submit" value="완료">
+	</form>
+</div>
+</body>
+</html>

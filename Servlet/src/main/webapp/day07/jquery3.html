@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    $(function(){
+      $("button").eq(0).on("click", function(){
+        $("img").first().attr("src","../17/images/cup-2.png");
+        //$("img").attr({width:"100px", height:"100px"});
+        $("img").attr({width:function(index){
+          return (index+1)*100;
+        }, height:function(index){
+          return (index+1)*200;
+        }}); 
+      });
+    });
+
+    $(function(){
+      $("button").eq(0).on("click", function(){
+        $("img").first().attr("src","../17/images/cup-2.png")
+        //$("img").attr({width:"100px", height:"100px"});
+        var aa = $("img").attr("src");
+        //console.log(aa);
+        $("img").attr({width:f1, height:f2});
+      });
+
+      $("button").eq(1).on("click", function(){
+        $("img").each(function(){
+          $(this).removeAttr("src");
+        });
+      });
+      $("button").eq(2).on("click", function(){
+		    var arr = ["blue", "green", "pink"];
+		    $("img").css({"border": function(index){
+			  return `5px dotted ${arr[index]}`;},
+         "display":"block" });
+	    });
+
+      $("button").eq(3).on("click", function(){
+      $("#here").text("<h1>text를 setting하기</h1>");
+      $("#here").html("<h1>html를 setting하기</h1>");
+      $("#here").html(function(){
+        return "<h1>!!!!!!!!!!함수를 실행후 값을 return하여 setting</h1>";
+      });
+    });
+      $("button").eq(4).on("click", function(){
+        //$("#images").remove(); //전부 없애기
+        $("#images").empty(); //객체 내부를 지우기
+      });
+
+      $("button").eq(5).on("click", function(){
+		    $("<h1></h1>").text("동적생성").appendTo("#here");
+		    $("<h1></h1>").text("<p>동적생성</p>").appendTo("#here");
+        $("<img>").attr("src","../17/images/tree-2.jpg").appendTo("#here");
+        //JavaScript
+        document.querySelector("#here").innerHTML += "<img src='../17/images/tree-1.jpg'>";
+
+        $("<h1>>추가위치append</h1>").appendTo("#here");
+        $("<h1>>추가위치prepend</h1>").prependTo("#here");
+        $("<h1>>추가위치insertBefore</h1>").insertBefore("#here");
+        $("<h1>>추가위치insertAfter</h1>").insertAfter("#here");
+	     });
+    });
+
+    function f1(index){
+      return (index+1)*100;
+    }
+    function f2(index){
+      return (index+1)*200;
+    }
+    
+  </script>
+</head>
+<body>
+  <button>이미지사이즈 조정</button>
+  <button>속성제거</button>
+  <button>css변경</button>
+  <button>html(),text()</button>
+  <button>empty(),remove()</button>
+  <button>객체 동적생성</button>
+
+  <div id="images" style="border: 1px solid gray">
+    <img alt="a" src="../17/images/cup-1.png">
+    <img alt="b" src="../17/images/cup-1.png">
+    <img alt="c" src="../17/images/cup-1.png">
+  </div>
+    <div id="here">
+    <h1>여기</h1>
+  </div>
+</body>
+</html>
