@@ -9,9 +9,43 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <context-param>
+  		<param-name>menu_member</param-name>
+  		<param-value>회원등록 회원수정 회원조회</param-value>
+  </context-param>
+  <context-param>
+  		<param-name>menu_order</param-name>
+  		<param-value>오더등록 오더수정 오더조회</param-value>
+  </context-param>
+  
+  <!-- servlet init-param은 해당 서블릿에서만 접근가능 -->
+  <servlet>
+  		<servlet-name>init2</servlet-name>
+  		<servlet-class>com.shinhan.controller3.InitParamServlet</servlet-class>
+  		<init-param>
+  			<param-name>myname</param-name>
+  			<param-value>hyun</param-value>
+  		</init-param>
+  		<init-param>
+  			<param-name>email</param-name>
+  			<param-value>123@123.123</param-value>
+  		</init-param>
+  		<init-param>
+  			<param-name>phone</param-name>
+  			<param-value>010-1234-1234</param-value>
+  		</init-param>
+  		<load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>init2</servlet-name>
+  		<url-pattern>/init3</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
   <servlet-name>aa</servlet-name>
   <servlet-class>com.shinhan.controller.FirstServlet</servlet-class>
+  <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
   <servlet-name>aa</servlet-name>

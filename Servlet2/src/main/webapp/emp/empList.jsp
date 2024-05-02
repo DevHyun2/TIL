@@ -21,6 +21,7 @@ $(function(){
 </script>
 </head>
 <body>
+<h1>${loginEmp.first_name }님 반갑습니다.</h1>
 <p>다음은 주소창에 주소를 바꾸는 방법(재요청)</p>
 <a href="empInsert.do">신규직원등록1</a>
 <a href="javascript:location.href='empInsert.do'">신규직원등록2</a>

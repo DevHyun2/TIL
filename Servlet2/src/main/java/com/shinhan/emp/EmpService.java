@@ -83,4 +83,8 @@ public class EmpService {
 	public List<JobDTO> selectAllJob() {
 		return empDAO.selectAllJob();
 	}
+
+	public EmpDTO loginCheck(String email, String phone) {
+		return empDAO.loginCheck(email, phone);
+	}
 }
