@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>binding 연습</title>
 </head>
 <body>
-<h1>binding 연습</h1>
-<p>ServletContext:${appData }</p>
-<p>HttpSession:${sessionData }</p>
-<p>HttpServletRequest:${requestData }</p>
+<h1>binding 연습1</h1>
+<p>1.ServletContext:${applicatonScope.appData}</p>
+<p>2.HttpSession:${sessionScope.sessionData}</p>
+<p>3.HttpServletRequest:${requestScope.requestData}</p>
 </body>
 </html>

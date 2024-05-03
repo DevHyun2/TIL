@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>쿠키</title>
 </head>
 <body>
-<h1>쿠키에 저장</h1>
-
+<h1>쿠키에 저장되었습니다</h1>
 </body>
 </html>

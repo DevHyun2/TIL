@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="2;empList.do">
-<title>Insert title here</title>
+<meta http-equiv="refresh" content="3;emplist.do">
+<title>직원입력결과</title>
 </head>
 <body>
-<h1>emp 처리결과:${message}</h1>
+<h1>emp처리결과: ${message}</h1>
 </body>
 </html>

@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${mydata }</h1>
-<h1>request: ${requestScope.mydata }</h1>
-<h1>session: ${sessionScope.mydata }</h1>
-<h1>application: ${applicationScope.mydata }</h1>
-
-<h1>${myage1 }</h1>
-<h1>${myage2 }</h1>
-<h1>${myage3 }</h1>
+<!-- 데이터를 찾는 범위 순서: request => session => application -->
+<h1>${mydata}</h1>
+<h1>request: ${requestScope.mydata}</h1>
+<h1>session: ${sessionScope.mydata}</h1>
+<h1>application: ${applicationScope.mydata}</h1>
+<h2>${myage1}</h2>
+<h2>${myage2}</h2>
+<h2>${myage3}</h2>
 </body>
 </html>

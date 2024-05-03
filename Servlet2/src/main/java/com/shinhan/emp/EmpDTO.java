@@ -2,18 +2,20 @@ package com.shinhan.emp;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+//DTO(Data Transfer Object) = VO(Value Object)
+//JavaBeans 기술에서 이용(Spring, JSP, Mybatis는 JavaBeans 기술 이용)
 
-// VO(Value Object)
-// 데이터를 전달하는 역할
-// DTO(Data Transfer Object)
-// JavaBeans기술에서 이용(JSP, Spring, Mybatis)
-@Getter@Setter@ToString
+@AllArgsConstructor
+@NoArgsConstructor // 필수
+@Getter@Setter // 필수
+@ToString
 public class EmpDTO {
-
 	private int employee_id;
 	private String first_name;
 	private String last_name;

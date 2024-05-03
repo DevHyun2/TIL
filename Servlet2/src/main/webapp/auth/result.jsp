@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="1;login.do">
-<title>Insert title here</title>
+<title>로그인 오류</title>
 </head>
 <body>
-<h1>${message }</h1>
+<h1>${message}</h1>
 </body>
 </html>

@@ -18,16 +18,14 @@ import com.shinhan.dept.DeptService;
 @WebServlet("/dept/deptDetail.do")
 public class DeptDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String deptid = request.getParameter("deptid");
 		if(deptid==null) return;
+		int i_deptid = Integer.parseInt(deptid);
 		
 		DeptService dService = new DeptService();
-		int i_deptid = Integer.parseInt(deptid);
-		DeptDTO dept = dService.selectById(i_deptid);
+		DeptDTO dept = dService.selectByID(i_deptid);
 		request.setAttribute("deptInfo", dept);
 		
 		System.out.println(deptid);
@@ -37,6 +35,5 @@ public class DeptDetailController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	
 
 }

@@ -4,16 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>부서 등록</title>
 </head>
 <body>
-	<h1>부서등록</h1>
-	<form action="deptInsert.do" method="post">
-	부서번호: <input type="number" name="department_id" value="300"><br>
-	부서이름: <input type="text" name="department_name" value="개발부"><br>
-	매니저: <input type="number" name="manager_id" value="100"><br>
-	지역코드: <input type="number" name="location_id" value="1700"><br>
+<h1>부서등록</h1>
+<form action="deptInsert.do" method="post">
+	<label>부서번호</label>
+	<input type="number" name="department_id" value="300"><br>
+	<label>부서이름</label>
+	<input name="department_name" value="aa"><br>
+	<label>매니저</label>
+	<input type="number" name="manager_id" value="100"><br>
+	<label>지역코드</label>
+	<input type="number" name="location_id" value="1700"><br>
 	<input type="submit" value="부서저장">
-	</form>
+</form>
 </body>
 </html>

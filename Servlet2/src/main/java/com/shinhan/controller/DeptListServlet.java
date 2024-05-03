@@ -16,10 +16,10 @@ import com.shinhan.dept.DeptService;
 /**
  * Servlet implementation class DeptListServlet
  */
-@WebServlet("/dept/deptList.do")
+@WebServlet("/dept/deptlist.do")
 public class DeptListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DeptService dService = new DeptService();
 		List<DeptDTO> deptlist = dService.selectAll();

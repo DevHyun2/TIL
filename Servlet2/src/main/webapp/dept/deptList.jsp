@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>모든부서조회</title>
 </head>
 <body>
-	<h1>부서목록</h1>
-${deptlist}<br>
+<h1>부서목록</h1>
+${deptlist}
 </body>
 </html>

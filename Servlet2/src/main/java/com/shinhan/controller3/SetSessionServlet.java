@@ -11,24 +11,23 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class SetSessionServlet
  */
-@WebServlet("/jsp/setsession")
+@WebServlet("/jsp/setSession")
 public class SetSessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(); //request.getSession(true) - 디폴트
+		HttpSession session = request.getSession(); // =request.getSession(true)
+		
 		System.out.println("신규?" + session.isNew());
-		System.out.println("생성시각: " + session.getCreationTime());
-		System.out.println("마지막접근시간: " + session.getLastAccessedTime());
+		System.out.println("getCreationTime: " + session.getCreationTime());
+		System.out.println("getLastAccessedTime: " + session.getLastAccessedTime());
 		System.out.println("getMaxInactiveInterval: " + session.getMaxInactiveInterval());
 		System.out.println("getId: " + session.getId());
 		
 		String id = request.getParameter("userid");
-		String pw = request.getParameter("userpw");
-		
+		String pass = request.getParameter("userpass");
 		session.setAttribute("memberId", id);
-		session.setAttribute("memberPw", pw);
+		session.setAttribute("memberPass", pass);
 	}
-
 
 }
