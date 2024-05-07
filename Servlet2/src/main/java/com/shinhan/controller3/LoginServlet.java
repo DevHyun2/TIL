@@ -64,8 +64,11 @@ public class LoginServlet extends HttpServlet {
 			
 			session.setAttribute("loginEmp", emp);
 			
-			
-			response.sendRedirect("../emp/emplist.do");
+			String lastAddress = (String)session.getAttribute("lastRequest");
+			if(lastAddress == null || lastAddress.length()==0) {
+				lastAddress = getServletContext().getContextPath();
+			}
+			response.sendRedirect("lastAddress");
 			return;
 		}
 		

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,9 +94,9 @@ function f_insert(){
 				<td>${emp.last_name}</td>
 				<td>${emp.email}</td>
 				<td>${emp.phone_number}</td>
-				<td>${emp.hire_date}</td>
+				<td><fmt:formatDate type="both" value="${emp.hire_date }" pattern="YYYY/MM/DD hh:mm:ss"/></td>
 				<td>${emp.job_id}</td>
-				<td>${emp.salary}</td>
+				<td><fmt:formatNumber value="${emp.salary }" groupingUsed="true" currencySymbol="￦"></fmt:formatNumber></td>
 				<td>${emp.commission_pct}</td>
 				<td>${emp.manager_id}</td>
 				<td>${emp.department_id}</td>

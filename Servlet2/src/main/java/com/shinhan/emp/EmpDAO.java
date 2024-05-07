@@ -362,7 +362,7 @@ public class EmpDAO {
 	// 로그인
 	public EmpDTO loginChk(String email, String phone) {
 		EmpDTO emp = null;
-		String sql = "select employee_id, first_name, phone_number from employees where email = ?";
+		String sql = "select employee_id, first_name, last_name, email, phone_number from employees where email = ?";
 		conn = DBUtil.dbConnection2();
 		try {
 			pst = conn.prepareStatement(sql);
@@ -374,6 +374,9 @@ public class EmpDAO {
 					emp = new EmpDTO();
 					emp.setEmployee_id(rs.getInt("employee_id"));
 					emp.setFirst_name(rs.getString("first_name"));
+					emp.setLast_name(rs.getString("last_name"));
+					emp.setEmail(email);
+					emp.setPhone_number(phone);
 				}else {
 					emp = new EmpDTO();
 					emp.setEmployee_id(-2); // 비밀번호 오류

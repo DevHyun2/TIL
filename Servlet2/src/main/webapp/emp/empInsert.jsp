@@ -16,8 +16,36 @@
   <script src="/webshop12/static/js/jquery-3.7.1.min.js"></script>
   <script>
     $(function(){
-    	$("form").on("submit", call);
+    		$("form").on("submit", call);
+    		$("#btnDupCheck").on("click", f_dupCheck);
     });
+    function f_dupCheck(){
+    		var empid = ("#employee_id").val();
+    		if(empid==""){
+    			alert("직원번호를 입력하세요")
+    			documsnt.querySelector("#employee_id").focus();
+    			return;
+    			}
+    		$.ajax({
+    			url:"empIdCheck.do",
+    			data:{"empid":${("employee_id").val()}},
+    			type:"get",
+    			success:function(responseData){
+    				String message = "";
+    				if(responseData == "0"){
+    					message = "사용가능";
+    				}else{
+    					message = "사용불가";
+    					$("#employee_id").val();
+    					document.querySelector("#employee_id").focus();
+    				}
+    				${"#resultMessage"}.val(responseData);
+    			}
+    			error:function(data){
+    				alert(data);
+    			}
+    		});
+    }
     
     function call(event){
     	var salary = $("#salary").val();
@@ -26,7 +54,7 @@
     		alert("salary 값은 0보다 큰 값이어야 한다");
     		event.preventDefault(); // default 이벤트(서버전송) 취소
     		document.querySelector("#salary").focus();
-    	}
+    		}
     }
   </script>
 </head>
@@ -39,6 +67,8 @@
     <div class="mb-3 mt-3">
       <label for="employee_id">직원번호:</label>
       <input type="number" class="form-control" id="employee_id" placeholder="Enter employee id" name="employee_id" required>
+      <input type="button" value="중복체크" id="btnDupCheck">
+      <input type="text" value="ID입력후 중복체크" id="resultMessage">
     </div>
     <div class="mb-3 mt-3">
       <label for="first_name">이름:</label>

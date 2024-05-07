@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletRequest;
  * 공통적으로 여러 Servlet에 적용하기 위한 코드들을 작성
  */
 @WebFilter("*.do")
-public class EncodingFilter extends HttpFilter implements Filter {
+public class Encodingfilter extends HttpFilter implements Filter {
 	
-	public EncodingFilter() {
+	public Encodingfilter() {
 		System.out.println("EncodingFilter 생성됨");
 	}
 	

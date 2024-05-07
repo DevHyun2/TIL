@@ -25,13 +25,18 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		// 로그인하지 않으면 업무 로직 수행 불가
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
+		HttpSession session = req.getSession();
+		
 		
 		// uri: webshop12/auth/login.do
 		if(!(req.getRequestURI().endsWith("login.do"))){
-			HttpSession session = req.getSession();
+			session.setAttribute("lastRequest", req.getRequestURI());
+			System.out.println(req.getRequestURI());
 			EmpDTO emp = (EmpDTO) session.getAttribute("loginEmp");
+			//로그인이 되어있지 않으면 브라우저로 내려가서 로그인으로 재요청
+			String path = req.getServletContext().getContextPath();
 			if(emp == null) {
-				rep.sendRedirect("../auth/login.do");
+				rep.sendRedirect(path + "/auth/login.do");
 				return;
 			}
 		}
