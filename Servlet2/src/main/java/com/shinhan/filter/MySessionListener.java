@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSessionListener;
  * Application Lifecycle Listener implementation class MySessionListener
  *
  */
-@WebListener
+//@WebListener
 public class MySessionListener implements HttpSessionListener {
 
 	String user_id;

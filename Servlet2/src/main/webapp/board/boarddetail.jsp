@@ -19,13 +19,14 @@ writer: <input type="text" name="writer" value="${board.writer}" readonly="reado
 작성일: <input type="date" name="create_date" value="${board.create_date}" readonly="readonly"><br>
 pic: <input type="text" name="pic" value="${board.pic}"><br>
 
+	<input type="submit" value="수정">
 
-<c:if test="${loginUser == board.writer}">
+<%-- <c:if test="${loginUser == board.writer}">
 	<input type="submit" value="수정">
 </c:if>
 <c:if test="${loginUser != board.writer}">
 	<input type="submit" value="수정불가" disabled="disabled">
-</c:if>
+</c:if> --%>
 </form>
 </body>
 </html>

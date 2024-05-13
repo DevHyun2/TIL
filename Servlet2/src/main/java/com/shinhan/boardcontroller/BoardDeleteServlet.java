@@ -12,7 +12,7 @@ import com.shinhan.model.BoardService;
 /**
  * Servlet implementation class BoardDeleteServlet
  */
-@WebServlet("/board/boardDelete.do")
+//@WebServlet("/board/boardDelete.do")
 public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

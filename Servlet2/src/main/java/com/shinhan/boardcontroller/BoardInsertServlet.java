@@ -22,7 +22,7 @@ import com.shinhan.model.BoardService;
 /**
  * Servlet implementation class BoardInsertServlet
  */
-@WebServlet("/board/boardInsert.do")
+//@WebServlet("/board/boardInsert.do")
 public class BoardInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

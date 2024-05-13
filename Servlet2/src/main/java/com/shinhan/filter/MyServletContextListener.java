@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebListener;
  * Application Lifecycle Listener implementation class MyServletContextListener
  *
  */
-@WebListener
+//@WebListener
 public class MyServletContextListener implements ServletContextListener {
 
     public void contextDestroyed(ServletContextEvent sce)  { 
