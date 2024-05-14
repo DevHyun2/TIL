@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- get -->
+<bean id="car1" class="com.shinhan.myapp.section2.CarVO"/>
+<bean id="car2" class="com.shinhan.myapp.section2.CarVO">
+	<constructor-arg index="0" value="BMW720"></constructor-arg>
+	<constructor-arg index="1" value="7000"></constructor-arg>
+</bean>
+<bean id="car3" class="com.shinhan.myapp.section2.CarVO">
+	<constructor-arg name="model" value="아우디"></constructor-arg>
+	<constructor-arg name="price" value="8000"></constructor-arg>
+</bean>
+<!-- set -->
+<bean id="car4" class="com.shinhan.myapp.section2.CarVO">
+	<property name="model" value="모닝"></property>
+	<property name="price" value="1000"></property>
+</bean>
+<bean id="car5" class="com.shinhan.myapp.section2.CarVO"
+	p:model="비엠" p:price="10000"
+/>
+
+<bean id="people1" class="com.shinhan.myapp.section2.PeopleVO"/>
+<bean id="people2" class="com.shinhan.myapp.section2.PeopleVO">
+	<constructor-arg name="name" value="ㅎㅅ"></constructor-arg>
+	<constructor-arg name="phone" value="010-1234-1234"></constructor-arg>
+	<constructor-arg name="car" ref="car3"></constructor-arg>
+	<constructor-arg name="major">
+		<list>
+			<value>컴퓨터공학과</value>
+			<value>경제학과</value>
+		</list>
+	</constructor-arg>
+	<constructor-arg name="licenseList">
+		<list>
+			<ref bean="license1"/>
+			<ref bean="license2"/>
+		</list>
+	</constructor-arg>
+	<constructor-arg name="bookMap">
+		<map>
+			<entry>
+				<key><value>자바</value></key>
+				<ref bean="book1"/>
+			</entry>
+		</map>
+	</constructor-arg>
+	<constructor-arg name="friend">
+		<set value-type="java.lang.String">
+			<value>ㅅㅇ</value>
+			<value>ㄷㄹ</value>
+			<value>ㅈㅇ</value>
+			<value>ㅈㅁ</value>
+			<value>ㄷㅎ</value>
+		</set>
+	</constructor-arg>
+	<constructor-arg name="myprofile">
+		<props>
+			<prop key="security1">강아지</prop>
+			<prop key="security2">서버</prop>
+		</props>
+	</constructor-arg>
+</bean>
+<bean id="license1" class="com.shinhan.myapp.section2.LicenseVO"
+	p:title="정보처리기사" p:year="2000"
+/>
+<bean id="license2" class="com.shinhan.myapp.section2.LicenseVO"
+	p:title="ADSP" p:year="2020"
+/>
+
+<bean id="people3" class="com.shinhan.myapp.section2.PeopleVO">
+	<property name="name" value="ㅈㅁ"></property>
+	<property name="phone" value="010-4321-4321"></property>
+	<property name="car" ref="car4"></property>
+	<property name="major">
+		<list>
+			<value>외교학과</value>
+			<value>금융학과</value>
+		</list>
+	</property>
+	<property name="licenseList">
+		<list>
+			<ref bean="license3"/>
+			<ref bean="license4"/>
+		</list>
+	</property>
+	<!-- entry : key + value -->
+	<property name="bookMap">
+		<map>
+			<entry>
+				<key><value>자바</value>	</key>
+				<ref bean="book1"/>
+			</entry>
+			<entry>
+				<key><value>스프링</value>	</key>
+				<ref bean="book2"/>
+			</entry>
+		</map>
+	</property>
+</bean>
+<bean id="license3" class="com.shinhan.myapp.section2.LicenseVO"
+	p:title="정보처리기사" p:year="2000"
+/>
+<bean id="license4" class="com.shinhan.myapp.section2.LicenseVO"
+	p:title="ADSP" p:year="2020"
+/>
+
+<bean id="people4" class="com.shinhan.myapp.section2.PeopleVO"
+	p:name="ㅈㅈ" p:phone="010-1243-4312" p:car-ref="car2"
+/>
+
+
+<bean id="book1" class="com.shinhan.myapp.section2.BookVO"
+	p:title="SQL노랭이" p:price="18000" p:kind="IT"
+/>
+<bean id="book2" class="com.shinhan.myapp.section2.BookVO"
+	p:title="SQL파랭이" p:price="19000" p:kind="IT"
+/>
+
+<bean id="car" class="com.shinhan.myapp.section2.CarVO"
+	p:model="SSS" p:price="50000"
+/>
+<bean id="people5" class="com.shinhan.myapp.section2.PeopleVO" autowire="byName"/>
+</beans>
