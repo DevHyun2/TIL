@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resource/di1.xml</config>
 		<config>src/main/resource/di2.xml</config>
+		<config>src/main/resource/di4.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
