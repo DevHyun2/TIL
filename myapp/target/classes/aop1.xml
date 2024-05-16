@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 주업무 -->
+	<bean id="calcTarget" class="com.shinhan.myapp.aop1.Calculator"/>
+	<!-- 보조업무 -->
+	<bean id="logAdvice1" class="com.shinhan.myapp.aop1.LoggingAdvice"/>
+	<bean id="watcAdvice" class="com.shinhan.myapp.aop1.StopWatchAdvice"/>
+	
+	<!-- advisor = adivce + pointcut -->
+	<bean id="advisor1" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="logAdvice1"/>
+		<property name="pointcut">
+			<bean id="aa" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+				<property name="expression">
+					<value>execution(* add(..))</value> <!-- 모든 class의 함수 이름이 add이고 매개변수 무관, return 무관 -->
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+		<bean id="advisor2" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="watcAdvice"/>
+		<property name="pointcut">
+			<bean id="aa" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+				<property name="expression">
+					<value>execution(* divide(..))</value> <!-- 모든 class의 함수 이름이 add이고 매개변수 무관, return 무관 -->
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Aspect = advisor + target -->
+	<bean id="proxyCal" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="calcTarget"/>
+		<property name="interceptorNames">
+			<list>
+				<value>advisor1</value>
+				<value>advisor2</value>
+			</list>
+		</property>
+	</bean>
+</beans>

@@ -10,6 +10,10 @@
 		<config>src/main/resource/di1.xml</config>
 		<config>src/main/resource/di2.xml</config>
 		<config>src/main/resource/di4.xml</config>
+		<config>src/main/resource/di5.xml</config>
+		<config>src/main/resource/di6.xml</config>
+		<config>src/main/resource/aop1.xml</config>
+		<config>src/main/resource/aop2.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

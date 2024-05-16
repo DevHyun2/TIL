@@ -1,0 +1,28 @@
+package com.shinhan.myapp.aop2;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("aop2.xml");
+		
+		Calculator cal = (Calculator)ctx.getBean("cal");
+		cal.add();
+//		System.out.println("******************************");
+//		cal.add(100);
+//		System.out.println("******************************");
+//		cal.add(100, 20);
+//		System.out.println("******************************");
+//		cal.subtract(100, 20);
+//		System.out.println("******************************");
+//		cal.multiply(100, 20);
+//		System.out.println("******************************");
+//		cal.divide(100, 20);
+		
+		BoardService service = ctx.getBean("bService2",BoardService.class);
+		service.selectAll().stream().forEach(board -> System.out.println(board));
+	}
+
+}

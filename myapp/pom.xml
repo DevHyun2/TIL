@@ -19,11 +19,38 @@
 		<maven.compiler.source>1.11</maven.compiler.source>
 		<maven.compiler.target>1.11</maven.compiler.target>
 		<org.springframework-version>5.3.18</org.springframework-version>
+		<org.aspectj-version>1.9.6</org.aspectj-version>
 	</properties>
 
 
 
 	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
@@ -51,12 +78,8 @@
 			<version>5.3.5</version>
 		</dependency>
 		<!-- 중앙저장소 이외의 저장소를 추가하고자 하는 경우 -->
-<!-- 		<repositories>
-			<repository>
-				
-			</repository>
-		</repositories> -->
-		
+		<!-- <repositories> <repository> </repository> </repositories> -->
+
 	</dependencies>
 
 	<build>
