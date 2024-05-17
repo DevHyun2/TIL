@@ -10,7 +10,7 @@
 	<properties>
 		<java-version>1.11</java-version>
 		<org.springframework-version>5.3.5</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.aspectj-version>1.9.6</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
@@ -36,9 +36,22 @@
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
+			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>

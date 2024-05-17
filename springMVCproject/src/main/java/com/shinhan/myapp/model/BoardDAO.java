@@ -92,7 +92,7 @@ public class BoardDAO {
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriter());
 			pst.setString(4, board.getPic());
-			rs = pst.executeQuery();
+//			rs = pst.executeQuery();
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
