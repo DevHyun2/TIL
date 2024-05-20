@@ -32,14 +32,20 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- FrontController인 DispatcherServlet이 읽는다 -->
 	<!-- controller scan -->
-	<context:component-scan base-package="com.shinhan.myapp, org.firstzone" />
+	<!-- <context:component-scan base-package="com.shinhan.myapp, org.firstzone" />
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/WEB-INF/spring/appServlet/oracleDB.properties"></property>
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+	
 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="hr" />
-		<property name="password" value="hr" />
-	</bean>
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean> -->
 	
 </beans>

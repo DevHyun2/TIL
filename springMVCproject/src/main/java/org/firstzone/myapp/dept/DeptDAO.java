@@ -11,13 +11,17 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.shinhan.myapp.util.DBUtil;
 @Repository
 public class DeptDAO {
 	
+	//타입이 같으면 Injection
+	//이름이 같으면 Error
 	@Autowired
+	@Qualifier("dataSource") //이름선택하기
 	DataSource ds;
 	
 	Connection conn;
