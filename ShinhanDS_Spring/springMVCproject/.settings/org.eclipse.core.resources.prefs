@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/shinhan/myapp/util/DBUtil.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/dept/DeptDAO.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/dept/DeptService.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/emp/EmpDAO.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/emp/EmpDTO.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/emp/EmpService.java=UTF-8
+encoding//src/main/java/org/firstzone/myapp/filter/LoginCheckFilter.java=UTF-8

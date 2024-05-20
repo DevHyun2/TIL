@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- bean은 Object다. Spring이 Object를 bean이라고 함 -->
+	<!-- SamsungTV samsung1 = new SamsungTV() -->
+	<!-- SamsungTV samsung2 = new SamsungTV(ABC) -->
+	<!-- LGTV lg = new LGTV() -->
+	<bean id="samsung1" class="com.shinhan.myapp.section1.SamsungTV"></bean>
+	<bean id="samsung2" class="com.shinhan.myapp.section1.SamsungTV">
+		<constructor-arg name="model" value="ABC"></constructor-arg>
+	</bean>
+	<bean id="lg" class="com.shinhan.myapp.section1.LGTV"></bean>
+</beans>
+
