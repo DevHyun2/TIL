@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = init;
+    function init(){
+      document.querySelector("#btn1").addEventListener("click", f1);
+      document.querySelector("#btn2").addEventListener("click", f2);
+      document.querySelector("#btn3").addEventListener("click", f3);
+      document.querySelector("#btn4").addEventListener("click", f4);
+      document.querySelector("#btn5").addEventListener("click", f5);
+      document.querySelector("#btn6").addEventListener("click", f6);
+      document.querySelector("#btn7").addEventListener("click", f7);
+      document.querySelector("#btn8").addEventListener("click", f8);
+      document.querySelector("#btn9").addEventListener("click", f9);
+    }
+    function f9() {
+      var counter = 0;
+      return function(){counter++; return counter;}
+    }
+    function f8() {
+      //지역변수는 지역을 벗어나면 소멸...return함수에 들어있는 지역변수는 사라지지않고 계속 사용가능
+      //==> 이것을 클로저라고 한다.
+      var result = call8();
+      document.querySelector("#here").innerHTML = result();
+    }
+      function call8() {
+        var i = 100;
+        var f = function () {
+          i++;
+          return i;
+        };
+        return f;
+      }
+    function f7() {
+      clearInterval(timer1);
+    }
+    function f6(){
+      setTimeout(call6,1000); // 1초후 call6함수가 호출된다.
+       timer1 = setInterval(call6, 1000); // 1초마다 call6함수가 호출된다.
+    }
+      function call6(){
+        document.querySelector("#here").innerHTML += "<br>" + new Date();
+      }
+    function f5() {
+      var call2 = function(){
+        document.querySelector("#here").innerHTML = "callback함수";
+      };
+      call3(call2);
+    }
+    //callback함수 : 매개변수로 전달되는 함수
+      function call3(f){
+        f();
+      }
+
+    function f4(){
+      var width = 3;
+      var height = 4;
+      var result = Math.sqrt(sqrt(width) + sqrt(height));
+      document.querySelector("#here").innerHTML = result;
+    }
+      //내부함수
+      function sqrt(a){
+        return a*a;
+      }
+    //선언적 함수(함수이름 존재)
+    function f1(a,b){
+      var call = function() {
+        document.querySelector("#here").innerHTML = "<h1>익명함수:"+ (a+b) +"</h1>";
+      };
+      call(1,2); //함수 호출
+    }
+    function f2(){
+      (function(a,b) {
+        document.querySelector("#here").innerHTML = "<h1>익명함수(즉시실행)"+ (a+b) +"</h1>";
+      })(100,200);
+    }
+    function f3(){
+      document.querySelector("#here").innerHTML = sumAll(1,2);
+    }
+    //argument개수는 일치하지 않아도 무관, 보낸개수보다 적으면 undifined
+    //NaN(Not a Number)
+    function sumAll(){
+      var total = 0;
+      for(let i=0 ; i<arguments.length; i++){
+        total += arguments[i];
+      }
+      return total;
+    }
+    //같은 이름의 함수가 있으면 나중것이 수행
+    function sumAll(){
+
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Function</h1>
+  <button id="btn1">function1</button>
+  <button id="btn2">function2</button>
+  <button id="btn3">가변인자</button>
+  <button id="btn4">내부함수</button>
+  <button id="btn5">callback함수</button>
+  <button id="btn6">timeout</button>
+  <button id="btn7">timestop</button>
+  <button id="btn8">함수리턴(클로저사용)</button>
+  <button id="btn9">Counter(클로저사용)</button>
+  <hr>
+  <div id="here">출력</div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+$(function(){
+	$("button:nth-of-type(1)").on("click", f1);
+	$("button:nth-of-type(2)").on("click", f2);
+	$("button:nth-of-type(3)").on("click", f3);
+	$("button:nth-of-type(4)").on("click", f4);
+	$("button:nth-of-type(5)").on("click", f5);
+	$("button:nth-of-type(6)").on("click", f6);
+	$("button:nth-of-type(7)").on("click", f7);
+	$("button:nth-of-type(8)").on("click", f8);
+	$("button:nth-of-type(9)").on("click", f9);
+	$("button:nth-of-type(10)").on("click", f10);
+	
+});
+function f10(){
+	const options = {method: 'GET', headers: {accept: 'application/json'}};
+
+	fetch('https://api.bithumb.com/public/ticker/ALL_KRW', options)
+	  .then(response => {
+		  //console.log(response);
+		  return response.json();
+	  })
+	  .then(response => {
+	         console.log(response);
+	         var output = `
+	         <table border="1">
+	           <tr>
+	             <td>통화</td>
+	             <td>acc_trade_value</td>
+	             <td>acc_trade_value_24H</td>
+	             <td>closing_price</td>
+	             <td>fluctate_24H</td>
+	             <td>fluctate_rate_24H</td>
+	             <td>max_price</td>
+	             <td>min_price</td>
+	             <td>opening_price</td>
+	             <td>prev_closing_price</td>
+	             <td>units_traded</td>
+	             <td>units_traded_24H</td>
+	           </tr>
+	         `;
+	         for(let 종목 in response.data){
+	        	 if(종목=='date'){
+	        		 output += "</tr>";
+	        		 continue;
+	        	 }
+	        	 console.log(종목, response.data[종목]);
+	        	 output += `
+		        		<tr>
+		        		 <td>${종목}</td> `;
+	        	 for(let key in response.data[종목]){
+	        		  output += `<td>${response.data[종목][key]}</td>`;
+	        	 }
+	        	 output += "</tr>";
+	         }
+	         $("#here").html(output);
+	         
+	  })
+	  .catch(err => console.error(err));
+}
+/*
+ * acc_trade_value: "42194505008.03771"
+	 acc_trade_value_24H :  "73360524355.25321"
+	 closing_price :  "96034000"
+	 fluctate_24H : "41000"
+	 fluctate_rate_24H: "0.04"
+	 max_price :  "96607000"	
+	 min_price :  "95529000"
+	 opening_price: "96515000"
+	 prev_closing_price: "96491000"
+	 units_traded : "439.40186042"
+	 units_traded_24H : "764.80954369"
+ */
+
+function f9(){
+	$.getScript("external.js", function(response){
+		console.log(response);
+		call();
+	});
+}
+
+
+function f8(){
+	//현재view가 그대로 있고 서버에 다녀온다. 
+	var data = {"empid" : $("#empid").val()};
+	var callbackMethod = function(result){
+		var obj = JSON.parse(result);
+		$("#here").html( obj.이름);
+	};
+	$.get("empDetail2.jsp", data, callbackMethod);
+		   
+	
+}
+
+function f7(){
+	//현재view가 그대로 있고 서버에 다녀온다. 
+	$.ajax({
+		//url:"empDetail.jsp?empid="+$("#empid").val(),
+		//url:"empDetail.jsp",		
+		url:"empDetail2.jsp",
+		type:"get",
+		data: {"empid" : $("#empid").val()}, //보내는 data
+		success:function(result,status,xhr){
+			//$("#here").html(result); //result는 받은 값
+			var obj = JSON.parse(result);
+			$("#here").html( obj.이름);
+			
+			
+		},
+		error:function(xhr,status,error){}
+	});
+	
+}
+function f6(){
+	$("#here").load("11-17.html");
+}
+
+
+function f5(){
+	var xhr = new XMLHttpRequest();	
+	xhr.onreadystatechange = function(){
+		console.log(xhr.responseText);
+		var obj = JSON.parse(xhr.responseText);
+		//var obj = eval("(" + xhr.responseText + ")");
+		var arr = obj.emplist;
+		var output = "";
+		$.each(arr, function(index, item){
+			output += `<tr> <td>${item.no}</td>
+				<td>${item.name}</td>
+				<td>${item.capital}</td>
+				<td>${item.region}</td></tr>`
+		});	
+		$("#data-table").html(output);
+	};
+	xhr.open("get","emplist2.jsp", true); //true->비동기 (생략가능)
+	xhr.send(); 
+}
+
+
+
+function f4(){
+	var xhr = new XMLHttpRequest();	
+	xhr.onreadystatechange = function(){
+		$("#data-table").html(xhr.responseText);
+	};
+	xhr.open("get","emplist.jsp", true); //true->비동기 (생략가능)
+	xhr.send(); 
+}
+
+
+
+
+function f3(){
+	var xhr = new XMLHttpRequest();	
+	xhr.onreadystatechange = function(){
+		//서버로 전송하기전, 후를 체크하여 원하는 data를 받을수 있다. 
+		console.log(xhr.readyState);
+		if(xhr.readyState==4 && xhr.status==200){
+			var obj = JSON.parse(xhr.responseText);
+			var arr = obj.nations;			
+			var output = "";			
+			$.each(arr, function(index, item){
+				output += `<tr> <td>${item.no}</td>
+								<td>${item.name}</td>
+								<td>${item.capital}</td>
+								<td>${item.region}</td></tr>`
+			});	
+			$("#data-table").html(output);
+			
+		}else if(xhr.status==404){
+			$("#here").html( "존재하지 않는 페이지입니다.");
+		}
+	};
+	xhr.open("get","data.json", true); //true->비동기 (생략가능)
+	xhr.send(); 
+	 
+	
+}
+
+function f2(){
+	var xhr = new XMLHttpRequest();	
+	xhr.onreadystatechange = function(){
+		//서버로 전송하기전, 후를 체크하여 원하는 data를 받을수 있다. 
+		console.log(xhr.readyState);
+		if(xhr.readyState==4 && xhr.status==200){
+			var s = $("#here").html();
+			$("#here").html( s + xhr.responseText);
+		}else if(xhr.status==404){
+			$("#here").html( "존재하지 않는 페이지입니다.");
+		}
+	};
+	xhr.open("get","11-17.html", true); //true->비동기 (생략가능)
+	xhr.send(); 
+	$("#here").html("--------------<hr>");
+}
+
+
+function f1(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("get","11-17.html", false); //false->동기 true->비동기 
+	xhr.send(); //동기이면 요청하고 응답이 올때까지 기다린다. 
+	//비동기이면 서버에서의 응답을 기다리지않고 아래 문장으로 이동한다. 
+	//alert(xhr.responseText);
+	//console.log(xhr.responseText);
+	$("#here").html(xhr.responseText);
+}
+
+
+</script>
+</head>
+<body>
+<h1>Ajax연습</h1>
+<input id="empid" value="100">
+<button>js이용1(동기통신)</button>
+<button>js이용2(비동기통신)</button>
+<button>js이용3(비동기통신 JSON)</button>
+<button>js이용4(JSP)</button>
+<button>js이용5(JSON)</button>
+<button>jQuery이용(load)</button>
+<button>jQuery이용(ajax)</button>
+<button>jQuery이용(get/post)</button>
+<button>jQuery이용(javascript가져오기)</button>
+<button>jQuery이용(fetch)</button>
+
+<hr>
+<div id="here">
+  <table border="1">
+    <thead>
+       <tr><th>no</th><th>name</th><th>capital</th><th>region</th></tr>
+    </thead>
+    <tbody id="data-table">
+    
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>07-01</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!--  
+  모든 요소들의 바탕색을  aqua로 지정한다.
+ id가 a인 요소의 글씨색을 blue로 지정한다.
+ class가 test인 요소의 border black로 지정한다.
+ h1태그의 font를 italic으로 지정한다. 
+ div의 id가 a인 요소의 바탕색을 orange로 지정한다.
+ 클래스가 .test이고 .main인 요소의 바탕색을 pink로 지정한다. 
+ 아이디가 a이거나 태그이름이 h1인 요소의 font크기를 20으로 설정한다. 
+ -->
+ 
+ <script>
+    $(function(){
+        $("*").css("backgroundColor", "aqua");
+        $("#a").css("color", "blue");
+        $(".test").css("border","1px solid black");
+        $("h1").css("font-style","italic");
+        $("div #a").css("backgroundColor", "orange");
+        $(".test").add($(".main")).css("backgroundColor","pink");
+        $("#a").add($("h1")).css("font-size", "20px");
+    });
+ </script>
+</head>
+<body>
+    <div class="content">
+        <div id="a">김수한무</div>
+        <div>거북이와 두루미</div>
+        <div class="test">삼천갑자 동방삭</div>
+        <div class="test  main">치치카포 사리사리센타</div>
+        <div>
+            <span>워리워리 세브리깡</span>
+            <h1 id="a">무두셀라 구름이</h1>
+        </div>
+        <div id="b">허리케인에 담벼락</div>
+        <div class="test">허리케인에 담벼락</div>
+        <div class="main">담벼락에 서생원</div>
+        <div class="test">서생원에 고양이</div>
+        <div id="a">고양이에 바둑이</div>
+        <div>
+            <h1>바둑이는 돌돌이</h1>
+        </div>
+    </div>
+</body>
+</html>

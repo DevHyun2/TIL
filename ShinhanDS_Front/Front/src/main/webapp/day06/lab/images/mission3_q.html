@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	<style>
+		body{
+			font-size:9pt;	
+		}
+		
+		div{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}
+		div div{
+			border: 1px dotted #CCC;
+			font-size:20px;	
+		}
+		
+	</style>
+	<script>
+		/*
+		window.onload=function(){
+			setInterval(call(),1000);
+		}
+		function call() {
+			var isStop = false;
+			var p = document.querySelector("#img1");
+			while(!isStop){
+				for(let i=0 ; i<=10 ; i++){
+					p.attributes("src","img"+[i]+".jpg");
+		var p = document.querySelector("#img1");
+    var currentImage = parseInt(p.getAttribute("src").match(/\d+/)[0]);
+    var nextImage = (currentImage % 10) + 1;
+    p.setAttribute("src", "img" + nextImage + ".jpg");
+		}
+		*/
+	var intervalId; // 전역 변수로 intervalId 선언
+
+	window.onload = function() {
+			intervalId = setInterval(call, 1000); // intervalId에 setInterval의 반환값 할당
+			document.querySelector("#img1").addEventListener("mouseover", stopRotation); // 마우스 오버 이벤트 추가
+			document.querySelector("#img1").addEventListener("mouseout", startRotation); // 마우스 아웃 이벤트 추가
+	}
+
+	function call() {
+			var p = document.querySelector("#img1");
+			var currentImage = parseInt(p.getAttribute("src").match(/\d+/)[0]) || 0;
+			var nextImage = (currentImage % 10) + 1;
+			p.setAttribute("src", "img" + nextImage + ".jpg");
+	}
+
+	function stopRotation() {
+			clearInterval(intervalId); // intervalId를 사용하여 setInterval 멈춤
+	}
+
+	function startRotation() {
+			intervalId = setInterval(call, 1000); // intervalId를 사용하여 setInterval 다시 시작
+	}
+	</script> 
+
+</head>
+
+<body>	
+	<div> 
+		<h4>미션3 - 1초에 한번씩 이미지를 순차적으로 변환시켜 주세요.<br> 단, 이미지는 9개가 있습니다. 9개까지 출력된 경우, 다시 첫번째 이미지부터 출력시켜주세요.</h4>
+		<div id="panel">
+			<img id="img1" src="img1.jpg" alt="이미지">
+		</div>
+	</div>   
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>블록 레벨과 인라인 레벨</title>
+<style>
+/* 
+요소 사이에 빈칸이 있다는것은 자손을 의미 
+block 요소 : 한줄차지 hN, p, div, li등
+inline 요소 : content 크기만큼 차지 img, a, span
+
+div : 요소들을 묶을 때 사용
+span : 특정영역을 (문자)감싼다
+*/
+body  * {
+	border: 1px solid blue;
+}
+
+.accent {
+	color: red;
+	font-weight: bold;
+}
+h1{
+	padding: 10px;
+	margin: 20px;
+}
+</style>
+</head>
+<body>
+	<h1>시간이란...</h1>
+	<div>
+		내일 죽을 것처럼
+		<p class="accent">오늘</p>
+		을 살고
+	</div>
+	<div>
+		내일 죽을 것처럼
+		<span class="accent">오늘</span>
+		을 살고
+	</div>
+	<p>
+		영원히 살 것처럼 <br>내일을 꿈꾸어라.
+	</p>
+	<!-- inline -->
+	<img src="images/cat.jpg">
+	<img src="images/cat.jpg">
+	<a href="../day01/jsp/empAll.jsp">직원조회</a>
+	<a href="../day01/jsp/empInsert.jsp">직원조회</a>
+	
+	<!-- block -->
+	<ul>
+		<li><a href="../day01/jsp/empAll.jsp">직원조회</a></li>
+		<li><a href="../day01/jsp/empInsert.jsp">직원조회</a></li>
+	</ul>
+</body>
+</html>

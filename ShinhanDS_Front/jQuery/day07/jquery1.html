@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CDN이용하기 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script src="../jquery/jquery-3.7.1.min.js"></script>
+  <script>
+    window.onload = function(){console.log("load됨1")}//무효
+    window.onload = function(){console.log("load됨2")}//유효 중복은 덮어씜 마지막이 출력
+    $(document).ready(function(){
+      console.log("load됨3");
+    });
+    $(document).ready(function(){
+      console.log("load됨4");
+    });
+    $(function(){
+      console.log("load됨5");
+    });
+    jQuery(function(){
+      console.log("load됨6");
+    });
+
+    $(function(){
+      $("h1").css("color","red");
+      var obj = {"background-color":"lightgreen", border:"3px dotted green"};
+      $("h1").css(obj);
+      $(".my").css("font-size", "40px");
+
+      $("input[type='text']").css("backgroundColor","hotpink");
+      $("input[type='text']").val("신한금융");
+      $("input[name='tag']").val("수직바이용(일치, -가능)");
+      $("input[name *= 'First']").val("*를이용(포함)"); //존재하는지
+      $("input[name ^= 'Second']").val("^를이용(시작)"); //시작하는지
+      $("input[name $= 'Third']").val("$를이용(끝)"); //끝나는지
+      $("input[name ~= 'Fourth']").val("~를이용(단어)"); //일치하는 단어가 있는지
+      $("input[data-aa]").val("속성 존재?");
+      $("input[type='email'][data-aa='100']").val("복수조건");
+      $("input[type='button']").css("color", "red");
+      $("input:button").css("backgroundColor", "navy");
+      $("input:disabled").val("disabled임");
+    });
+
+  </script>
+</head>
+<body>
+  <h1>제목1</h1>
+  <h1 class="my">제목2</h1>
+  <h1 class="my">제목3</h1>
+  <input type="text">
+  <input type="text">
+  <input type="number">
+  <input type="password">
+  <input type="email"><br>
+  <input name="tag">
+  <input name="tag-aa">
+  <input name="aaaaaFirstbbbb">
+  <input name="Secondbbbbbbbbbb">
+  <input name="bbbbbbbbbbThird">
+  <input name="aa bb cc Fourth">
+  <input data-aa="100">
+  <input type="email" data-aa="100">
+  <input type="button" value="버튼1">
+  <input type="button" value="버튼2">
+  <input type="button" value="버튼3">
+  <select>
+    <option>월</option>
+    <option>화</option>
+    <option selected>수</option>
+    <option>목</option>
+  </select>
+  <table>
+    <tr>
+      <td>A</td><td>B</td><td>C</td><td>D</td>
+    </tr>
+    <tr>
+      <td>A</td><td>B</td><td>C</td><td>D</td>
+    </tr>
+    <tr>
+      <td>A</td><td>B</td><td>C</td><td>D</td>
+    </tr>
+    <tr>
+      <td>A</td><td>B</td><td>C</td><td>D</td>
+    </tr>
+    <tr>
+      <td>A</td><td>B</td><td>C</td><td>D</td>
+    </tr>
+  </table>
+  <div>
+    <p>...신한...</p>
+    <p>///신한////</p>
+    <p>[[[ㅁㅁ]]]</p>
+    <h2>신한123123</h2>
+    <div>123124신한</div>
+  </div>
+    
+  <script>
+    //div_:div의 자손중에 문자열에 "신한" 포함되어있는 객체를 찾음
+    $("div :contains('신한')").css("border", "2px dotted red");
+
+
+    $("table, td").css("border", "1px solid black");
+    $("table, td").css("border-Collapse", "collaspe");
+    $("td").css("padding", "10px");
+    $("tr:nth-child(2n)").css("backgroundColor","lightblue");//2부터
+    $("tr:nth-child(2n+1)").css("backgroundColor","green");//1부터
+    $("tr:even").css("background-color", "orange");//0부터
+
+    $(function() {
+      setTimeout(function(){
+        //$("select option:selected").val();
+        var data = $("select").val();
+        //alert(data);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

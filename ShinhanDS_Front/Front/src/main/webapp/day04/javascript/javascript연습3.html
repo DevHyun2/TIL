@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //익명 함수 : 이름이 없는 함수
+    f = function() {};
+    var v1 = 300; //함수 밖에서 var는 global변수
+    v2 = 400; //var가 없으면 global변수
+    //선언적 함수 : 이름이 있는 함수
+    function call1() {
+      document.getElementById("here").innerHTML="변수선언";
+      var a=100; //함수내에서 var은 지역변수
+      b=200; //var가 없으면 global변수
+    };
+    function call2() {
+      document.getElementById("here").innerHTML=v1+v2+b;
+    };
+    function call3() {
+      var a = 100, b = 10;
+      //&&는 앞의 결과가 false이면 뒷부분은 수행하지 않음
+      var result = a < 100 && ++b > 10;
+      //||는 앞의 결과가 true이면 뒷부분은 수행하지 않음
+      var resul2 = a >= 100 || ++b > 10;
+      document.getElementById("here").innerHTML=result + " ==> " + b + ":" + resul2;
+    };
+    function call4() {
+      //사용자에게 점수를 입력받아서 학점출력 ex)90~100점 사이 A학점 ... 69~60점 사이 D학점
+      var score = document.getElementById("score").value;
+      var grade;
+      if(score >= 90 && score <= 100) grade = "A";
+      else if(score >= 80 && score <= 89) grade = "B";
+      else if(score >= 70 && score <= 79) grade = "C";
+      else if(score >= 60 && score <= 69) grade = "D";
+      else grade = "F";
+      document.getElementById("here").innerHTML = grade;
+      //자바스크립트 number : 정수, 실수 구분 안함
+      switch (Math.floor(score/10)) {
+        case 10 :
+        case 9 : grade = "A";break;
+        case 8 : grade = "B";break;
+        case 7 : grade = "C";break;
+        case 6 : grade = "D";break;
+        default : grade = "F";break;
+      }
+      document.getElementById("here").innerHTML = grade;
+    };
+    function call5() {
+      var su = document.querySelector("#score").value;
+      var total = 0;
+      //블럭내에서만 유효한 변수(scope) : var -> let
+      for(var i=1 ; i<=su ; i++){
+        total += i;
+      };
+      document.getElementById("here").innerHTML = "1~" + (su) + "까지의 합계 = " + total;
+      console.log("var는 지역변수이다. 지역변수는 함수 내에서 사용가능하다." + i);
+    };
+    function call6() {
+      //``back틱
+      var output = "";
+      for(let gop=1 ; gop<=9 ; gop++){
+        //if(gop==4) continue; 4곱만 안나옴
+        //if(gop==4) break; 3곱까지만 나옴
+        for(let dan=2 ; dan<=9 ; dan++){
+          //output += dan + "*" + gop + "=" + dan*gop + "\t";
+          output += `${dan}*${gop}= ${dan*gop} `;
+        }
+        output += "<br>";
+      }
+      document.getElementById("here").innerHTML = output;
+    };
+
+    //console.log(var1); //not defined오류...프로그램 중단
+    //자바스크립트는 var과 function을 먼저 수행(호이스팅)
+    console.log(js1); //undefined...오류아님
+    var js1 = 100;
+    console.log(js1) //100
+    //함수정의
+    call7();
+
+    //함수호출
+    function call7() {
+      console.log("js2=" + js2)
+      var js2=200;
+      console.log("js2=" + js2)
+      //document.querySelector("#here").innerHTML = js1 + js2;
+
+      const js3 = 300;
+      //j3 = 400; //상수는 값을 바꿀 수 없다
+      let js4 = 400;
+      js4 = 500; //재할당 가능
+      //let js4 = "자바스크립트"; //재선언 불가
+    };
+    function call8() {
+      var result = sum(1,10) + sum(1,100);
+      here.innerHTML = result;
+    };
+    function sum(start,end){
+      var total = 0;
+      for(let i=start ; i<=end ; i++){
+        total += i;
+      }
+      return total;
+    }
+    //이름이 있는 함수 : 선언적 함수
+    function call9() {
+      //내부함수 : 함수 내의 함수
+      //익명함수 : 이름이 없는 함수
+      var f1 = function(a, b) {
+        console.log("익명함수 : 이름이 없는 함수" + (a+b));
+        return a+b;
+      };
+      var result = f1(10,20); //인수를 주고 함수를 호출하는 방법, 함수의 매개변수가 값을 받는다.
+      console.log("받은값: " + result);
+
+      //즉시실행함수
+      var result2 = (function(a,b){
+        console.log(a+b);
+        return a+b;
+      })(30,40);
+      console.log(result2);
+    };
+  </script>
+</head>
+<body>
+  <h1>JavaScript연습</h1>
+  <button onclick="call1()">변수에 대하여</button>
+  <button onclick="call2()">변수에 대하여</button>
+  <button onclick="call3()">논리연산자</button>
+  <input type="number" id="score" value="100">
+  <button onclick="call4()">조건문</button>
+  <button onclick="call5()">반복문</button>
+  <button onclick="call6()">구구단</button>
+  <button onclick="call7()">호이스팅</button>
+  <button onclick="call8()">return있는 함수</button>
+  <button onclick="call9()">익명함수</button>
+  <hr>
+  <div id="here">출력</div>
+</body>
+</html>

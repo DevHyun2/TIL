@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DOM event 객체</title>
+  <style>
+    #container {
+      width:300px;
+      margin:10px auto;
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+	<div id="container">
+		<img src="images/easys-1.jpg" id="cover">	
+  </div>
+  
+	<script>
+		var cover = document.getElementById("cover");
+		cover.addEventListener("mouseover",changePic, false);
+    cover.addEventListener("mouseout",originPic, false);
+    
+    function changePic() {
+      //존재하는 속성은 속성이름으로 할당하거나 함수이용
+      //전재하지않는 속성은 setAttribute()로 할당한다.
+      //cover.src = "images/easys-2.jpg";
+      cover.setAttribute("src","images/easys-2.jpg");
+    }
+    function originPic() {
+      cover.src = "images/easys-1.jpg";
+    }
+	</script>
+</body>
+</html>

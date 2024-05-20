@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .A a{
+    display: block;
+  }
+  .C a:ntn-child(1){
+    /* background-color: orange; */
+    /* display: none; */ /* 자리를 차지하지 않는다 */
+    visibility: hidden; /* 자리를 차지한다 */
+  }
+</style>
+<body>
+  <h1>display가 block</h1>
+  <div calss="A">
+    <a href="/html/default.asp" target="_blank">HTML</a>
+    <a href="/css/default.asp" target="_blank">CSS</a>
+    <a href="/js/default.asp" target="_blank">JavaScript</a>
+  </div>
+  <h1>display가 inline(default)</h1>
+  <div calss="B">
+    <a href="/html/default.asp" target="_blank">HTML</a>
+    <a href="/css/default.asp" target="_blank">CSS</a>
+    <a href="/js/default.asp" target="_blank">JavaScript</a>
+  </div>
+  <h1>display가 inline(연습)</h1>
+  <div calss="C">
+    <a href="/html/default.asp" target="_blank">HTML</a>
+    <a href="/css/default.asp" target="_blank">CSS</a>
+    <a href="/js/default.asp" target="_blank">JavaScript</a>
+  </div>
+</body>
+</html>

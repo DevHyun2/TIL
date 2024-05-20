@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 외부스타일시트 연결 -->
+<link rel="stylesheet" href="external.css">
+
+<style>
+/* internal stylesheet */
+h3{
+	color:blue;
+	border: 2px dotted red;
+}
+p{
+	font-size: 30px;
+}
+/* *은 전체선택 */
+*{
+	margin: 0;
+}
+#container{
+	width: 500px;
+	height: 500px;
+	border : 1px solid gray;
+	margin : 0 auto; /* 블럭 가운데로 정렬 */
+}
+/* 서로 다른 타입의 여러 태그에 대하여 같은 디자인을 하고자 한다 - class이용 */
+.my1{
+	color: green;
+	font-size: 40px;
+	text-align: center; /* text 중앙정렬 */
+}
+h1{
+	text-align: center; /* text 중앙정렬 */
+}
+</style>
+
+</head>
+<body>
+<div id="container">
+	<h1 class="my1">CSS문법 익히기</h1>
+	<h2 style="color:red">CSS문법 익히기(inline stylesheet)</h2>
+	<h3>h3입니다</h3>
+	<p class="my1">p태그입니다</p>
+	<p>p태그입니다</p>
+</div>
+</body>
+</html>

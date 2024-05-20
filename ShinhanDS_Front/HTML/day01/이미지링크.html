@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>경로연습</h1>
+	<!-- img태그는 inline요소이다(컨텐츠만큼 자리를 차지) -->
+	<p>상대경로(현재GTML페이지 경로를 기준으로 한다)</p>
+	<img alt="이미지에 대한 설명(이미지가 보이지 않을 때 대신할 설명) - 셀러드가 맛있다..." src="../04/images/salad.jpg" width="200" height="200">
+	<hr>
+	<img alt="마이크" src="mic.jpg" width="200" height="200">
+	<p>절대경로</p>
+	<!-- p태그는 block요소(한줄 모두 자리차지) -->
+	<img alt="이미지에 대한 설명(이미지가 보이지 않을 때 대신할 설명) - 셀러드가 맛있다..." src="http://localhost:9090/webproject/04/images/salad.jpg" width="200" height="200">
+	<img alt="이미지에 대한 설명(이미지가 보이지 않을 때 대신할 설명) - 셀러드가 맛있다..." src="/webproject/04/images/salad.jpg" width="200" height="200">
+	<img alt="이미지에 대한 설명(이미지가 보이지 않을 때 대신할 설명) - 셀러드가 맛있다..." src="/webproject/04/images/salad.jpg" >
+	<img alt="이미지에 대한 설명(이미지가 보이지 않을 때 대신할 설명) - 셀러드가 맛있다..." src="/webproject/04/images/salad.jpg" width="50%" height="50%">
+</body>
+</html>

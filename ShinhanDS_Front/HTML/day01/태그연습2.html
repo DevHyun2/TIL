@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/*HTML 문서 내에서 디자인(internal stylesheet)*/
+	table, tr, td{border-collapse: collapse;}
+</style>
+</head>
+<body>
+<h1>목록 보여주기</h1>
+<ol type="A">
+	<li>HTML5</li>
+	<li>CSS3</li>
+	<li>JAVASCRIPT</li>
+	<li>JQuery</li>
+</ol>
+<ul>
+	<li>HTML5</li>
+	<li>CSS3</li>
+	<li>JAVASCRIPT</li>
+	<li>JQuery</li>
+</ul>
+<dl>
+	<dt>FrontEnd</dt>
+	<dd>HTML5</dd>
+	<dd>CSS3</dd>
+	<dd>JavaSCRIPT</dd>
+	<dd>JQuery</dd>
+	<dd>ReactJS</dd>
+	<dt>BackEnd</dt>
+	<dd>Java</dd>
+	<dd>DB</dd>
+	<dd>JspServelet</dd>
+	<dd>SpringFrameWork</dd>
+	<dd>SpringBoot</dd>
+</dl>
+<table border="1">
+	<caption>HTML학습</caption>
+	<tr>
+		<thead>
+			<th>A</th><th>B</th><th>C</th><th>D</th>
+		</thead>
+	</tr>
+	<tbody>
+		<tr>
+			<td rowspan="2">HTML5</td>
+			<td>CSS3</td>
+			<td>JavaSCRIPT</td>
+			<td rowspan="3">JQuery</td>
+	</tr>
+		<tr>
+			<td colspan="2">CSS3</td>
+		</tr>
+		<tr>
+			<td>HTML5</td>
+			<td>CSS3</td>
+			<td>JavaSCRIPT</td>
+		</tr>
+	</tbody>
+</table>
+<hr>
+<table border="1">
+	<thead>
+		<tr>
+		<th>이름</th><th>나이</th><th>전공</th><th>취미</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>A</td>
+			<td>11</td>
+			<td>컴공</td>
+			<td rowspan="4">등산</td>
+		</tr>
+		<tr>
+			<td>B</td>
+			<td rowspan="2">22</td>
+			<td>컴공</td>
+		</tr><tr>
+			<td>C</td>
+			<td>컴공</td>
+		</tr><tr>
+			<td colspan="4">D</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

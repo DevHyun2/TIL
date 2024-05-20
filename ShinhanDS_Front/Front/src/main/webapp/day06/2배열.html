@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<script>
+  var arr = [10,20,30];//[0:10, 1:20, 2:30]
+  console.log(arr[0])
+
+  var obj = {이름:"홍길동", 나이:"20살", 전공:"컴공", 과목:"자바스크립트", "자기 소개":"ㅇㅇ ㅇㅇ ㅇㅇ",go:function(){alert("go함수")}};
+  console.log(obj["이름"],obj["나이"], obj["전공"], obj["과목"]);
+  console.log(obj.이름, obj.나이, obj.전공, obj.과목);
+  console.log(obj["자기 소개"]); //obj.자기 소개 != 불가
+  console.log(obj.go);
+  obj.go();
+
+  for(let pro in obj){
+	  console.log(obj[pro]);
+  }
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
+</head>
+<body>
+  <button>Object의 속성 동적추가</button>
+  <button>Object배열</button>
+  <button>복사</button>
+  <button>생성자함수</button>
+  <button>기본타입/참조타입</button>
+  <button>forEach/map</button>
+  <button>JSON</button>
+  <button>예외처리</button>
+  <button>class</button>
+  <div id="here">여기</div>
+  <script>
+    document.querySelector("button:nth-child(1)").addEventListener("click", f1);
+    document.querySelector("button:nth-child(2)").addEventListener("click", f2);
+    document.querySelector("button:nth-child(3)").addEventListener("click", f3);
+    document.querySelector("button:nth-child(4)").addEventListener("click", f4);
+    document.querySelector("button:nth-child(5)").addEventListener("click", f5);
+    document.querySelector("button:nth-child(6)").addEventListener("click", f6);
+    document.querySelector("button:nth-child(7)").addEventListener("click", f7);
+    document.querySelector("button:nth-child(8)").addEventListener("click", f8);
+    document.querySelector("button:nth-child(9)").addEventListener("click", f9);
+    
+    function f9(){
+    	 var s1 = new Student2("은정", 100, 90, 80);
+    	 console.log(s1);
+    	 console.log(s1.toString());
+     }
+     
+     class Student2{
+    	 constructor(name, java, sql, js){
+    		 this.name = name;
+    		 this.java = java;
+    		 this.sql = sql;
+    		 this.js = js;
+    	 }
+    	 //class내의 함수는 function예약어를 사용하지 않는다. 
+    	 getSum(){
+    		 return this.java+this.sql+this.js ;
+    	 }
+    	 getAverage(){
+    		 return this.getSum()/3;
+    	 }
+    	 toString(){
+    		 return "이름은 " + this.name + " 평균은 " + this.getAverage();
+    	 }
+      }
+
+    function f8(){
+      try{
+      var arr = new Array(9999999999999999999999);
+      }catch(ex){
+        console.dir(ex.message);
+      }
+      console.log("success");
+    }
+
+    function f7() {
+      //JSON(JavaScript Object Notation) : JavaScript Object형태의 문자열
+      var student = {name:"홍1", java:100, sql:100, js:100};
+      //JavaScript Object => 문자열로 바꾸기
+      var str = JSON.stringify(student); // ==> JSON문자열
+      console.log(student, typeof(student));
+      console.log(str, typeof(str)); 
+    }
+
+    function f6(){
+      var arr = ["월요일", "화요일", "수요일", "토요일"];
+      arr.sort();
+      arr.forEach(function(data, seq, obj){
+        console.log(seq + "번째 =>" + data);
+      });
+      var arr2 = arr.map(function(data) {return data.charAt(0);});
+      
+      var arr = [1,2,3,4,5];
+      var arr2 = arr.filter(function(data){return data%2==0});
+      console.log(arr2);
+    }
+    
+    
+    function f5(){
+      var a = 10; //자바는 int a=10;
+      var b = new Number(20); //자바는 Integer b = new Integer(20);
+      
+      console.log(a.toString(2));
+      console.log(b.toString(2));
+      
+      //기본형은 속성추가 불가 , 객체형은 속성추가가능 
+      b.f1 = function(){ return 100; };
+      console.log(b.f1());
+      
+      var s = "자바스크립트";
+      console.log(s.indexOf("스"));
+      
+    }
+
+    function f4(){
+      var arr = [];
+      var arr2 = new Array();  //생성자 함수
+      var su = new Number(); //생성자 함수
+
+      var students = [];
+
+      students.push(new Student("홍길동1", 100, 30, 60));
+      students.push(new Student("홍길동3", 30, 70, 100));
+      students.push(new Student("홍길동2", 50, 40, 40));
+      students.push(new Student("홍길동4", 20, 60, 60));
+      students.push(new Student("홍길동5", 50, 10, 40));
+
+      //prototype : 생성자함수를 이용해서 만든 객체들이 공유하는 공간
+      Student.prototype.getSum = function(){return this.java + this.sql + this.js; };
+    	Student.prototype.getAverage = function(){ return this.getSum() / 3; };
+    	Student.prototype.toString = function(){ 
+  		  return "이름은 " + this.name + " 평균은 "  + this.getAverage()
+ 		  };
+
+      for(let index in students){
+        here.innerHTML += "<br>" + students[index];
+      }
+
+      var obj = Student("홍길동1", 100, 45, 99);
+      var sum = obj.getSum();
+      console.log(sum);
+    }
+      //JavaScript의 최상위객체는 Object이다.
+      //Object에는 toString()메서드 제공. 객체출력하면 [object Object]
+      function Student(name, java, sql, js){
+        this.name = name;
+        this.java = java;
+        this.sql = sql;
+        this.js = js;
+        this.getSum = function() {return this.java + this.sql + this.js;};
+        this.getAvg = function() {return this.getSum()/3;};
+        this.toString = function(){return "이름: " + this.name + "총점: " + this.getSum() + "평균: " + this.getAvg() ;};
+      }
+
+    function f3(){
+      var score = 100;
+      var score2 = 100;
+      score = 200;
+      console.log(score,score2); //200 100
+      
+      var arr = [10,20,30];
+      var arr2 = arr; //주소복사 (같은 곳을 참조)
+      arr[0] = 99;
+      console.log(arr, arr2);
+
+      var arr3 = _.clone(arr);
+
+      var obj = {name:"홍1", java:100, sql:100, js:100};
+      var obj2 = obj;
+      var obj3 = _.clone(obj); // underscore.js로 복제
+      var obj4 = [...obj]; //전개연산자로 복제
+      obj.java = 99;
+
+      var scores = [10,4,2,6,7,3];
+      //scores.sort(function(a,b){return a-b;}); //asc
+      //scores.sort(function(a,b){return b-a;}); //desc
+      //scores.sort((a,b)=>b-a); //desc
+      scores = _.sortBy(scores); //asc
+      scores = _.sortBy(scores).reverse(); //desc
+      console.log(scores);
+    }
+
+    function f2(){
+      var students = [];
+      students.push({name:"홍1", java:100, sql:100, js:100});
+      students.push({name:"홍2", java:80, sql:90, js:90});
+      students.push({name:"홍3", java:70, sql:80, js:80});
+      students.push({name:"홍4", java:60, sql:70, js:70});
+      students.push({name:"홍5", java:50, sql:60, js:60});
+
+      for(let index in students){
+        students[index].getSum = function(){
+          return this.java + this.sql + this.js;
+        };
+        students[index].getAvg = function(){
+          return this.getSum()/3;
+        };
+
+        console.log(students[index].getSum(), students[index].getAvg());
+      }
+    }
+
+    function f1 (){
+      var obj = {name:"홍길동"};
+      obj.age = 20;
+      obj.major = "컴공";
+      obj.myInfo = function(){here.innerHTML = this.name + this.major;};
+      obj.myInfo();
+    }
+  </script>
+</body>
+</html>
