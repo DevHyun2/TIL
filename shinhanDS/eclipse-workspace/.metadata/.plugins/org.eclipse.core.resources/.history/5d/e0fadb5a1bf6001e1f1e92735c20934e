@@ -1,0 +1,62 @@
+package perfornance_evaluation;
+
+import java.util.Scanner;
+
+
+public class EmpController {
+	
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		boolean isStop = false;
+		EmpService empService = new EmpService();
+		
+		while(!isStop) {
+			int selectJob = menuDisplay();
+			
+			switch(selectJob) {
+			case 1 -> {
+				System.out.println("--------관리자 로그인---------");
+				System.out.println("----ID와 PW를 입력해 주세요----");
+				int count = 0;
+				while(count == 3) {
+					System.out.print("ID : ");
+					int adminid = sc.nextInt();
+					System.out.print("PW : ");
+					int emppw = sc.nextint();
+					
+					EmpView.print(empService.selectAdminLog(adminid, emppw) == 1?"로그인 성공":"ID/PW 다시 입력해주세요");
+				}
+				
+			}
+			
+			case 2 -> {
+				System.out.println("--------사원 로그인---------");
+				System.out.println("----ID와 PW를 입력해 주세요----");
+				System.out.print("ID : ");
+				int empid = sc.nextInt();
+				System.out.print("PW : ");
+				String emppw = sc.next();
+				EmpView.print(empService.selectEmpLog(empid, emppw), "로그인 성공");
+			}
+			
+			case 3 -> {isStop = true;}
+			
+			default -> {}
+			
+			}
+			System.out.println("-------인사평가 프로그램을 종료합니다------");
+		}
+	}
+	
+	private static int menuDisplay() {
+		System.out.println("----------[신한DS 인사평가]----------");
+		System.out.println("---------서비스를 선택해주세요---------");
+		System.out.println("1.관리자 로그인 | 2.사원 로그인 | 3. 종료");
+		System.out.println("----------------------------------");
+		System.out.print("작업선택 > ");
+		int job = sc.nextInt();
+		return job;
+	}
+}

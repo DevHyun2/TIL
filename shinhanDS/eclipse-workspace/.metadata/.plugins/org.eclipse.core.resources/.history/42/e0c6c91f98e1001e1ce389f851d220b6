@@ -1,0 +1,46 @@
+package com.shinhan.day03;
+
+public class Review {
+
+	public static void main(String[] args) {
+		call(100);
+		call(55);
+		call2(10);
+		call3();
+	}
+	
+	//-----------------------------------------------------------call3
+	private static void call3(int a) {
+		//반복문 for : 1 ~ a까지 합 구하기
+		
+		int total = 0;
+		for(int i=1 ; i<=a ; i++) {
+			total += i;
+		}
+		System.out.println("합계 : " + total);
+	}
+
+	//-----------------------------------------------------------call2
+	private static void call2(int a) {
+		//조건문 switch
+		
+		switch(a%2) {
+		case 0 : System.out.println(a + " 짝수"); break;
+		case 1 : System.out.println(a + " 홀수");
+		}
+	}
+	
+	//-----------------------------------------------------------call
+	//반복사용 하기 위해 메서드를 만듦
+	private static void call(int a) {
+		//조건문 if
+		
+		if(a%2==0) {
+			System.out.println(a + " 짝수");
+		}else {
+			System.out.println(a + " 홀수");
+		}
+		System.out.println(a%2==0? a+" 짝수": a+" 홀수"); //삼항 연산자
+	}
+
+}

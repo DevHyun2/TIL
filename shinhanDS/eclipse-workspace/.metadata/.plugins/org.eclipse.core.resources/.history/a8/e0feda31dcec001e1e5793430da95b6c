@@ -1,0 +1,12 @@
+package train;
+
+import java.util.stream.IntStream;
+
+
+public class SportsMan {
+	public static void main(String[] args) {
+		String s = "자바";
+		String d = new String("자바");
+		System.out.println(s.toString());
+	}
+}

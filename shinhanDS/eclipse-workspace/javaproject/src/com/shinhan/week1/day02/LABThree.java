@@ -1,0 +1,41 @@
+package com.shinhan.week1.day02;
+
+import java.util.Scanner;
+
+/*문제3. 숫자를 입력 받아서 아래와 같은 실행결과가 나타나도록 
+ * SumTest 클래스의 main 메쏘드를 완성하십시오. 
+a. 입력 받은 숫자가 홀수인 경우에는, 0 부터 입력 값까지 홀수의 합을 출력합니다.
+- 예제 : 입력이 7 이면 16을 출력 ( 1 + 3 + 5 + 7 = 16 ) 
+b. 입력 받은 숫자가 짝수인 경우에는, 0 부터 입력 값까지 짝수의 합을 출력합니다.
+- 예제 : 입력이 10 이면 30을 출력 ( 2 + 4 + 6 + 8 + 10 = 30 )
+*/
+public class LABThree {
+
+	public static void main(String[] args) {
+		method3();
+
+	}
+
+	private static void method3() {
+		Scanner sc;
+		sc = new Scanner(System.in);
+		
+		System.out.println("숫자를 입력하세요. :");
+		int su = sc.nextInt();
+		
+		int total = 0;
+		int start;
+		if(end%2==0) {
+		}else {
+			start = 1;
+		}
+			for(int i=0 ; i<end ; i+=2) {
+				total += i;
+			}
+		}System.out.println("결과 값 :" + total);
+		int end = sc.nextInt();
+		
+		sc.close();
+	}
+
+}

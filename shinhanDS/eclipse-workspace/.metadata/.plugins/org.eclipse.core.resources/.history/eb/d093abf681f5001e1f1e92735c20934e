@@ -1,0 +1,16 @@
+package perfornance_evaluation;
+
+import java.sql.Date;
+
+public class empDTO {
+	
+	private int employee_id;		//사원번호
+	private String name;			//사원명
+	private String birthdate;		//생년월일
+	private String employee_pw;		//사원PW
+	private String department;		//부서명
+	private String rank;			//직급
+	private Date join_date;			//입사일
+	private int admin_id;			//관리자ID
+	
+}

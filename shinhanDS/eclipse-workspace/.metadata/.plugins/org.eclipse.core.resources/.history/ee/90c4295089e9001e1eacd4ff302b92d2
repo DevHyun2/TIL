@@ -1,0 +1,27 @@
+package train;
+
+import java.util.Arrays;
+
+public class 연습장 {
+
+	public static void main(String[] args) {
+		f1();
+	}
+
+	private static void f1() {
+		Integer[][][] data_list = {
+				 {
+				 {1, 2, 3},
+				 {4, 5, 6}
+				 },
+				 {
+				 {7, 8, 9},
+				 {10, 11, 12}
+				 }
+				};
+
+		data_list.length;
+	}
+	
+}
+

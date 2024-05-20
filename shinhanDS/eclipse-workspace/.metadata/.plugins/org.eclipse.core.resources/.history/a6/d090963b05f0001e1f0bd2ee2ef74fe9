@@ -1,0 +1,25 @@
+package com.shinhan.week3.day14;
+
+
+public class Prob1 {
+	public static void main(String[] args) {
+		String[] array = { "황남기85점", "조성호89점", "한인성88점", "독고정진77점" };
+		printMaxScore(array);
+	}
+
+	private static void printMaxScore(String[] array) {
+		// 구현하세요.
+		String str = "";
+		
+		for(int i=0 ; i<array.length ; i++) {
+			if(array[i].length() == 6) {
+				str += array[i].substring(3,5);
+			}else {
+				str += array[i].substring(4,6);
+			}
+		
+			System.out.println("최고점수는 " + num1 + "점 입니다.");
+		}
+		System.out.println("최고점수는 ");
+	}
+}

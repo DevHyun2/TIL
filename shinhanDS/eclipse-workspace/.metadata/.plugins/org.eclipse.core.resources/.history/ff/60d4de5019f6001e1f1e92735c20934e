@@ -1,0 +1,20 @@
+package perfornance_evaluation;
+
+import java.util.List;
+
+public class EmpView {
+
+	public static void print(List<EmpDTO> emplist, String title) {
+
+		System.out.printf("--------%s--------\n", title);
+
+		emplist.stream().forEach(emp -> System.out.println(emp));
+	}
+
+	public static void print(int result) {
+		System.out.printf("--------%s--------\n", result);
+		if(result != 1) {
+			
+		}
+	}
+}
