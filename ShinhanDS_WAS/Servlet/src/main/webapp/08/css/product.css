@@ -1,0 +1,24 @@
+table, th, td {
+  border:1px solid #ccc;
+  border-collapse: collapse;
+}
+th, td { 
+  padding:10px 20px; 
+}
+#container{
+  width: 800px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+div{
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+#description{
+  line-height: 2em; /* 2배 */
+}
+#receipe{
+  line-height: 2em;
+}

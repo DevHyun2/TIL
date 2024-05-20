@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--  
+size : input의 크기
+maxlength : 최대입력값 길이
+value : 초기값
+name : 서버, 클라이언트에서 사용
+id : 클라이언트에서만 사용, 문서내에서 유일해야함, 여러개여도 먼저 만나는 객체를 얻는다.
+-->
+ <h1>입력양식 연습</h1>
+  <form action="inputConfirm.jsp">
+	1.text<input autofocus="autofocus" name="input1" id="input1"><br>
+	2.text<input name="input2" type="text" size="10" maxlength="5" value="12345"><br>
+	3.password<input readonly="readonly" name="input3" type="password" value="1234567890"><br>
+	4.search : <input name="input4" type="search" placeholder="X표시있음"><br>
+	5.url : <input name="input5" type="url" placeholder="url형태 http://주소"><br>
+	6.email : <input name="input6" type="email" placeholder="OOO@OOO.OO"><br>
+	7.tel : <input name="input7" type="tel" placeholder="010-0000-0000"><br>
+	<fieldset>
+	 <legend>성별선택(radio는 서로 배타적)</legend>
+	  <input name="gender" type="radio" value="M" checked="checked">남자
+	  <input name="gender" type="radio" value="F">여자
+	</fieldset>
+	<br>
+	<fieldset>
+	 <legend>학습과목(checkbox는 서로 독립적)</legend>
+	  <input type="checkbox" name="subject" value="HTML">HTML5
+	  <input type="checkbox" name="subject" value="CSS">CSS3
+	  <input type="checkbox" name="subject" value="JS">JavaScript
+	  <input type="checkbox" name="subject" value="JQ">JQuery
+	  <input type="checkbox" name="subject" value="react">ReactJS
+	</fieldset>
+	<br>
+	10.number : <input name="input8" type="number" min="10" max="100" value="10" step="10"><br>
+	11.range : <input name="input9" type="range" max="100" value="10" step="10"><br>
+	12.date : <input name="input10" type="date"><br>
+	12.month : <input name="input11" type="month"><br>
+	12.week : <input name="input12" type="week"><br>
+	13.time : <input name="input13" type="time"><br>
+	12.datetime : <input name="input14" type="datetime"><br>
+	12.datetime-local : <input name="input15" type="datetime-local"><br>
+	13.이미지-상대경로<input type="image" src="../05/images/login.png"><br>
+	13.이미지-절대경로<input type="image" src="/webproject/05/images/login.png"><br>
+	14.버튼<input type="button" value="type버튼" onclick="alert('form안에 버튼 누름')"><br>
+	<button>form안에 버튼(submit수행됨)</button><br>
+	
+	<textarea rows="10" cols="100" name="memo"></textarea><br>
+	17.여러개중 하나선택<br>
+	<select name="week1">
+		<option>월요일</option>
+		<option value="TUE">화요일</option>
+		<option selected="selected">수요일</option>
+		<option>목요일</option>
+	</select><br>
+	17.여러개중 다중선택<br>
+	<select name="week2" multiple="multiple">
+		<option>월요일</option>
+		<option value="TUE">화요일</option>
+		<option selected="selected">수요일</option>
+		<option>목요일</option>
+	</select><br>
+	18.입력 및 선택	<input type="text" list="weekList" name="week3"><br>
+	<datalist id="weekList">
+		<option>월요일</option>
+		<option>화요일</option>
+		<option>수요일</option>
+		<option>목요일</option>			
+	</datalist><br>
+	
+	
+	
+	15.파일첨부<input type='file'><br>
+	16.hidden<input type='hidden' name="input16" value="신한금융"><br>
+	
+	<input type="submit" value="서버전송">
+	<!--  
+	input submit,image : 서버전송(form의 action을 수행한다)
+	**img는 아님
+	input button : 버튼 클릭시 JavaScript 수행하기 위함
+	<button></button>(form의 action수행한다)
+	-->
+  </form>
+  <button onclick="call()">ID값 얻기</button>
+  <script type="text/javascript">
+	  function call(){
+	  	a = document.getElementById("input1").value;
+	  	console.log(a);
+	  }
+  </script>
+</body>
+</html>

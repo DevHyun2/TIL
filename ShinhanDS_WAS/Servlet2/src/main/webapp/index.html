@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP/Servlet</title>
+<style>
+a {
+	color:navy;
+	text-decoration:none;
+}
+</style>
+</head>
+<body>
+<h1>JSP/Servlet시작!!!</h1>
+<a href="auth/login.do">로그인</a>
+<hr>
+<ul>
+<!-- 절대경로 시: http://192.168.0.120:9090 -->
+<!-- 상대경로 시: ./ => 현재 index.html은 webshop 바로 아래 -->
+	<li><a href="/webshop12/first?userid=100">first서블릿 연결(절대)</a></li>
+	<li><a href="first?userid=200">first서블릿 연결(상대)</a></li>
+	<li>
+		<form action="first" method="get">
+			<input type="text" name="userid" value="300">
+			<input type="submit" value="get요청">
+		</form>
+	</li>
+	<li>
+		<form action="first" method="post">
+			<input type="text" name="userid" value="400">
+			<input type="submit" value="post요청">
+		</form>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<a href="emp/emplist.do">모든직원조회</a>
+	</li>
+	<li>
+		<a href="emp/empByDept.do">부서별직원조회</a>
+	</li>
+	<li>
+		<!-- http://ip:port -->
+		<form action="emp/empDetail.do" method="get">
+			<label>직원번호: </label>
+			<input type="text" name="empid" value="100">
+			<input type="submit" value="검색">
+		</form>
+	</li>
+	<li>
+		<a href="emp/empInsert.do">직원입력</a>
+	</li>
+	<li>
+		<a href="emp/retrieve.do">조건 조회</a>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<a href="/webshop12/dept/deptlist.do">모든부서조회</a>
+	</li>
+	<li>
+		<form action="dept/deptDetail.do" method="get">
+			<label>부서번호: </label>
+			<input type="text" name="deptid" value="100">
+			<input type="submit" value="검색">
+		</form>
+	</li>
+	<li>
+		<a href="dept/deptInsert.do">부서입력</a>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<a href="job/joblist.do">모든직책조회</a>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<a href="jsp/binding.do">바인딩연습</a>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<form action="jsp/set">
+			<input type="text" name="myname" value="양준성">
+			<input type="submit" value="서버전송">
+		</form>
+	</li>
+	<li>
+		<a href="init3">initParameter</a>
+	</li>
+	<li>
+		<form action="jsp/cookieSet">
+			<input type="text" name="userid" value="cookie">
+			<input type="password" name="userpass" value="1234">
+			<input type="submit" value="로그인(쿠키)">
+		</form>
+	</li>
+	<li>
+		<form action="jsp/setSession">
+			<input type="text" name="userid" value="session">
+			<input type="password" name="userpass" value="1234">
+			<input type="submit" value="로그인(세션)">
+		</form>
+	</li>
+</ul>
+<hr>
+<ul>
+	<li>
+		<a href="jsp/order.go">주문</a>
+	</li>
+	<li>
+		<a href="jsp/jspTest.jsp">JSP 테스트</a>
+	</li>
+</ul>
+</body>
+</html>

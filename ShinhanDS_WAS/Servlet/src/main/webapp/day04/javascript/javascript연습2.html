@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>자바스크립트 문법</h1>
+	<button id="btn1">alert함수</button>
+	<button id="btn2">confirm함수</button>
+	<button id="btn3">prompt함수</button>
+	<button id="btn4">data타입 6가지</button>
+	<button id="btn5">write</button>
+	<button id="btn6">변수이름이 예약어로 쓰인 경우</button>
+	<button id="btn7">연산자===</button>
+	
+	<hr>
+	<div id="here">
+		여기에 출력
+	</div>
+	<script>
+		//자바스크립트의 동적 타이핑이다. 즉, 값이 할당되면 타입이 결정된다.
+		var a = document.getElementById("btn1");
+		var b = document.getElementById("btn2");
+		var c = document.getElementById("btn3");
+		var d = document.getElementById("btn4");
+		var e = document.getElementById("btn5");
+		var f = document.getElementById("btn6");
+		var g = document.getElementById("btn7");
+		var here = document.getElementById("here");
+
+		g.onclick = function() {
+			here.innerHTML = 10=="10"; //값이 같다
+			here.innerHTML +="<br>" + (10==="10"); //값과 타입을 체크, 타입이 다름
+		};
+
+		f.onclick = function() {
+			var alert = "변수이름이 예약어(또는 함수이름과 동일하게))로 쓰인 경우";
+			delete alert;
+			//alert(alert);
+			
+		};
+
+		e.onclick = function() {
+			document.write("<h1>write함수로 문서에 문자열을 출력한다</h1>")
+		};
+
+		d.onclick = function() {
+			//number, string, boolean, object, function, undefined
+			//변수 선언은 필수가 아님
+			//undefined는 변수는 선언하였지만 값이 할당되지않음
+			//값을 할당하면 타입이 결정된다
+			var v1; //undefined
+			here.innerHTML = v1 + "==>" + typeof(v1);
+			v1 = 100; //number
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = "문자"; //string
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = 10>0; //boolean
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = [1,2,3]; //object
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = {}; //{object Object} object
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = {이름:"홍길동", 나이:20}; //object
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+			v1 = function() {alert("함수입니다");}; //function
+			here.innerHTML += "<br>" + v1 + "==>" + typeof(v1);
+		};
+
+		c.onclick = function() {
+			var age = prompt("나이를 입력하세요, 20");
+			here.innerHTML = Number(age)+ 10;
+		};
+		//console.log(a);
+		a.onclick = function() {
+			console.log("버튼1을 누름");
+			document.getElementById("here").innerHTML = "버튼1을 누름 " + a.innerHTML;
+			alert("알림창보이기 함수");
+		};
+		b.onclick = function() {
+			console.log("버튼2를 누름");
+			var result = confirm("직원정보 display?")
+			if(result){
+				//alert("계속")
+				location.href="../../day01/jsp/empAll.jsp";
+			}else{
+				//alert("중단")
+			}
+			document.getElementById("here").innerHTML = "버튼2을 누름 " + b.innerHTML;
+		};
+	</script>
+</body>
+</html>
