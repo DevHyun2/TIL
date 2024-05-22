@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("bService2") //== @Component + Service ?ó≠?ï†
@@ -14,6 +15,7 @@ public class BoardService {
 	
 	//???ûÖ?ù¥ Í∞ôÏúºÎ©? Í∞ùÏ≤¥Î•? Injection?ïú?ã§
 	@Autowired
+	@Qualifier("bDAO")
 	BoardDAO boardDao;
 	
 	//?†ÑÏ≤¥Ï°∞?öå
@@ -38,5 +40,9 @@ public class BoardService {
 	//?Ç≠?†ú
 	public int deleteBoard(int bno) {
 		return boardDao.deleteBoard(bno);
+	}
+	
+	public int deleteBoardArray(Integer[] checkBno) {
+		return boardDao.deleteBoardArray(checkBno);
 	}
 }

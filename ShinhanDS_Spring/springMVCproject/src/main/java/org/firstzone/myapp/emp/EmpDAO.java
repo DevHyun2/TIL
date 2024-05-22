@@ -12,205 +12,148 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.shinhan.myapp.util.DBUtil;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.shinhan.myapp.util.DBUtil;
-
 @Repository
-// DAO(Data Accessï¿½ë¸¯ï¿½ë’— ?ï¿½ï¿½ê¾©ì«°ï¿½ë•²ï¿½ë’ª æ¿¡ì’–ì­…ï¿½?ï¿½ï¿½ ï§£ì„?ï¿½ï¿½ï¿½ë¸¯ï¿½ë’— Object)
 public class EmpDAO {
-	
-	//1.field?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?
+	// m1. field ÀÌ¿ëÇÏ±â
 	@Autowired
+	@Qualifier("dataSource")
 	DataSource ds;
 	
-	//2.?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?
-	//@Autowired
-//	public EmpDAO(DataSource ds) {
-//		this.ds = ds;
-//	}
+	// m2. »ı¼ºÀÚ ÀÌ¿ëÇÏ±â
+	// @Autowired
+	/*
+	 * public EmpDAO(DataSource ds) { this.ds = ds; }
+	 */
 	
-	//3.setter?ï¿½ï¿½ï¿½?
-//	@Autowired
-//	public void setDs(DataSource ds) {
-//		this.ds = ds;
-//	}
+	// m3. setter ³Ö±â
+	/*
+	 * @Autowired public void setDs(DataSource ds) { this.ds = ds; }
+	 */
 	
-	Connection conn;
-	Statement st;
-	PreparedStatement pst; // Statement?ï¿½ï¿½ï¿½? ï¿½ê¸½ï¿½ëƒ½ è«›ì†?ï¿½ï¿½, è«›ë¶¿?ï¿½ï¿½ï¿½ëµ« è¹‚ï¿½ï¿½ë‹” ï§ï¿½ï¿½ì, åª›ï¿½è¹‚ï¿½ sql?ï¿½ï¿½ëª„ì“£ è«›ì†?ï¿½ï¿½ ï¿½ë¸£ ï¿½ëœ‘ ï¿½ìŠšï¿½ì‘‰ï¿½ìŸ»
-	ResultSet rs;
-
-	// 1.ï§ê³¸?ï¿½ï¿½ ï§â‘¤ï¿½? è­°ê³ ?ï¿½ï¿½
-	public List<EmpDTO> selectAll() {
-		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
-		String sql = "select * from employees order by 1";
-		try {
-			conn = ds.getConnection();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				EmpDTO emp = makeEmp(rs);
-				emplist.add(emp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, st, rs);
-		}
-		return emplist;
-	}
-	
-	// 2. ï¿½ë“…ï¿½ì ™ ï§ê³¸?ï¿½ï¿½ ï¿½ê¸½ï¿½ê½­ è¹‚ë‹¿ï¿½?
-	public EmpDTO selectById(int empid) {
-		EmpDTO emp = null;
-		String sql = "select * from employees where employee_id = ";
-		try {
-			conn = ds.getConnection();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql + empid);
-			if (rs.next()) {
-				emp = makeEmp(rs);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return emp;
-	}
-
-	// 3. ï¿½ë“…ï¿½ì ™ ?ï¿½ï¿½ï¿½ï¿½ê½Œï¿½?ï¿½ï¿½ æ´¹ì‡°Ğ¢ï¿½ë¸¯ï¿½ë’— ï§ê³¸?ï¿½ï¿½ï¿½ë±¾ è­°ê³ ?ï¿½ï¿½
-	public List<EmpDTO> selectByDept(int dept) {
-		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
-		String sql = "select * from employees where department_id = ?";
-		try {
-			conn = ds.getConnection();
+    Connection conn;
+    Statement st;
+    PreparedStatement pst; //Statement
+    ResultSet rs;
+    
+    
+    public EmpDTO loginChk(String email, String phone) {
+    	EmpDTO emp = null;
+    	String sql = "select employee_id, first_name, last_name,phone_number "
+    			+ " from employees where email = ?";
+    	
+    	try {
+    		conn = ds.getConnection();
 			pst = conn.prepareStatement(sql);
-			pst.setInt(1, dept);
+			pst.setString(1, email);
 			rs = pst.executeQuery();
-			while (rs.next()) {
-				EmpDTO emp = makeEmp(rs);
-				emplist.add(emp);
+
+			if(rs.next()) {
+				if(rs.getString("phone_number").equals(phone)) {
+					emp = new EmpDTO();
+					emp.setEmployee_id(rs.getInt("employee_id"));
+					emp.setFirst_name(rs.getString("first_name"));
+					emp.setLast_name(rs.getString("last_name"));
+					emp.setEmail(email);
+					emp.setPhone_number(phone);
+				}else {
+					emp = new EmpDTO();
+					emp.setEmployee_id(-2); // ë¹„ë?ë²ˆí˜¸ ?˜¤ë¥?
+				}
+			}else {
+				emp = new EmpDTO();
+				emp.setEmployee_id(-1); // ì¡´ì¬?•˜ì§? ?•Š?Š” ì§ì› 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, st, rs);
 		}
-		return emplist;
-	}
-	
-	public List<JobDTO> selectAllJob() {
-        List<JobDTO> joblist = new ArrayList<JobDTO>();
-        String sql = "select * from jobs";
-        try {
-            conn = ds.getConnection();
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
-            while(rs.next()) {
-                JobDTO job = new JobDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
-                joblist.add(job);
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            DBUtil.dbDisconnect(conn, st, rs);
-        }
-        return joblist;
-        
+    	return emp;
     }
-	
-	// 4. ï¿½ë“…ï¿½ì ™ Jobï¿½ì”¤ ï§ê³¸?ï¿½ï¿½ï¿½ë±¾ è­°ê³ ?ï¿½ï¿½
-	public List<EmpDTO> selectByJob(String job) {
-		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
-		String sql = "select * from employees where job_id = ?";
-		try {
-			conn = ds.getConnection();
+    
+    
+    
+    
+    
+    //8.?‚­? œ(Delete)
+    public int empDelete(int empid) {
+    	int result = 0;
+    	String sql = "delete from employees "	    			
+	    			+ "where EMPLOYEE_ID=? ";
+    	
+    	try {   
+    		conn = ds.getConnection();
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, job); // ï§£ãƒ«ì¾²ï§ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ëª´ï¿½ë¿‰ jobï¿½ì“£ ï¿½ê½”ï¿½ì“¬
-			rs = pst.executeQuery();
-			while (rs.next()) {
-				EmpDTO emp = makeEmp(rs);
-				emplist.add(emp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, pst, rs);
-		}
-		return emplist;
-	}
-	
-	// Stringï¿½ë¿‰ +?ï¿½ï¿½ï¿½? è«›ì„?ï¿½ï¿½ï¿½ë¸¯ï¿½ë’— å¯ƒê»‹ï¿½? ?ï¿½ï¿½ê¾ªìŠšï¿½ì‘‰ï¿½ìŸ»
-	public List<EmpDTO> selectByJob2(String job) {
-		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
-		String sql = "select * from employees where job_id = '"
-				+ job
-				+ "'";
-		try {
-			conn = ds.getConnection();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				EmpDTO emp = makeEmp(rs);
-				emplist.add(emp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, st, rs);
-		}
-		return emplist;
-	}
-	
-	// 5. ï¿½ë–ï¿½ë¼‡ï¿½ë¸³ è­°ê³Œêµ”ï¿½?ï¿½ï¿½æ¿¡ï¿½ è­°ê³ ?ï¿½ï¿½
-	// ?ï¿½ï¿½ï¿½ï¿½ê½Œè¹‚ï¿½?(=), ï§ê³¸ì½‰è¹‚ï¿½?(=), ï¿½ì—¯ï¿½ê¶—ï¿½ì”ªè¹‚ï¿½(>=), æ¹²ë±ï¿½?(>=)
-	public List<EmpDTO> selectByCondition(int deptid, String jobid, Date hdate, int salary) {
-		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
-		String sql = "select * "
-				+ "from employees "
-				+ "where department_id = ? "
-				+ "and job_id = ? "
-				+ "and hire_date >= ? "
-				+ "and salary >= ?";
-		try {
-			conn = ds.getConnection();
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, deptid); // ï§£ãƒ«ì¾²ï§ï¿½? ?ï¿½ë¿‰ deptid?ï¿½ï¿½ï¿½? ï¿½ê½”ï¿½ë¼±ï¿½ì”ª
-			pst.setString(2, jobid); // ï¿½ëª¢è¸°ë‰?ï¿½ï¿½ ?ï¿½ë¿‰ jobid?ï¿½ï¿½ï¿½? ï¿½ê½”ï¿½ë¼±ï¿½ì”ª
-			pst.setDate(3, hdate); // ï¿½ê½­è¸°ë‰?ï¿½ï¿½ ?ï¿½ë¿‰ hdate?ï¿½ï¿½ï¿½? ï¿½ê½”ï¿½ë¼±ï¿½ì”ª
-			pst.setInt(4, salary); // ï¿½ê½•è¸°ë‰?ï¿½ï¿½ ?ï¿½ë¿‰ salary?ï¿½ï¿½ï¿½? ï¿½ê½”ï¿½ë¼±ï¿½ì”ª
-			rs = pst.executeQuery();
-			while (rs.next()) {
-				EmpDTO emp = makeEmp(rs);
-				emplist.add(emp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, pst, rs);
-		}
-		return emplist;
-	}
-	
-	// 6. ï¿½ì—¯ï¿½ì °
-	public int empInsert(EmpDTO emp) {
-		int result = 0;
-		String sql = "insert into employees values (?,?,?,?,?,?,?,?,?,?,?)";
-		try {
-			conn = ds.getConnection(); // setAutoCommit(true)æ¿¡ï¿½ ï¿½ë¦ºï¿½ë¼±ï¿½ì—³ï¿½ì“¬
-			pst = conn.prepareStatement(sql);
+			pst.setInt(1, empid);
+			result = pst.executeUpdate(); //DMLë¬¸ì¥?? executeUpdate, Selectë¬¸ì? executeQuery
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	    } finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+    	return result;
+    	
+    }
+    
+  //7.?ˆ˜? •(Update)
+    public int empUpdate(EmpDTO emp) {
+    	int result = 0;
+    	String sql = "update employees "
+	    			+ " set FIRST_NAME=?, "
+	    			+ "    LAST_NAME=?, "
+	    			+ "    EMAIL=?, "
+	    			+ "    PHONE_NUMBER=?, "
+	    			+ "    HIRE_DATE=?, "
+	    			+ "    JOB_ID=?, "
+	    			+ "    SALARY=?, "
+	    			+ "    COMMISSION_PCT=?, "
+	    			+ "    MANAGER_ID=?, "
+	    			+ "    DEPARTMENT_ID=? "
+	    			+ "where EMPLOYEE_ID=? ";
+    	
+    	try {   		
+    		conn = ds.getConnection();
+			pst = conn.prepareStatement(sql);
+			pst.setInt(11, emp.getEmployee_id());
+			pst.setString(1, emp.getFirst_name());
+			pst.setString(2, emp.getLast_name());
+			pst.setString(3, emp.getEmail());
+			pst.setString(4, emp.getPhone_number());
+			pst.setDate(5, emp.getHire_date());
+			pst.setString(6, emp.getJob_id());
+			pst.setInt(7, emp.getSalary());
+			pst.setDouble(8, emp.getCommission_pct());
+			pst.setInt(9, emp.getManager_id());
+			pst.setInt(10, emp.getDepartment_id());
+			result = pst.executeUpdate(); //DMLë¬¸ì¥?? executeUpdate, Selectë¬¸ì? executeQuery
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	    } finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+    	return result;
+    	
+    }
+    
+    //6.?…? ¥(Insert)
+    public int empInsert(EmpDTO emp) {
+    	int result = 0;
+    	String sql = "insert into employees values( ?,?,?,?,?,?,?,?,?,?,?)";
+    	
+    	try {   		
+    		conn = ds.getConnection();
+			pst = conn.prepareStatement(sql);
 			pst.setInt(1, emp.getEmployee_id());
 			pst.setString(2, emp.getFirst_name());
 			pst.setString(3, emp.getLast_name());
@@ -222,176 +165,174 @@ public class EmpDAO {
 			pst.setDouble(9, emp.getCommission_pct());
 			pst.setInt(10, emp.getManager_id());
 			pst.setInt(11, emp.getDepartment_id());
-			
-			result = pst.executeUpdate(); // DML ?ï¿½ï¿½ëª„ï¿½ executeUpdate, Select ?ï¿½ï¿½ëª„ï¿½ executeQuery
-			// resultï¿½ë’— ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒï¿½ë§‚ å«„ëŒ?ï¿½ï¿½, ï¿½ë¿‰ï¿½ìœ­ï¿½ë’— -1
+			result = pst.executeUpdate(); //DMLë¬¸ì¥?? executeUpdate, Selectë¬¸ì? executeQuery
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+	    } finally {
 			DBUtil.dbDisconnect(conn, pst, rs);
 		}
-		return result;
-	}
-	
-	// 7.ï¿½ë‹”ï¿½ì ™
-	public int empUpdate(EmpDTO emp) {
-		int result = 0;
-		String sql = "update employees "
-				+ "set first_name = ?,"
-				+ "last_name = ?, "
-				+ "email = ?, "
-				+ "phone_number = ?, "
-				+ "hire_date = ?, "
-				+ "job_id = ?, "
-				+ "salary = ?, "
-				+ "commission_pct = ?, "
-				+ "manager_id = ?, "
-				+ "department_id = ? "
-				+ "where employee_id = ?";
-		try {
-			conn = ds.getConnection(); 
-			pst = conn.prepareStatement(sql);
-			
-			pst.setString(1, emp.getFirst_name());
-			pst.setString(2, emp.getLast_name());
-			pst.setString(3, emp.getEmail());
-			pst.setString(4, emp.getPhone_number());
-			pst.setDate(5, emp.getHire_date());
-			pst.setString(6, emp.getJob_id());
-			pst.setInt(7, emp.getSalary());
-			pst.setDouble(8, emp.getCommission_pct());
-			pst.setInt(9, emp.getManager_id());
-			pst.setInt(10, emp.getDepartment_id());
-			pst.setInt(11, emp.getEmployee_id());
-			
-			result = pst.executeUpdate(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, pst, rs);
-		}
-		return result;
-	}
-	// 8.ï¿½ê¶˜ï¿½ì £
-	public int empDelete(int empid) {
-		int result = 0;
-		String sql = "delete employees "
-				+ "where employee_id = ?";
-		try {
-			conn = ds.getConnection(); 
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, empid);
-			result = pst.executeUpdate(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, pst, rs);
-		}
-		return result;
-	}
-	
-	// 9. ï§ê³¸?ï¿½ï¿½ è¸°ëŠ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ï¿½ì—¯ï¿½ì °è«›ì†ï¿½?, ï§ê³¸?ï¿½ï¿½ï¿½ì ™è¹‚ï¿½(ï¿½ì” ?ï¿½ï¿½ï¿½?, ï§ê³¸ï¿½?, æ¹²ë±ï¿½?) return
-	public Map<String, Object> empInfo(int empid) {
-		Map<String, Object> empMap = new HashMap<>();
-		
-		String fname = null, job = null;
-		int salary = 0;
-		
-		String sql = "{call SP_EMPINFO(?,?,?,?)}";
-		CallableStatement cstmt = null;
-		
-		try {
-			conn = ds.getConnection();
-			cstmt = conn.prepareCall(sql);
-			cstmt.setInt(1, empid);
-			cstmt.registerOutParameter(2, Types.VARCHAR);
-			cstmt.registerOutParameter(3, Types.VARCHAR);
-			cstmt.registerOutParameter(4, Types.INTEGER);
-			
-			boolean result = cstmt.execute();
-			
-			fname = cstmt.getString(2);
-			job = cstmt.getString(3);
-			salary = cstmt.getInt(4);
-			
-			empMap.put("fname", fname);
-			empMap.put("job", job);
-			empMap.put("salary", salary);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, cstmt, rs);
-		}
-		return empMap;
-	}
-	
-	// 10. ï§ê³¸?ï¿½ï¿½ è¸°ëŠ?ï¿½ï¿½åª›ï¿½ ï¿½ë±¾ï¿½ë¼±ï¿½ì‚¤ï§ï¿½ ï§ê³¸?ï¿½ï¿½ è¹‚ï¿½?ê¼«ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? return ï¿½ë¸¯ï¿½ë’— ï¿½ë¸¿ï¿½ë‹”?ï¿½ï¿½ï¿½? ï¿½ìƒ‡?ï¿½ï¿½ï¿½?
-	public double callFunction(int empid) {
-		double bonus = 0;
-		String sql = "select f_bonus(?) from dual";
-		
-		try {
-			conn = ds.getConnection();
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, empid);
-			rs = pst.executeQuery();
-			if (rs.next()) {
-				bonus = rs.getDouble(1);
+    	return result;
+    	
+    }
+    
+    
+    //5.?‹¤?–‘?•œ ì¡°ê±´?œ¼ë¡? ì¡°íšŒ?•˜ê¸?
+    //ë¶??„œë³?(=), ì§ì±…ë³?(=), ?…?‚¬?¼ë³?(>=), ê¸‰ì—¬(>=)
+    public List<EmpDTO> selectByCondition(int deptid, String jobid,
+    		                              Date hdate, int salary) {
+  		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+  		String sql = "select *  "
+  				+ " from employees "
+  				+ " where department_id  = ?"
+  				+ " and job_id = ?"
+  				+ " and hire_date > = ? "
+  				+ " and salary > = ? " ;
+  		try {
+  			conn = ds.getConnection();
+  			pst = conn.prepareStatement(sql);
+  			pst.setInt(1, deptid);//ì²«ë²ˆì§???— jdeptidë¥? ?„£?–´?¼ 
+  			pst.setString(2, jobid);//2ë²ˆì§¸??— jobidë¥? ?„£?–´?¼ 
+  			pst.setDate(3, hdate);//3ë²ˆì§¸??— hdateë¥? ?„£?–´?¼ 
+  			pst.setInt(4, salary);//4ë²ˆì§¸??— salaryë¥? ?„£?–´?¼ 
+  			rs = pst.executeQuery();
+  			while(rs.next()) {
+  			   EmpDTO emp = makeEmp(rs);	
+  			   emplist.add(emp);
+  			}
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		} finally {
+  			DBUtil.dbDisconnect(conn, pst, rs);
+  		}
+  		return emplist;
+  		
+  	}
+    
+    
+    //4.?Š¹? •JOB?¸ ì§ì›ì¡°íšŒ
+  	public List<EmpDTO> selectByJob(String jobid) {
+  		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+  		String sql = "select * from employees where job_id like ?||'%' " ;
+  		try {
+  			conn = ds.getConnection();
+  			pst = conn.prepareStatement(sql);
+  			pst.setString(1, jobid);//ì²«ë²ˆì§???— jobidë¥? ?„£?–´?¼ 
+  			rs = pst.executeQuery();
+  			while(rs.next()) {
+  			   EmpDTO emp = makeEmp(rs);	
+  			   emplist.add(emp);
+  			}
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		} finally {
+  			DBUtil.dbDisconnect(conn, pst, rs);
+  		}
+  		return emplist;
+  		
+  	}
+  	
+    //4.?Š¹? •JOB?¸ ì§ì›ì¡°íšŒ
+  	public List<EmpDTO> selectByJob2(String jobid) {
+  		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+  		String sql = "select * from employees where job_id = '"
+  				+ jobid
+  				+ "'";
+  		try {
+  			conn = ds.getConnection();
+  			st = conn.createStatement();
+  			rs = st.executeQuery(sql);
+  			while(rs.next()) {
+  			   EmpDTO emp = makeEmp(rs);	
+  			   emplist.add(emp);
+  			}
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		} finally {
+  			DBUtil.dbDisconnect(conn, st, rs);
+  		}
+  		return emplist;
+  		
+  	}
+  	
+    //3.?Š¹? •ë¶??„œ?˜ ì§ì›ëª¨ë‘ì¡°íšŒ
+  	public List<EmpDTO> selectBydept(int deptid) {
+  		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+  		String sql = "select * from employees where department_id =?";
+  		try {
+  			conn = ds.getConnection();
+  			pst = conn.prepareStatement(sql);
+  			pst.setInt(1, deptid);
+  			rs = pst.executeQuery();
+  			while(rs.next()) {
+  			   EmpDTO emp = makeEmp(rs);	
+  			   emplist.add(emp);
+  			}
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		} finally {
+  			DBUtil.dbDisconnect(conn, st, rs);
+  		}
+  		return emplist;
+  		
+  	}
+  	
+    //2.?Š¹? •ì§ì›?˜ ?ƒ?„¸ë³´ê¸°
+    public EmpDTO selectById(int empid) {
+    	EmpDTO emp = null;
+    	String sql = "select * from employees where employee_id = "+empid;
+    	try {
+    		conn = ds.getConnection();
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.next()) {
+				emp = makeEmp(rs);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			DBUtil.dbDisconnect(conn, pst, rs);
 		}
-		return bonus;
-	}
-	
-	// ï¿½ì” ï§ë¶¿?ï¿½ï¿½ ä»¥ë¬?ï¿½ï¿½ ï§£ëŒ„ï¿½?
-	public int selectByEmail(String email) {
-		String sql = "select * from employees where email = ?";
-		try {
-			conn = ds.getConnection();
+    	return emp;
+    }
+    
+ // ?´ë©”ì¼ ì¤‘ë³µ ì²´í¬
+    public int selectByEmail(String email) {
+    	String sql = "select 1 from employees where email = ?";
+    	try {
+    		conn = ds.getConnection();
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, email);
 			rs = pst.executeQuery();
-			if (rs.next()) {
-				return 1;
+			if(rs.next()) {
+				return  1;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}finally {
 			DBUtil.dbDisconnect(conn, pst, rs);
 		}
-		return 0;
-	}
-	
-	// ï§ã…»?ï¿½ï¿½ï¿½ï¿½ ï§â‘¤ï¿½? è­°ê³ ?ï¿½ï¿½
-	public List<HashMap<String, Object>> selectAllManager() {
-		List<HashMap<String, Object>> emplist = new ArrayList<>();
-		String sql = "SELECT EMPLOYEE_ID, FIRST_NAME ||' '|| LAST_NAME FULLNAME "
-				+ "FROM EMPLOYEES "
-				+ "WHERE EMPLOYEE_ID IN (SELECT DISTINCT MANAGER_ID "
-				+ "                     FROM EMPLOYEES "
-				+ "                    WHERE MANAGER_ID IS NOT NULL)";
+    	return 0;
+    }
+    
+    
+    
+	//1.ì§ì›ëª¨ë‘ì¡°íšŒ
+	public List<EmpDTO> selectAll() {
+		List<EmpDTO> emplist = new ArrayList<EmpDTO>();
+		String sql = "select * from employees order by employee_id";
 		try {
 			conn = ds.getConnection();
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				HashMap<String, Object> data = new HashMap<>();
-				data.put("employee_id", rs.getInt(1));
-				data.put("fullname", rs.getString(2));
-				emplist.add(data);
+			while(rs.next()) {
+			   EmpDTO emp = makeEmp(rs);	
+			   emplist.add(emp);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -400,57 +341,138 @@ public class EmpDAO {
 			DBUtil.dbDisconnect(conn, st, rs);
 		}
 		return emplist;
-	}
 		
-	// æ¿¡ì’“?ï¿½ï¿½ï¿½ì”¤
-	public EmpDTO loginChk(String email, String phone) {
-		EmpDTO emp = null;
-		String sql = "select employee_id, first_name, last_name, email, phone_number from employees where email = ?";
+	}
+	
+	// ëª¨ë“  job ì¡°íšŒ
+		public List<JobDTO> selectAllJob() {
+			List<JobDTO> joblist = new ArrayList<JobDTO>();
+			String sql = "select * from jobs";
+			try {
+				conn = ds.getConnection();
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+				while(rs.next()) {
+					JobDTO job = new JobDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+					joblist.add(job);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbDisconnect(conn, st, rs);
+			}
+			return joblist;
+			
+		}
+		
+		
+	
+		//ë§¤ë‹ˆ?? ëª¨ë‘ì¡°íšŒ
+		public List<HashMap<String, Object>> selectAllManager() {
+			List<HashMap<String, Object>> emplist = new ArrayList<>();
+			String sql = "select employee_id, first_name ||'  '|| last_name fullname"
+					+ " from employees"
+					+ " where employee_id in ("
+					+ "                            select distinct manager_id"
+					+ "                            from employees"
+					+ "                            where manager_id is not null )";
+			try {
+				conn = ds.getConnection();
+				st = conn.createStatement();
+				rs = st.executeQuery(sql);
+				while(rs.next()) {
+					HashMap<String, Object> data = new HashMap<>();	
+				   data.put("employee_id", rs.getInt(1));
+				   data.put("fullname", rs.getString(2));
+				   emplist.add(data);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbDisconnect(conn, st, rs);
+			}
+			return emplist;
+		}
+		
+	//?Š¹? •ì§ì› 1ëª? ì¡°íšŒ
+	private EmpDTO makeEmp(ResultSet rs) throws SQLException {
+		EmpDTO emp = new EmpDTO();
+		emp.setCommission_pct(rs.getDouble("commission_pct"));
+		emp.setDepartment_id(rs.getInt("department_id"));
+		emp.setEmail(rs.getString("email"));
+		emp.setEmployee_id(rs.getInt("employee_id"));
+		emp.setFirst_name(rs.getString("first_name"));
+		emp.setHire_date(rs.getDate("hire_date"));
+		emp.setJob_id(rs.getString("job_id"));
+		emp.setLast_name(rs.getString("last_name"));
+		emp.setManager_id(rs.getInt("manager_id"));
+		emp.setPhone_number(rs.getString("phone_number"));
+		emp.setSalary(rs.getInt("salary"));
+		return emp;
+	}
+
+	// 9.ì§ì›ë²ˆí˜¸ë¥? ?…? ¥ë°›ì•„?„œ ì§ì›? •ë³?(?´ë¦?, ì§ì±…, ê¸‰ì—¬)ë¥? return 
+	public Map<String, Object> empInfo(int empid) {
+		Map<String, Object> empMap = new HashMap<>();
+		String fname = null, job = null;
+		int salary = 0;
+		String sql = "{call sp_empInfo(?,?,?,?)}";
+		CallableStatement cstmt = null;
+		try {
+			conn = ds.getConnection();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setInt(1, empid);
+			cstmt.registerOutParameter(2, Types.VARCHAR);
+			cstmt.registerOutParameter(3, Types.VARCHAR);
+			cstmt.registerOutParameter(4, Types.INTEGER);
+			boolean result = cstmt.execute();
+			fname = cstmt.getString(2);
+			job = cstmt.getString(3);
+			salary = cstmt.getInt(4);
+			empMap.put("fname", fname);
+			empMap.put("job", job);
+			empMap.put("salary", salary);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, cstmt, rs);
+		}
+		return empMap;
+	}
+	// 10. ì§ì›ë²ˆí˜¸ê°? ?“¤?–´?˜¤ë©? ì§ì›ë³´ë„ˆ?Š¤ë¥? return?•˜?Š” ?•¨?ˆ˜ë¥? ?˜¸ì¶œí•œ?‹¤.
+	public double callFunction(int empid) {
+		double bonus = 0;
+		String sql = "select f_bonus(?) from dual";
 		try {
 			conn = ds.getConnection();
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, email);
-			rs = pst.executeQuery();
-			
-			if (rs.next()) {
-				if (rs.getString("phone_number").equals(phone)) {
-					emp = new EmpDTO();
-					emp.setEmployee_id(rs.getInt("employee_id"));
-					emp.setFirst_name(rs.getString("first_name"));
-					emp.setLast_name(rs.getString("last_name"));
-					emp.setEmail(email);
-					emp.setPhone_number(phone);
-				}else {
-					emp = new EmpDTO();
-					emp.setEmployee_id(-2); // ?ï¿½ï¿½ê¾¨ï¿½è¸°ëŠ?ï¿½ï¿½ ï¿½ì‚¤?ï¿½ï¿½ï¿½?
-				}
-			}else {
-				emp = new EmpDTO();
-				emp.setEmployee_id(-1); // è­°ëŒ?ï¿½ï¿½ï¿½ë¸¯ï§ï¿½ ï¿½ë¸¡ï¿½ë’— ï§ê³¸?ï¿½ï¿½
+			pst.setInt(1, empid);
+			rs = pst.executeQuery(); // ?‹¤?–‰ 
+			if(rs.next()) {
+				bonus = rs.getDouble(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return emp;
-	}		
-		
-	private EmpDTO makeEmp(ResultSet rs2) throws SQLException {
-		EmpDTO emp = new EmpDTO();
-
-		emp.setCommission_pct(rs2.getDouble("commission_pct"));
-		emp.setDepartment_id(rs2.getInt("Department_id"));
-		emp.setEmail(rs2.getString("email"));
-		emp.setEmployee_id(rs2.getInt("employee_id"));
-		emp.setFirst_name(rs2.getString("first_name"));
-		emp.setHire_date(rs2.getDate("hire_date"));
-		emp.setJob_id(rs2.getString("job_id"));
-		emp.setLast_name(rs2.getString("last_name"));
-		emp.setManager_id(rs2.getInt("manager_id"));
-		emp.setPhone_number(rs2.getString("phone_number"));
-		emp.setSalary(rs2.getInt("salary"));
-
-		return emp;
+		return bonus;
 	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

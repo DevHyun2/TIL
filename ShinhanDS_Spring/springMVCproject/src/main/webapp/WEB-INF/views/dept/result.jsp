@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="3;deptlist.do">
-<title>부서입력결과</title>
+<meta  http-equiv="refresh" content="3;deptList.do">
+<title>Insert title here</title>
 </head>
 <body>
-<h1>dept입력결과: ${message}</h1>
+<h1>dept입력결과:${message}</h1>
 </body>
 </html>

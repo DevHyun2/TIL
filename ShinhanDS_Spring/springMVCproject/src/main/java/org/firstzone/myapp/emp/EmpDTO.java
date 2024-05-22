@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-//DTO(Data Transfer Object) = VO(Value Object)
-//JavaBeans æ¹²ê³—?‹ ï¿½ë¿‰ï¿½ê½Œ ï¿½ì” ï¿½ìŠœ(Spring, JSP, Mybatisï¿½ë’— JavaBeans æ¹²ê³—?‹  ï¿½ì” ï¿½ìŠœ)
-
-@AllArgsConstructor
-@NoArgsConstructor // ï¿½ë¸˜ï¿½ë‹”
-@Getter@Setter // ï¿½ë¸˜ï¿½ë‹”
-@ToString
+//VO(Value Object)
+//DTO(Data Transfer Object)
+//JavaBeansê¸°ìˆ ?—?„œ ?´?š©(JSp,Spring,Mybatis?Š” javabeansê¸°ìˆ ?„ ?´?š©?•œ?‹¤. )
+@AllArgsConstructor // ?•„?ˆ˜
+@NoArgsConstructor // ?•„?ˆ˜
+@Getter@Setter@ToString
 public class EmpDTO {
 	private int employee_id;
 	private String first_name;
@@ -23,8 +22,13 @@ public class EmpDTO {
 	private String phone_number;
 	private Date hire_date;
 	private String job_id;
-	private int salary;
+	private Integer salary;
 	private double commission_pct;
-	private int manager_id;
-	private int department_id;
+	private Integer manager_id;
+	private Integer department_id;
 }
+
+
+
+
+

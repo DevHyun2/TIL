@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <c:set var="path" value="${pageContext.servletContext.contextPath }"/>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +24,7 @@
     		return;
     	}
     	$.ajax({
-    		url:"empIdCheck.do",
+    		url:"${path}/emp/empIdCheck.do",
     		data:{"empid":empid},
     		type:"get",
     		success:function(responseData){
@@ -57,7 +58,7 @@
 
 </head>
 <body>
-<c:set var="path" value="${pageContext.servletContext.contextPath }"/>
+
 <div class="container mt-3">
   <a href="${path}/emp/empAll.do">직원목록보기</a>
   <h2>신규직원등록</h2>
@@ -108,6 +109,7 @@
     <div class="mb-3 mt-3">
       <label for="manager_id">manager_id:</label>
       <select name="manager_id">
+      	<option value="0">No매니저</option>
         <c:forEach items="${mlist}" var="manager">
           <option value="${manager.employee_id }">${manager.fullname}</option>
         </c:forEach>
@@ -118,6 +120,7 @@
     <div class="mb-3 mt-3">
       <label for="department_id">department_id:</label>
       <select name="department_id">
+      	<option value="0">No부서</option>
         <c:forEach items="${deptlist}" var="dept">
           <option value="${dept.department_id}">${dept.department_name}</option>
         </c:forEach>

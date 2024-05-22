@@ -5,18 +5,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+
+import com.shinhan.myapp.util.DBUtil;
 
 @Repository("bDAO") //== @Component(Bean) + DAO ?뿭?븷
 public class BoardDAO {
 	
+	//타입이 같으면 자동 Injection
 	@Autowired
+	//같은 타입이 여러개 있으면 비교해서 같은 이름의 Bean을 Injection한다.
+	@Qualifier("dataSource")
 	DataSource ds;
 	
 	Connection conn;
@@ -41,7 +50,7 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//DBUtil.dbDisconnect(conn, st, rs);
+			DBUtil.dbDisconnect(conn, st, rs);
 		}
 		
 		return boardList;
@@ -76,7 +85,7 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//DBUtil.dbDisconnect(conn, pst, rs);
+			DBUtil.dbDisconnect(conn, pst, rs);
 		}
 		
 		return board;
@@ -99,7 +108,7 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//DBUtil.dbDisconnect(conn, pst, rs);
+			DBUtil.dbDisconnect(conn, pst, rs);
 		}
 		
 		return result;
@@ -122,7 +131,7 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//DBUtil.dbDisconnect(conn, pst, rs);
+			DBUtil.dbDisconnect(conn, pst, rs);
 		}
 		
 		return result;
@@ -141,9 +150,30 @@ public class BoardDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//DBUtil.dbDisconnect(conn, pst, rs);
+			DBUtil.dbDisconnect(conn, pst, rs);
 		}
 		
+		return result;
+	}
+	
+	public int deleteBoardArray(Integer[] checkBno) {
+		String sql = "delete from TBL_BOARD where bno in (%s)";
+		
+		String aa = Arrays.stream(checkBno).map(String::valueOf).collect(Collectors.joining(","));
+		
+		sql = String.format(sql, aa);
+		
+		try {
+			conn = ds.getConnection();
+			st = conn.createStatement();
+			result = st.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
 		return result;
 	}
 }

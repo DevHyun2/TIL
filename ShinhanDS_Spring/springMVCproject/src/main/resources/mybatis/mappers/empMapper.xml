@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinhan.emp">
+	<select id="selectAll"
+		resultType="org.firstzone.myapp.emp.EmpDTO">
+		select * from employees
+	</select>
+
+	<select id="loginChk" resultType="empvo" parameterType="string">
+		select *
+		from employees
+		where email = #{aa}
+	</select>
+
+	<delete id="empDelete" parameterType="int">
+		delete from employees
+		where employee_id=#{employee_id}
+	</delete>
+
+	<update id="empUpdate" parameterType="string">
+		update employees
+		set first_name=#{first_name},
+			last_name=#{last_name},
+			email=#{email},
+			phone_number=#{phone_number},
+			hire_date=#{hire_date},
+			job_id=#{job_id},
+			salary=#{salary},
+			<if test="department_id == 0">department_id=null,</if>
+		<if test="department_id != 0">department_id=#{department_id},</if>
+		<if test="manager_id == 0">manger_id=null,</if>
+		<if test="manager_id != 0">manger_id=#{manager_id},</if>
+			department_id=#{department_id}
+		where employee_id=#{employee_id} 
+	</update>
+
+	<insert id="empInsert" parameterType="empvo">
+		insert into employees ( employee_id,department_id,manager_id
+		,commission_pct,salary,job_id,hire_date,phone_number,email,last_name,first_name)
+		values( #{employee_id},
+		<if test="department_id == 0">null,</if>
+		<if test="department_id != 0">#{department_id},</if>
+		<if test="manager_id == 0">null,</if>
+		<if test="manager_id != 0">#{manager_id}</if>
+		,#{commission_pct},#{salary},#{job_id},#{hire_date},
+		#{phone_number},#{email},#{last_name},#{first_name})
+	</insert>
+
+	<select id="selectByCondition" parameterType="map"
+		resultType="empvo">
+		select *
+		from employees
+		where 1=1
+		<if test="deptid != 0 and deptid != null">
+			and department_id = #{deptSelect}		
+		</if>
+		<if test="jabid != 'all' and jobid != null">
+			and job_id = #{jobSelect}
+		</if>
+		<if test="hdate != null">
+			and hire_date >= #{startDate}
+		</if>
+		<if test="salary != null">
+			and salary >= #{salary}
+		</if>
+		order by 1
+	</select>
+
+	<select id="selectByJob" parameterType="string"
+		resultType="empvo">
+		select *
+		from employees
+		where job_id like #{jobid}
+	</select>
+
+	<select id="selectBydept" parameterType="int" resultType="empvo">
+		select *
+		from employees
+		where department_id =#{deptid}
+	</select>
+	
+	<select id="selectBydept2" parameterType="list" resultType="empvo">
+		select *
+		from employees
+		where department_id in
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		order by 1 asc
+	</select>
+	
+	<select id="selectById" parameterType="int" resultType="empvo">
+	select * from employees where employee_id = #{empid}
+	</select>
+	
+	<select id="selectByEmail" parameterType="int" resultType="empvo">
+	select 1 from employees where email = #{email}
+	</select>
+
+
+	
+	<select id="selectAllJob" resultType="org.firstzone.myapp.emp.JobDTO">
+	select * from jobs
+	</select>	
+	
+	<select id="selectAllManager" resultType="map">
+	select employee_id as "employee_id", first_name ||'  '|| last_name as "fullname"
+	from employees
+	where employee_id in (select distinct manager_id
+						   from employees
+					       where manager_id is not null )
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+

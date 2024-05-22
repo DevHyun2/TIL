@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinhan.dept">
+	<select id="selectAll" resultType="deptvo">
+		select * from departments
+	</select>
+	<select id="selectById" parameterType="int" resultType="deptvo">
+	select * 
+	from departments 
+	where department_id = #{department_id}
+	</select>
+
+	<select id="selectByName" parameterType="string"
+		resultType="deptvo">
+		select *
+		from departments
+		where department_name like #{department_name}
+	</select> 
+	
+	<insert id="deptInsert" parameterType="deptvo">
+	insert into departments(department_id, department_name, location_id, manager_id)
+     values(#{department_id},#{department_name},#{location_id},#{manager_id})
+	</insert>
+	
+	<update id="deptUpdate" parameterType="deptvo">
+	update departments
+	set department_name=#{department_name},
+		manager_id=#{manager_id},
+		location_id=#{location_id}
+	where department_id=#{department_id}
+	</update>
+	
+	<delete id="deptDelete" parameterType="int">
+	delete from departments
+	where department_id=#{department_id}
+	</delete>
+</mapper>
+

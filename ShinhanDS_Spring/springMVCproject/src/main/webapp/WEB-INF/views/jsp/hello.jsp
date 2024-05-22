@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +7,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-하이염
-<h1>이름 ${myname }</h1>
-<h1>점수 ${myscore }</h1>
-<h2>get방식 요청(요청주소 Param이용:동일한 값, 필드존재, 값이 존재X)</h2>
+Hello!!!
+<h1>이름은 ${myname}</h1>
+<h1>점수는 ${myscore}</h1>
+
+<h2>Get방식요청(요청주소에 param이용:값 동일, field존재, 존재하지않음)</h2>
 <form action="${pageContext.servletContext.contextPath}/sample/hello6.do">
-	email : <input type="text" name="email" value="qwe@qwe.qwe"><br>
+	email : <input type="email" name="email" value="9911dbfl@naver.com"><br>
 	password : <input type="password" name="pwd" value="1234"><br>
-	phone : <input type="text" name="phone" value="010-1234-1234"><br>
+	phone : <input type="text" name="phone" value="010-1234-5678"><br>
 	<input type="submit" value="서버전송(get)">
 </form>
-<hr>
-<h2>post방식</h2>
-<form action="${pageContext.servletContext.contextPath}/sample/hello6.do" method="post">
-	email : <input type="text" name="email" value="qwe@qwe.qwe"><br>
-	password : <input type="password" name="pwd" value="1234"><br>
-	phone : <input type="text" name="phone" value="010-1234-1234"><br>
+
+<h2>Post방식요청 </h2>
+<form
+method="post"
+action="${pageContext.servletContext.contextPath}/sample/hello6.do">
+	email : <input type="email" name="email" value="9911dbfl@naver.com"><br>
+	password : <input type="password" name="pwd" value="1234"><br> 
+	phone : <input type="text" name="phone" value="010-1234-5678"><br> 
 	<input type="submit" value="서버전송(post)">
+	
 </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

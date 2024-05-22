@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>hello6.jsp</h1>
-<p>${lunch }</p>
-<!-- controller 데이터 읽기 -->
-<p>${param.email }</p>
-<p>${param.pwd }</p>
-<p>${param.phone }</p>
+<h1>hello6.jsp입니다.</h1>
+<p>${lunch}</p>
+<p>${param.email}</p>
+<p>${param.pwd}</p>
+<p>${param.phone}</p>
 </body>
 </html>

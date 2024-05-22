@@ -17,8 +17,8 @@ public class DeptService {
 	}
 	
 	// 2.�듅�젙 遺��꽌 議고쉶
-	public DeptDTO selectByID(int deptid) {
-		return deptDAO.selectByID(deptid);
+	public DeptDTO selectById(int deptid) {
+		return deptDAO.selectById(deptid);
 	}
 	
 	// 3.遺��꽌 �엯�젰
