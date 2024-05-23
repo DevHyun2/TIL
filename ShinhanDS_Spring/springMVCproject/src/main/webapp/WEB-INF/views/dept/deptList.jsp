@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -14,8 +15,13 @@
 <!-- include 지시자는 합쳐서 컴파일한다. -->
 <%@ include file="../common/header.jsp" %>
 <a href="${path}/dept/deptInsert.do">신규 부서 등록</a>
+<button id="btnRetreieve">조회(ajax)</button>
+<input type="number" id="deptid" value="60">
+<button id="btnDetail">상세보기(ajax)</button>
+
 <h1>부서목록</h1>
 <p>${deptResult}</p>
+<div id="here">
 <table border="1">
 	<thead>
 		<tr>
@@ -40,6 +46,7 @@
 		</c:forEach>
 	</tbody>
 </table>
+</div>
 
 <script>
 	setTimeout(() => {
@@ -50,6 +57,42 @@
 	}, 1000);
 
 	/*  */
+</script>
+<script>
+$(function(){
+	$("#btnRetrieve").on("click", f_retrieve);
+	$("#btnDetail").on("click", f_detail);
+});
+function f_retrieve(){
+	$.ajax({
+		url:"${path}/dept/api/deptAll",
+		type:"get",
+		success:function(responseData){
+			var output = "<ul>";
+			$.each(responseData, function(index, item){
+				output += "<li>" + item.department_name + "</li>";
+				$("#here").html(output);
+			});
+			output += "</ul>";
+		},
+		error:function(){}
+	});
+}
+function f_detail(){
+	$.ajax({
+		url:"${path}/dept/api/detail/$("#deptid").val()",
+		type:"get",
+		success:function(responseData){
+			var output = "<ul>";
+			$.each(responseData, function(index, item){
+				output += "<li>" + item.department_name + "</li>";
+				$("#here").html(output);
+			});
+			output += "</ul>";
+		},
+		error:function(){}
+	});
+}
 </script>
 </body>
 </html>
