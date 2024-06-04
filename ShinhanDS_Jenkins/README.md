@@ -205,11 +205,169 @@ podman run -d --name httpd-test-1 -p 18082:8080 -v /$USER/htdocs:/var/www/html
 
 curl localhost:18081~18082
 ```
-
-
 https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods
 
 # DAY 2
+
+## 오늘까지 포드만 기초 계속!! :)
+
+1. [구글미팅](https://meet.google.com/bnt-hqxu-obq)
+2. [미로](https://miro.com/welcomeonboard/MWVBWElYczFtMEZsRmdleFlJdHA3MGNVNW1sRDcwS054RGJoUFlRTVUzZjlaRms1a0xNSTVaaU9uaEo5SlpjQ3wzNDU4NzY0NTg1NjQ5MDkwMzU0fDI=?share_link_id=704362905436)
+
+
+### 호스트 설정
+
+```bash
+hostnamectl
+> localhost
+hostnamectl set-hostname deploy-app.example.com
+hostnamectl
+> Static hostname: deploy-app.example.com
+hostname
+> deploy-app.example.com
+dnf search hyperv
+> hyperv-daemons.x86_64 : Hyper-V daemons suite
+> hyperv-daemons-license.noarch : License of the Hyper-V daemons suite
+> hyperv-tools.noarch : Tools for Hyper-V guests
+> hypervfcopyd.x86_64 : Hyper-V FCOPY daemon
+> hypervkvpd.x86_64 : Hyper-V key value pair (KVP) daemon
+> hypervvssd.x86_64 : Hyper-V VSS daemon
+dnf install hyperv-* -y && reboot
+```
+
+### 연습문제 풀이(tomcat)
+
+```bash
+podman pull quay.io/openshift-examples/tomcat-example:tomcat
+podman run -d --name tomcat-test-1 --rm openshift-examples/tomcat-example:tomcat
+podman container ls
+podman run -d --name tomcat-test-2 --rm -p 18080:8080 openshift-examples/tomcat-example:tomcat
+podman run -d --name httpd-test-3 --rm -p 18081:8080 -v /root/htdocs/:/var/www/html/ fedora/httpd-24
+podman container ls
+```
+```bash
+podman create -d --name httpd-test-4 -p 18082:8080 -v /root/htdocs/:/var/www/html/ fedora/httpd-24
+podman create  --name httpd-test-5 -p 18085:8080 -v /root/htdocs/:/var/www/html/ fedora/httpd-24
+podman start httpd-test-5
+podman start httpd-test-4
+```
+
+### volume + scp
+
+
+```bash
+WINDOW@ scp .\index.html root@172.23.134.126:/root/
+LINUX@ tar cf index.html.tar index.html
+LINUX@ podman volume import httpd index.html.tar
+```
+```bash
+nano Dockerfile
+
+ARG IMAGE_VERSION=39
+FROM quay.io/fedora/fedora:${IMAGE_VERSION}
+LABEL version="1.0"
+EXPOSE 80
+ENV SOURCE_DIR=/usr/local/src/kernel
+RUN dnf install httpd -y
+WORKDIR /var/www/html
+VOLUME /var/www/html
+COPY htdocs/index.html .
+USER APACHE
+CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
+```
+```bash
+podman build .
+podman images
+> <none>                                     <none>      fad120655602  24 seconds ago  512 MB
+```
+
+1. ubutun, 
+2. ~~centos~~, rockylinux, quay.io/rockylinux/rockylinux:9
+
+로키 리눅스로 이미지 빌드 후, 컨테이너 80포트로 접근 후 여러분이 만드신 index.html확인 후 밥먹으로 가기! :)
+
+```bash
+mkdir rockylinux-httpd
+cd rockylinux-httpd
+nano Dockerfile
+
+FROM {{ ROCKYLINUX_IMAGE }}
+LABEL devel: poc
+EXPOSE 80
+RUN dnf install httpd httpd-core -y && dnf clean all
+VOLUME /var/www/html
+COPY /root/htdocs-rockylinux/index.html /var/www/html
+CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
+```
+
+### 레지스트리
+
+```bash
+podman run -d --name docker-registry -p5000:5000 docker.io/opensuse/registry
+podman container start docker-registry
+
+
+podman build . 
+
+nano /etc/containers/regsitries.conf
+> unqualified-search-registries = ["quay.io","localhost:5000"]
+> short-name-mode = "enforcing"
+
+podman tag 98fa8fd00c62 localhost:5000/tang/httpd:v1
+podman push --tls-verify=false localhost:5000/tang/httpd:v1
+
+skopeo list-tags --tls-verify=false docker://localhost:5000/tang/httpd
+
+```
+
+### 패키징
+
+[동물병원](https://github.com/spring-projects/spring-petclinic)
+
+위의 코드를 가지고 CI/CD이전 단계인 패키징을 다루도록 한다. 개발중인 코드는 분석이 끝나면 활용.(아니면말구!)
+
+```bash
+cd ~
+dnf install maven-openjdk17.noarch -y
+dnf install git -y 
+
+git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+```
+
+### 오늘의 랩
+
+1. 위의 petclinic를 컨테이너 이미지로 패키징 한다. 외부에서 접근이 되지 않아도 상관은 없다. 
+2. 이미지 빌드 시, 반드시 git으로 clone과정이 포함이 되어야 한다.
+3. clone된 소스코드는 컨테이너 이미지 빌드 과정에서 같이 컴파일이 되어야 한다.(maven, glade 무관)
+4. 컴파일 된 petclinic은 아래와 같은 명령어로 실행이 된다.
+
+
+```bash
+mkdir rockylinux-petclinic
+cd rockylinux-petclinic
+nano Containerfile
+
+FROM quay.io/rockylinux/rockylinux:9
+EXPOSE 80
+RUN dnf install maven-openjdk17.noarch -y
+RUN dnf install git -y 
+
+RUN git clone 
+
+WORKDIR spring-petclinic
+RUN sh mvnw package
+
+CMD ["java","-jar","target/*.jar"]
+```
+
+
+```bash
+CMD ["java","-jar","target/*.jar"]
+```
+
 
 # DAY 3
 
