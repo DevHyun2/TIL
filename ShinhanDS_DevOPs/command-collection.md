@@ -149,7 +149,7 @@ kubectl top nodes
 kubectl get nodes
 ```
 - 노드 1번에 쿠버네티스/CRIO/모듈/커널 파라메타/방화벽/kubelet 등 서비스 설정
-- 마스터에서 token create로 조인 명령어 생성 후, 노드1에서 실행
+- 마스터에서 token create로 조인 명령어 생성 후, 노드1에서 실행.
 
 #### 확인하기(마스터)
 ```bash
