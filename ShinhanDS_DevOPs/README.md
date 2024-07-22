@@ -68,10 +68,10 @@ ls -l htdocs/
 cat htdocs/index.html
 > hello apache from container
 
-setenforce 0  						## 보안 비활성화
+setenforce 0              ## 보안 비활성화
 getenforce
 > Permissive
-systemctl stop firewalld			## 보안 비활성화
+systemctl stop firewalld      ## 보안 비활성화
 systemctl is-active firewalld
 > inactive
 
@@ -392,9 +392,6 @@ pomand load -i
 ### 다중 컨테이너(POD)
 
 
-
-
-
 ### 포드만 연습문제
 
 앞서 사용한 "petclinic"소스코드 기반으로 다음과 같은 작업을 수행한다. 이미지 빌드 시, 사용하는 명령어 및 설정 부분은 이전에 사용한 Containerfile기반으로 수행한다.
@@ -404,6 +401,8 @@ pomand load -i
 3. 빌드된 이미지는 레지스트리 서버에 업로드 한다. 애플리케이션 이름은 petclinic, 버전은 v2로 한다.
 4. 빌드한 이미지 기반으로 서비스를 실행한다. 
 5. 서비스에 접근 가능한 포트는 28080으로 접근이 가능해야 한다. 
+
+# DAY 4
 
 ## CI/CD
 
@@ -416,14 +415,90 @@ pomand load -i
 포드만 PDF SNK 세션 참조.
 
 
-# DAY 4
-
 # DAY 5
+
+### 시스템 장애처리
+
+만약, 리부팅 이후에 쿠버네티스 올바르게 동작되지 않으면..
+
+```bash
+swapon -s         ## 확인
+> Filename                                Type            Size            Used            Priority
+> /dev/dm-1                               partition       4141052         0               -2
+swapoff -a
+nano /etc/fstab       ## 주석처리
+> #/dev/mapper/rl-swap     none                    swap    defaults        0 0
+systemctl daemon-reload
+systemctl restart kubelet
+getenforce
+> enforcing
+setenforce 0
+nano /etc/selinux/config
+> SELINUX=permissive 
+```
+
+### 런타임 설정(--tls-verify=false)
+
+CRIO런타임 이미지 다운로드 설정. 아래 내용 추가. 
+
+```bash
+nano /etc/crio/crio.conf.d/10-crio.conf
+> [crio.image]
+> ...
+> insecure_registries = [ "192.168.10.250:5000" ]
+> registries = [ "192.168.10.250:5000" ]    
+> ...
+systemctl restart crio
+```
+
+### 테크톤 설치
+
+[테크톤 허브 사이트](https://hub.tekton.dev/?query=kube)
+
+
+```bash
+kubectl apply -f https://storage.googleapis.com/tekton-releases/operator/previous/v0.70.2/release.yaml
+wget https://github.com/tektoncd/cli/releases/download/v0.32.0/tkn_0.32.0_Linux_x86_64.tar.gz 
+
+mkdir ~/bin/
+tar xf tkn_0.32.0_Linux_x86_64.tar.gz  -C ~/bin/
+
+kubectl apply -f https://api.hub.tekton.dev/v1/resource/tekton/task/buildah/0.7/raw
+kubectl apply -f https://api.hub.tekton.dev/v1/resource/tekton/task/kubernetes-actions/0.2/raw
+
+tkn task list
+```
+
+```yaml
+nano hello.yaml
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata: 
+  name: hello
+spec:
+  steps:
+    - image: quay.io/centos/centos
+      command: 
+        - /bin/bash
+        - -c
+        - echo "Hello World"
+```
+
+```bash
+kubectl create -f hello.yaml
+kubectl get tasks
+tkn task list       
+tkn task start hello --showlog
+> TaskRun started: hello-run-782d4
+> Waiting for logs to be available...
+> [unnamed-0] Hello World
+```
 
 # DAY 6
 
+
+
+
 # DAY 7
 
-# DAY 8
-
-히히 오후 강의만! :)
+# DAY 8(히히 오후 강의만! :))
