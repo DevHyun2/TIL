@@ -6,10 +6,10 @@ import com.shinhan.firstzone.vo2.GuestBookDTO;
 import com.shinhan.firstzone.vo2.GuestBookEntity;
 
 public interface GuestBookService {
-	
+
 	//CRUD
 	//1.Create
-	void create(GuestBookDTO dto);
+	public abstract void create(GuestBookDTO dto);
 	//2.Read
 	List<GuestBookDTO> readAll();
 	GuestBookDTO readById(Long gno);
@@ -18,7 +18,7 @@ public interface GuestBookService {
 	//4.Delete
 	void delete(Long gno);
 	
-	//Entity -> DTO
+	//Entity ->DTO
 	default GuestBookDTO entityToDTO(GuestBookEntity entity){
 		GuestBookDTO dto = GuestBookDTO.builder()
 				.gno(entity.getGno())
@@ -30,7 +30,7 @@ public interface GuestBookService {
 				.build();
 		return dto;
 	}
-	//DTO -> Entity
+	//DTO ->Entity
 	default GuestBookEntity dtoToEntity(GuestBookDTO dto){
 		GuestBookEntity entity = GuestBookEntity.builder()
 				.title(dto.getTitle())
@@ -39,4 +39,16 @@ public interface GuestBookService {
 				.build();
 		return entity;
 	}
+	
+	public List<GuestBookDTO> getSearch(String type, String keyword);
+	
+	
 }
+
+
+
+
+
+
+
+
