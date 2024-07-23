@@ -157,7 +157,7 @@ public class BoardCRUDTest {
 		blist.forEach(board -> log.info(board));
 	}
 	
-	@Test
+	//@Test
 	void f9() {
 		//bRepo.jpqlTest1("요일", "홀수").forEach(b->log.info(b));
 		//bRepo.jpqlTest2("요일", "홀수").forEach(b->log.info(b));
