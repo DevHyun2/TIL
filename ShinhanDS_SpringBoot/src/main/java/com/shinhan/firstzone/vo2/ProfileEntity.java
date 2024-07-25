@@ -11,12 +11,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "t_profile")
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "t_profile")
 public class ProfileEntity {
 
 	@Id
@@ -24,10 +24,6 @@ public class ProfileEntity {
 	Long fno;
 	String fname;
 	boolean currentYn;
-	
-	//여러개의 prifile은 하나의 Member소유이다. 
-	@ManyToOne //하나의 member는 여러개의 Profile를 갖는다. 
-	//칼럼이름은 filed이름_키field
-	//member_mid칼럼이 생성된다. 
+	@ManyToOne // 하나의 멤버가 여러 개의 프로필을 가진다
 	MemberEntity member;
 }

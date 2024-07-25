@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:replace="~{/layout/basicLayout :: setContent(~{this::content2} )}">
+<th:block th:fragment="content2">
+<h1>게시글</h1>
+	<form th:action="@{/webboard/modify}" th:method="post">
+		<div class="form-group">
+			<label>제목</label>
+			<input type="text" class="form-control" name="bno" th:value="${board.bno}" readonly/>
+		</div>
+		<div class="form-group">
+			<label>제목</label>
+			<input type="text" class="form-control" name="title" placeholder="title입력" th:value="${board.title}"/>
+		</div>
+		<div class="form-group">
+			<label>내용</label>
+			<textarea name="content" class="form-control" rows="5" cols="20">[[${board.content}]]</textarea>
+		</div>
+		<div class="form-group">
+			<label>작성자ID</label>
+			<input type="text" name="mid" class="form-control" th:value="${board.mid}" readonly/>
+		</div>
+		<div class="form-group">
+			<label>작성자이름</label>
+			<input type="text" name="mname" class="form-control" th:value="${board.mname}" readonly/>
+		</div>
+		<div class="form-group">
+			<label>작성일</label>
+			<input type="text" class="form-control" th:value="${board.regdate}" readonly/>
+		</div>
+		<div class="form-group">
+			<label>수정일</label>
+			<input type="text" class="form-control" th:value="${board.updatedate}" readonly/>
+		</div>
+		<button type="button" class="btn btn-primary">수정</button>
+	</form>
+	<button type="button" class="btn btn-primary btnDelete">삭제</button>
+	<script th:inline="javascript">
+		$(".btnDelete").click(f_delete);
+		function f_delete(){
+			var formObj = $("form");
+			formObj.attr("action", "delete");
+			formObj.attr("method", "post");
+			formObj.submit();
+		}
+	</script>
+</th:block>
+</th:block>
+</body>
+</html>

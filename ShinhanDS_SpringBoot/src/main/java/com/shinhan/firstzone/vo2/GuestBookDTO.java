@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // allargs 필요
+@Builder
 public class GuestBookDTO {
+	
 	Long gno;
 	String title;
 	String content;
 	String writer;
-	LocalDateTime regDate, modDate;
 	
+	LocalDateTime regDate;
+	LocalDateTime modDate;
 }

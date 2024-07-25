@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 //하나의 Board에 첨부 file이 여러 개 있다.
 @Data
@@ -23,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "t_pdsboard")
+@ToString(exclude = {"files"})
 public class PDSBoardEntity {
 
 	@Id

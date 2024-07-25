@@ -5,11 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>아무도 이름을 정해주지 않아</h1>
-<!-- <h2 th:text="${menu}">ㅁㅁ</h2> -->
-<h2 th:text="${'<h1>' + menu + '</h1>'}">메뉴이름</h2>
-<h2 th:utext="${'<h1>' + menu + '</h1>'}">메뉴이름</h2> <!-- html적용가능 -->
-<h2 th:text="${member.mname}">bb</h2>
-<h3>inline방식 : [[${member.mid}]]</h3>
+<th:block th:replace="~{/layout/layout1 :: setContent(~{this::content2} )}">
+
+    <th:block th:fragment="content2">
+
+        <h1>exTemplate Page</h1>
+
+    </th:block>
+
+</th:block>
+<th:block th:fragment="content2">
+	<h1>아무도 이름을 정해주지 않아요</h1>
+	
+	<!-- HTML 태그가 문자로 출력 -->
+	<h2 th:text="${'<h1>' + menu + '</h1>'}">메뉴이름-text</h2>
+	<!-- HTML 태그가 동작 -->
+	<h2 th:utext="${'<h1>' + menu + '</h1>'}">메뉴이름-utext</h2>
+	<h3 th:text="${member.mname}">dd</h3>
+	<h3>inline방식 : [[${member.mid}]]</h3>
+</th:block>
 </body>
 </html>

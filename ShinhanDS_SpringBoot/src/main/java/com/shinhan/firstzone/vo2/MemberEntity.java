@@ -10,19 +10,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "t_member")
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "t_member")
 public class MemberEntity {
 
 	@Id //Primary Key
 	String mid;
 	String mpassword;
 	String mname;
-	@Enumerated(EnumType.STRING) //기본은 순서orinal이 입력됨 
-	MemberRole mrole;  
-	
+	@Enumerated(EnumType.STRING) // 기본은 순서 orinal이 입력
+	MemberRole mrole;
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:replace="~{/layout/basicLayout :: setContent(~{this::content2} )}">
+	<th:block th:fragment="content2">
+		<!-- Data display -->
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">bno</th>
+					<th scope="col">title</th>
+					<th scope="col">content</th>
+					<th scope="col">mid</th>
+					<th scope="col">mname</th>
+					<th scope="col">regdate</th>
+					<th scope="col">moddate</th>
+					<th scope="col">replyCount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dto:${blist}">
+					<th scope="row">
+						<a th:href="@{/webboard/detail(bno=${dto.bno})}">[[${dto.bno}]]</a>
+					</th>
+					<td>[[${dto.title}]]</td>
+					<td>[[${dto.content}]]</td>
+					<td>[[${dto.mid}]]</td>
+					<td>[[${dto.mname}]]</td>
+					<td>[[${#dates.format(dto.regdate,'yyyy/MM/dd')}]]</td>
+					<td>[[${#dates.format(dto.updatedate,'yyyy/MM/dd')}]]</td>
+					<td>[[${dto.replyCount}]]</td>
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+</th:block>
+</body>
+</html>

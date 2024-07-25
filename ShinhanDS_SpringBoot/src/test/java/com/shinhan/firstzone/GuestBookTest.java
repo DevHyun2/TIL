@@ -1,7 +1,5 @@
 package com.shinhan.firstzone;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -12,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.shinhan.firstzone.repository.GuestBookRepository;
+import com.shinhan.firstzone.service.GuestBookService;
 import com.shinhan.firstzone.vo2.GuestBookDTO;
 import com.shinhan.firstzone.vo2.GuestBookEntity;
 import com.shinhan.firstzone.vo2.QGuestBookEntity;
@@ -30,7 +29,7 @@ public class GuestBookTest {
 	
 	@Test
 	void f5() {
-		String type = "tw"; //t->title, c->content, w->writer
+		String type = "t"; //t->title, c->content, w->writer
 		String keyword = "요일";
 		
 		BooleanBuilder builder = new BooleanBuilder();
@@ -55,9 +54,9 @@ public class GuestBookTest {
 		builder.and(builder2);
 		
 		System.out.println(builder);
-//		gRepo.findAll(builder).forEach(book->{
-//			log.info(book);
-//		});
+		gRepo.findAll(builder).forEach(book->{
+			log.info(book);
+		});
 	}
 	
 	//Dynamic SQL Test
@@ -73,9 +72,9 @@ public class GuestBookTest {
 		builder.and(book.gno.gt(0L));
 		// where title like '%요일%' and writer = '작성자' and gno > 0
 		System.out.println(builder);
-//		gRepo.findAll(builder).forEach(entity->{
-//			log.info(entity);
-//		});
+		gRepo.findAll(builder).forEach(entity->{
+			log.info(entity);
+		});
 	}
 	
 	//@Test

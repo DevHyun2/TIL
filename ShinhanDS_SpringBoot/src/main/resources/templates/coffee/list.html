@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>board 목록 출력</title>
+<title>Board 목록</title>
 </head>
 <body>
-	<h1>FreeBoard List</h1>
-	<h2>세션읽기 : [[${session.loginUser.mname}]]</h2>
-	<h2>파라미터읽기 : [[${param.keyword}]]</h2>
-	<a th:href="@{/coffee/pgae1}">절대경로</a>
-	<a th:href="@{http://localhost:9999/coffee/page1}">절대경로</a>
-	<a th:href="@{/pgae1}">상대경로</a>
-	<a th:href="@{page1(myname=jin)}">파라미터전달</a>
-	<table border="1" th:with="myuser='user3'">
-		<tr>
-			<th>순서</th>
-			<th>bno</th>			
-			<th>title</th>
-			<th>content</th>
-			<th>writer</th>
-			<th>작성일</th>
-			<th>수정일</th>
-		</tr>
-		<tr th:each="board, bStatus:${blist}">
-			<td>[[${bStatus.count}]]<
-			<td th:text="${board.bno}"></td>
-			<td>[[${board.title}]]</td>
-			<td>[[${board.content}]]</td>
-			<td>[[${board.writer}]]</td>
-			<td>[[${#dates.format(board.regdate, 'yyyy-MM-dd')}]]</td>
-			<td>[[${board.updatedate}]]</td>
-		</tr>
-	</table>
-	<script th:inline="javascript">
-		var boardList = /* [[${blist}]] */[]; /* 문자면 "", json으로 안만들려면 enetity에 @jasonIgnore 작성 */
-		console.log(boardList);
-	</script>
+<th:block th:replace="~{/layout/basicLayout :: setContent(~{this::content2} )}">
+<th:block th:fragment="content2">
+<h1>FreeBoard List</h1>
+<h2>세션읽기 : [[${session.loginUser.mname}]]</h2>
+<h2>파라메터 읽기 : [[${param.keyword}]]</h2>
+<a th:href="@{/coffee/page1}">절대경로</a>
+<a th:href="@{http://localhost:9999/coffee/page1}">절대경로</a>
+<a th:href="@{page1}">상대경로</a>
+<a th:href="@{~/coffee/page1}">다른app</a>
+<a th:href="@{page1(myname=jin)}">파라메터 전달</a>
+<table border="1" th:with="myuser='user2'">
+	<tr>
+		<th>순서</th>
+		<th>bno</th>
+		<th>title</th>
+		<th>content</th>
+		<th>writer</th>
+		<th>writer2</th>
+		<th>작성일</th>
+		<th>수정일</th>
+	</tr>
+	<tr th:each="board, bStatus:${blist}">
+		<td>[[${bStatus.count}]]</td>
+		<td>
+			<a th:href="@{detail(bno=${board.bno})}">[[${board.bno}]]</a>
+		</td>
+		<td>[[${board.title}]]</td>
+		<td>[[${board.content}]]</td>
+		<td>[[${board.writer}]]</td>
+		<td th:text="${board.writer==myuser?'2번':'기타'}"></td>
+		<td>[[${#dates.format(board.regdate, 'yyyy-MM-dd')}]]</td>
+		<td>[[${#dates.format(board.updatedate, 'yyyy-MM-dd')}]]</td>
+	</tr>
+</table>
+<script th:inline="javascript">
+	var boardList = /*[[${blist}]]*/[];
+	console.log(boardList);
+</script>
 </body>
+</th:block>
+</th:block>
 </html>
