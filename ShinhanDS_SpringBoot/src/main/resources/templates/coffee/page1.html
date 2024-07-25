@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>아무도 이름을 정해주지 않아</h1>
+<!-- <h2 th:text="${menu}">ㅁㅁ</h2> -->
+<h2 th:text="${'<h1>' + menu + '</h1>'}">메뉴이름</h2>
+<h2 th:utext="${'<h1>' + menu + '</h1>'}">메뉴이름</h2> <!-- html적용가능 -->
+<h2 th:text="${member.mname}">bb</h2>
+<h3>inline방식 : [[${member.mid}]]</h3>
+</body>
+</html>

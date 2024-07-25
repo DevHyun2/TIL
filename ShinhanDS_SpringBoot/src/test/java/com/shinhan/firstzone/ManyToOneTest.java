@@ -29,8 +29,8 @@ public class ManyToOneTest {
 	@Test
 	void getProfile() {
 		pRepo.getProfile("user5").forEach(arr->{
-			log.info(Arrays.toString(arr));
-			log.info("이름:"+arr[0] + ",파일이름:" + arr[1]);
+			//log.info(Arrays.toString(arr));
+			//log.info("이름:"+arr[0] + ",파일이름:" + arr[1]);
 		});
 	}
 	

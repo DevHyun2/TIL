@@ -55,9 +55,9 @@ public class GuestBookTest {
 		builder.and(builder2);
 		
 		System.out.println(builder);
-		gRepo.findAll(builder).forEach(book->{
-			log.info(book);
-		});
+//		gRepo.findAll(builder).forEach(book->{
+//			log.info(book);
+//		});
 	}
 	
 	//Dynamic SQL Test
@@ -73,9 +73,9 @@ public class GuestBookTest {
 		builder.and(book.gno.gt(0L));
 		// where title like '%요일%' and writer = '작성자' and gno > 0
 		System.out.println(builder);
-		gRepo.findAll(builder).forEach(entity->{
-			log.info(entity);
-		});
+//		gRepo.findAll(builder).forEach(entity->{
+//			log.info(entity);
+//		});
 	}
 	
 	//@Test

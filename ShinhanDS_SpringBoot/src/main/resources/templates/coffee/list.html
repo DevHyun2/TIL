@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>board 목록 출력</title>
+</head>
+<body>
+	<h1>FreeBoard List</h1>
+	<h2>세션읽기 : [[${session.loginUser.mname}]]</h2>
+	<h2>파라미터읽기 : [[${param.keyword}]]</h2>
+	<a th:href="@{/coffee/pgae1}">절대경로</a>
+	<a th:href="@{http://localhost:9999/coffee/page1}">절대경로</a>
+	<a th:href="@{/pgae1}">상대경로</a>
+	<a th:href="@{page1(myname=jin)}">파라미터전달</a>
+	<table border="1" th:with="myuser='user3'">
+		<tr>
+			<th>순서</th>
+			<th>bno</th>			
+			<th>title</th>
+			<th>content</th>
+			<th>writer</th>
+			<th>작성일</th>
+			<th>수정일</th>
+		</tr>
+		<tr th:each="board, bStatus:${blist}">
+			<td>[[${bStatus.count}]]<
+			<td th:text="${board.bno}"></td>
+			<td>[[${board.title}]]</td>
+			<td>[[${board.content}]]</td>
+			<td>[[${board.writer}]]</td>
+			<td>[[${#dates.format(board.regdate, 'yyyy-MM-dd')}]]</td>
+			<td>[[${board.updatedate}]]</td>
+		</tr>
+	</table>
+	<script th:inline="javascript">
+		var boardList = /* [[${blist}]] */[]; /* 문자면 "", json으로 안만들려면 enetity에 @jasonIgnore 작성 */
+		console.log(boardList);
+	</script>
+</body>
+</html>
