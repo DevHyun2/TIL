@@ -71,12 +71,12 @@
 							<div class="form-group">
 								<input class="form-control" type="text" name="replyText"
 									placeholder="댓글" /> <input class="form-control" type="text"
-									name="replyer" placeholder="작성자" /> <input type="hidden"
+									name="replyer" placeholder="작성자" /> <input type="text"
 									name="rno">
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-warning repltModify">수정</button>
+							<button type="button" class="btn btn-warning replyModify">수정</button>
 							<button type="button" class="btn btn-primary replySave">입력</button>
 							<button type="button" class="btn btn-danger replyRemove">삭제</button>
 							<button type="button"
@@ -93,6 +93,81 @@
 				$(".addReply").click(f_showModal);
 				$("[data-dismiss]").click(f_closeModal);
 				$(".replySave").click(f_insertReply);
+				$(".replyCount").click(f_selectReply);
+				$(".replyList").on("click", ".card-body", f_replyModify);
+				$(".replyRemove").on("click", f_replyModifyDB);
+				$(".replyRemove").on("click", f_replyDelete);
+				
+				function f_replyDelete(){
+					var rno = $('input[name="rno"]').val();
+					$.ajax({
+						url:"/replies/delete" + rno,
+						method:"delete",
+						success:function(responseData){
+							if(responseData==="success"){
+								alert("댓글삭제됨");
+								$(".modal").hide;
+								f_selectReply();
+							}
+						}
+					});
+				}
+				
+				function f_replyModifyDB(){
+					var rno = $('input[name="rno"]').val();
+					var reply = $('input[name="replyText"]').val();
+					var reply = $('input[name="replyer"]').val();
+					var replyDTO = {reply, replyer, boardBno};
+					$.ajax({
+						url:"/replies/modify",
+						method:"put",
+						data: JSON.stringify(replyDTO),
+						success:function(responseData){
+							if(responseData==="success"){
+								alert("댓글수정됨");
+								$(".modal").hide;
+								f_selectReply();
+							}
+						}
+					});
+				}
+				
+				
+				function f_replyModify(){
+					$('input[name="rno"]').val($(this).data("rno"));
+					$('input[name="replyText"]').val($(this).find(".card-title").html());
+					$('input[name="replyer"]').val($(this).find(".card-title").html());
+					$(".modal-footer button").hide();
+					$(".replyModify, .replyRemove, .replyClose").show();
+					$(".modal").show();
+				}
+				
+				function f_selectReply(){
+					$.getJSON("/replies/list" + boardBno, f_dataDisplay);
+				}
+				
+				function f_formatdate(str){
+					var date = new Date(str);
+					return date.getFullYear()+"/"+(date.getFullMonth()+1)+"/"+date.getDate()+" "
+								+date.getHours()+":"+date,getMinutes();
+				}
+				
+				function f_dataDisplay(replyList){
+					var output ='';
+					$(".replyCount").html("Reply Count : " + replyList.length);
+					$.each(replyList, function(index, reply){
+						var dt = f_formatDate(reply.regdate);
+						output +=` 
+							<div class='card card-body' data-rno='${reply.rno}' style="width: 18rem;"  >
+	    				   	<b>${reply.rno}</b>
+	    				   	<h5 class='card-title'>${reply.reply}</h5>
+	    				   	<h5 class='card-subtitle mb-2 text-muted'>${reply.replyer}</h5>
+	    				   	<p class='card-text mb-2 text-muted'> ${reply.regdate} </p>
+	    				 	</div>
+	    				 `;
+					});
+					$(".replyList").html(output);
+				}
 				
 				function f_insertReply(){
 					var reply = $('input[name="replyText"]').val();
@@ -106,7 +181,8 @@
 						contentType:"application/json;charset=utf-8", //보내는 data
 						success:function(responseData){
 							alert(responseData + "번 댓글등록됨");
-							f_closeModal();
+							f_closeModal(); //모달 닫기
+							f_selectReply(); //댓글 조회
 						}
 					});
 				}

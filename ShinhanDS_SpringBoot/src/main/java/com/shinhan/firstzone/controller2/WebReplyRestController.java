@@ -36,9 +36,9 @@ public class WebReplyRestController {
 		return replyService.register(dto);
 	}
 	
-	@PutMapping("/modify")
+	@PutMapping(value = "/modify", consumes = "application/json;charset=utf-8", produces = "text/plain;charset=utf-8")
 	void update(@RequestBody WebReplyDTO dto) {
-		replyService.register(dto);
+		replyService.modify(dto);
 	}
 	
 	@DeleteMapping("/delete/{rno}")

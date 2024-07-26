@@ -40,6 +40,8 @@ public interface WebReplyService {
 				.reply(entity.getReply())
 				.replyer(entity.getReplyer())
 				.boardBno(entity.getBoard().getBno())
+				.regdate(entity.getRegdate())
+				.updatedate(entity.getUpdatedate())
 				.build();
 		return dto;
 	}
