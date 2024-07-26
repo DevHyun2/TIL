@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shinhan.firstzone.paging.PageRequestDTO;
+import com.shinhan.firstzone.paging.PageResultDTO;
 import com.shinhan.firstzone.service2.WebBoardService;
 import com.shinhan.firstzone.vo4.WebBoardDTO;
+import com.shinhan.firstzone.vo4.WebBoardEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
-@Controller
+//@Restcontroller : 요청 -> 서비스수행 -> data return (ReactJS에서 사용할 예정)
+@Controller //요청 -> 서비스수행 -> data, page가 return (page는 Thymeleaf template를 사용중)
 @RequestMapping("/webboard")
 @RequiredArgsConstructor
 @Log4j2
@@ -24,7 +27,7 @@ public class WebBoardController {
 	
 	@GetMapping("/register")
 	void registerForm() {
-		
+		//forward : templates/webboard/register.html - 생략
 	}
 	
 	@PostMapping("/register")
@@ -36,9 +39,18 @@ public class WebBoardController {
 	}
 	
 	@GetMapping("/list")
-	String getList(Model model) {
-		List<WebBoardDTO> blist = boardService.getList();
-		model.addAttribute("blist", blist);
+	String getList(Model model, PageRequestDTO pageRequestDTO) {
+//		List<WebBoardDTO> blist = boardService.getList();
+		
+		if(pageRequestDTO.getSize() == 0) {
+			pageRequestDTO.setPage(1);
+			pageRequestDTO.setSize(10);
+//			pageRequestDTO.setType("c");
+//			pageRequestDTO.setKeyword("다");
+		}
+		
+		model.addAttribute("result", boardService.getList(pageRequestDTO));
+		model.addAttribute("pageRequestDTO", pageRequestDTO);
 		return "webboard/boardlist";
 	}
 	

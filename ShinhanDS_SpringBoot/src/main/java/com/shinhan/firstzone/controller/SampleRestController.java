@@ -29,13 +29,13 @@ public class SampleRestController {
 	BoardRepository bRepo;
 	
 	
-	@DeleteMapping("/delete/{bno}")
+	@DeleteMapping("/restdelete/{bno}")
 	public String delete(@PathVariable("bno") Long bno) {
 		bRepo.deleteById(bno);
 		return "삭제성공";
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/update/restcntl")
 	public String update(@RequestBody BoardEntity board) {
 		bRepo.findById(board.getBno()).ifPresent(b->{
 			log.info("before: "+ board);
@@ -49,18 +49,18 @@ public class SampleRestController {
 		return "수정성공";
 	}
 	
-	@PostMapping("/insert")
+	@PostMapping("/restinsert")
 	public Long insert(@RequestBody BoardEntity board) {
 		BoardEntity newBoard = bRepo.save(board);
 		return newBoard.getBno();
 	}
 	
-	@GetMapping("/detail/{bno}")
+	@GetMapping("/restdetail/{bno}")
 	public BoardEntity detail(@PathVariable("bno") Long bno){
 		return bRepo.findById(bno).orElse(null);
 	}
 	
-	@GetMapping("/list")
+	@GetMapping("/restlist")
 	public List<BoardEntity> list(){
 		return (List<BoardEntity>)bRepo.findAll();
 	}
