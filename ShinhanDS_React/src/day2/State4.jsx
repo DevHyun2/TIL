@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Card, Form, InputGroup, ListGroup } from 'react-bootstrap';
+import { Button, Card, ListGroup } from 'react-bootstrap';
+import InputStudent from './InputStudent';
 
 //class component에서 상태관리를 위해 this.state 사용, 값 변경은 setState()
 //function component에서 상태관리를 위해 useState() 함수 사용
@@ -19,31 +20,7 @@ function State4(props) {
   };
   return (
     <div>
-      <h2>학생정보 입력</h2>
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">학생번호</InputGroup.Text>
-        <Form.Control
-          onChange={changeHandler}
-          defaultValue={student.stdId}
-          name="stdId"
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">학생이름</InputGroup.Text>
-        <Form.Control
-          onChange={changeHandler}
-          defaultValue={student.stdName}
-          name="stdName"
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">전공</InputGroup.Text>
-        <Form.Control
-          onChange={changeHandler}
-          defaultValue={student.major}
-          name="major"
-        />
-      </InputGroup>
+      <InputStudent student={student} changeHandler={changeHandler}></InputStudent>
       <Button onClick={addHandler}>학생Add</Button>
       <h2>학생들의 목록</h2>
       <Card style={{ width: '18rem' }}>

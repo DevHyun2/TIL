@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:replace="~{/layout/layout1 :: setContent(~{this::content2} )}">
+<th:block th:fragment="content2">
+<h1>상세보기</h1>
+<p>[[${board.bno}]]</p>
+<p>[[${board.title}]]</p>
+<p>[[${board.content}]]</p>
+<p>[[${board.writer}]]</p>
+<p>[[${board.regdate}]]</p>
+<p>[[${board.updatedate}]]</p>
+</th:block>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<th:block th:replace="~{/layout/basicLayout :: setContent(~{this::content3} )}">
+	<th:block th:fragment="content3">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ div{
+  font-family: arial;
+  font-size: 15px;
+  margin: 0 auto;
+  width: 70%;
+  position: relative;
+  
+ }
+ img {   
+   position: relative;
+   left: 30%; 
+   width:400px;height: 400px;
+   margin: 0 auto;
+   }
+  h1,h2{text-align: center;} 
+</style>
+ 
+</head>
+<body>
+	 
+		<div>
+			<img th:src="@{/assets/404error.png}"/>
+			<h1>★★★서버에서 보낸메시지★★★</h1>
+			<h2>인라인방법:[[${msg}]]</h2>
+			<p th:text="${msg}">tag속성사용방법</p>
+			<h2 id="here"></h2>
+		</div>
+   
+     
+    <script>
+ 		 here.innerHTML = "입력주소 확인:" + location.href;
+	</script>
+ 
+
+</body>
+</th:block>
+</th:block>
+</html>
