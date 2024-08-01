@@ -1,15 +1,19 @@
+import MyApp4 from 'day2/MyApp4';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import MyApp2 from 'day1/MyApp2';
+import MyApp5 from 'day2/MyApp5';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div>
     <h1>React JS시작하기</h1>
     {/* <MyApp1></MyApp1> */}
-    <MyApp2/>
+    {/* <MyApp2/> */}
     {/* <EnvTest/> */}
+    {/* <MyApp3/> */}
+    {/* <MyApp4/> */}
+    <MyApp5/>
   </div>
 );
 
